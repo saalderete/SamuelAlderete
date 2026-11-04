@@ -20,21 +20,38 @@
 <script>
   // The shutter (see site.js): the store opens once a visit, decided before the first paint. Not for a
   // link straight to a section, not on a return from an article, never under reduced motion, and gone
-  // after 4 s even if site.js never runs.
+  // after 5 s even if site.js never runs.
   (function () {
     try {
       if (location.hash || sessionStorage.getItem("opened") || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
       sessionStorage.setItem("opened", "1");
       var d = document.documentElement;
       d.classList.add("opening");
-      setTimeout(function () { d.classList.remove("opening", "opened"); }, 4000);
+      setTimeout(function () { d.classList.remove("opening", "opened"); }, 5000);
     } catch (e) {}
   })();
 </script>
 </head>
 <body>
 <div class="shutter" aria-hidden="true">
-  <p class="shutter-words"><span>Hello</span><span lang="es">Hola</span><span class="open"><b>Open</b><i lang="es">Abierto</i></span></p>
+  <div class="shutter-door">
+    <p class="shutter-words">
+      <span class="flick" style="--at:60ms;--for:360ms">Hello</span>
+      <span lang="es" class="flick" style="--at:420ms;--for:200ms">Hola</span>
+      <span lang="pt" style="--at:620ms;--for:130ms">Olá</span>
+      <span lang="fr" style="--at:750ms;--for:115ms">Bonjour</span>
+      <span lang="de" style="--at:865ms;--for:100ms">Hallo</span>
+      <span lang="vi" style="--at:965ms;--for:100ms">Xin chào</span>
+      <span lang="ko" style="--at:1065ms;--for:100ms">안녕하세요</span>
+      <span lang="ja" style="--at:1165ms;--for:100ms">こんにちは</span>
+      <span lang="zh" style="--at:1265ms;--for:100ms">你好</span>
+      <span lang="hi" style="--at:1365ms;--for:100ms">नमस्ते</span>
+      <span lang="ar" dir="rtl" style="--at:1465ms;--for:100ms">مرحبا</span>
+      <span lang="nv" style="--at:1565ms;--for:100ms">Yáʼátʼééh</span>
+      <span class="open" style="--at:1665ms"><b>Open</b><i lang="es">Abierto</i></span>
+    </p>
+  </div>
+  <div class="shutter-coil"></div>
 </div>
 <a class="skip" href="#about">Skip to content</a>
 

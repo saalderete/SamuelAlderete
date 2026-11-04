@@ -87,13 +87,14 @@
   still.addEventListener("change", () => { if (still.matches) lamp.remove(); });
 })();
 
-// The shutter (index.html): the <head> decides whether it shows (html.opening). It rolls up once the page
-// has loaded and the three words have played (1.1 s at least, 2.6 s at most); a key, a click or a scroll
-// opens it straight away. Then the first aisle's sign flickers on, as if the lights just came on.
+// The shutter (index.html): the <head> decides whether it shows (html.opening). It opens once the page has
+// loaded and the greetings have played to the store's sign (2 s at least, 3.3 s at most); a key, a click, a
+// scroll or a touch opens it straight away. Then the first aisle's sign flickers on, as if the lights came on.
 (() => {
   const d = document.documentElement;
   const shutter = document.querySelector(".shutter");
   if (!shutter || !d.classList.contains("opening")) return;
+  const coil = shutter.querySelector(".shutter-coil");
 
   const wait = (ms) => new Promise((r) => setTimeout(r, Math.max(0, ms)));
   const loaded = new Promise((r) => (document.readyState === "complete" ? r() : addEventListener("load", r, { once: true })));
@@ -118,8 +119,8 @@
       }
     };
     d.classList.add("opened");
-    shutter.addEventListener("transitionend", (e) => { if (e.target === shutter) finish(); });
-    setTimeout(finish, 1100);
+    if (coil) coil.addEventListener("transitionend", (e) => { if (e.target === coil) finish(); });
+    setTimeout(finish, 1500);
   };
-  Promise.race([Promise.all([loaded, fonts, wait(1100 - performance.now())]), wait(2600 - performance.now()), skip]).then(lift);
+  Promise.race([Promise.all([loaded, fonts, wait(2000 - performance.now())]), wait(3300 - performance.now()), skip]).then(lift);
 })();
