@@ -1,476 +1,517 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-04T18:53:06+00:00",
+  "generatedAt": "2026-11-04T21:38:11Z",
   "title": "Design System: Samuel Alderete",
   "extensions": {
     "colorMeta": {
       "accent": {
         "role": "primary",
-        "displayName": "Haven Blue",
+        "displayName": "Chrome Accent (Future Black)",
         "scheme": "light",
-        "canonical": "#265789",
-        "oklch": "oklch(44.8% 0.098 251.3)",
+        "canonical": "#080808",
+        "oklch": "oklch(13.4% 0.000 0.0)",
         "tonalRamp": [
-          "#040c15",
-          "#182636",
-          "#294461",
-          "#3a6490",
-          "#5b86b4",
-          "#89a8ca",
-          "#b9cbe0",
-          "#e3f0ff"
+          "#0b0b0b",
+          "#242424",
+          "#404040",
+          "#5d5d5d",
+          "#808080",
+          "#a4a4a4",
+          "#cacaca",
+          "#eeeeee"
         ],
-        "cssVar": "--accent"
+        "cssVar": "--accent",
+        "library": "Future Black"
       },
       "accent-ink": {
         "role": "primary",
-        "displayName": "Linen on Blue",
+        "displayName": "Accent Lettering (Frost White)",
         "scheme": "light",
-        "canonical": "#ece8df",
-        "oklch": "oklch(93.2% 0.013 86.8)",
+        "canonical": "#f8fafc",
+        "oklch": "oklch(98.4% 0.003 247.9)",
         "tonalRamp": [
-          "#0c0b0a",
-          "#262522",
-          "#44423d",
-          "#64615a",
-          "#85827b",
-          "#a7a5a0",
-          "#cac9c6",
-          "#efeeec"
+          "#0a0b0d",
+          "#232426",
+          "#3e4041",
+          "#5c5e5f",
+          "#7f8082",
+          "#a3a5a7",
+          "#c9cbcd",
+          "#edeff1"
         ],
-        "cssVar": "--accent-ink"
-      },
-      "accent-muted": {
-        "role": "primary",
-        "displayName": "Mist Blue",
-        "scheme": "light",
-        "canonical": "#c9d6e6",
-        "oklch": "oklch(87.1% 0.026 253.6)",
-        "tonalRamp": [
-          "#090b0e",
-          "#22252a",
-          "#3c434b",
-          "#58626e",
-          "#798390",
-          "#9ea6af",
-          "#c5cacf",
-          "#ebeff3"
-        ],
-        "cssVar": "--accent-muted"
+        "cssVar": "--accent-ink",
+        "library": "Frost White"
       },
       "ground": {
         "role": "neutral",
-        "displayName": "Linen Ground",
+        "displayName": "Frost Ground",
         "scheme": "light",
-        "canonical": "#e2ddd1",
-        "oklch": "oklch(89.8% 0.017 88.0)",
+        "canonical": "#edf1f5",
+        "oklch": "oklch(95.6% 0.007 247.9)",
         "tonalRamp": [
-          "#0c0b09",
-          "#262522",
-          "#44423c",
-          "#656158",
-          "#868278",
-          "#a8a59e",
-          "#cbc9c5",
-          "#f0eeeb"
+          "#090b0e",
+          "#212427",
+          "#3d4043",
+          "#5b5e61",
+          "#7d8184",
+          "#a1a5a9",
+          "#c7cbcf",
+          "#ebeff3"
         ],
-        "cssVar": "--ground"
+        "cssVar": "--ground",
+        "mix": "Frost White #F8FAFC with 25% Chrome Silver #CBD5E1"
       },
       "shelf": {
         "role": "neutral",
-        "displayName": "Shelf Linen",
+        "displayName": "Code Shelf",
         "scheme": "light",
-        "canonical": "#ece8df",
-        "oklch": "oklch(93.2% 0.013 86.8)",
+        "canonical": "#ffffff",
+        "oklch": "oklch(100.0% 0.000 0.0)",
         "tonalRamp": [
-          "#0c0b0a",
-          "#262522",
-          "#44423d",
-          "#64615a",
-          "#85827b",
-          "#a7a5a0",
-          "#cac9c6",
-          "#efeeec"
+          "#0b0b0b",
+          "#242424",
+          "#404040",
+          "#5d5d5d",
+          "#808080",
+          "#a4a4a4",
+          "#cacaca",
+          "#eeeeee"
         ],
         "cssVar": "--shelf"
       },
+      "panel": {
+        "role": "neutral",
+        "displayName": "White Panel",
+        "scheme": "light",
+        "canonical": "#ffffff",
+        "oklch": "oklch(100.0% 0.000 0.0)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#242424",
+          "#404040",
+          "#5d5d5d",
+          "#808080",
+          "#a4a4a4",
+          "#cacaca",
+          "#eeeeee"
+        ],
+        "cssVar": "--panel"
+      },
       "ink": {
         "role": "neutral",
-        "displayName": "Harbor Navy",
+        "displayName": "Future Black Ink",
         "scheme": "light",
-        "canonical": "#1e3f66",
-        "oklch": "oklch(36.3% 0.078 254.0)",
+        "canonical": "#080808",
+        "oklch": "oklch(13.4% 0.000 0.0)",
         "tonalRamp": [
-          "#060c13",
-          "#1b2633",
-          "#30435b",
-          "#466387",
-          "#6685ab",
-          "#91a7c3",
-          "#bdcbdc",
-          "#e6f0fc"
+          "#0b0b0b",
+          "#242424",
+          "#404040",
+          "#5d5d5d",
+          "#808080",
+          "#a4a4a4",
+          "#cacaca",
+          "#eeeeee"
         ],
-        "cssVar": "--ink"
+        "cssVar": "--ink",
+        "library": "Future Black"
       },
       "muted": {
         "role": "neutral",
-        "displayName": "Slate Blue",
+        "displayName": "Graphite Muted",
         "scheme": "light",
-        "canonical": "#3e5e83",
-        "oklch": "oklch(47.4% 0.071 252.8)",
+        "canonical": "#4b5563",
+        "oklch": "oklch(44.6% 0.026 256.8)",
         "tonalRamp": [
-          "#060c13",
-          "#1c2632",
-          "#314359",
-          "#486384",
-          "#6885a7",
-          "#92a7c1",
-          "#becbda",
-          "#e6f0fb"
+          "#050b16",
+          "#1c2531",
+          "#37404e",
+          "#545e6d",
+          "#768190",
+          "#9aa6b5",
+          "#c0ccdc",
+          "#e4f0ff"
         ],
-        "cssVar": "--muted"
+        "cssVar": "--muted",
+        "library": "Graphite Gray"
+      },
+      "unlit": {
+        "role": "neutral",
+        "displayName": "Unlit Graphite",
+        "scheme": "light",
+        "canonical": "#7e8895",
+        "oklch": "oklch(62.3% 0.023 255.0)",
+        "tonalRamp": [
+          "#050c15",
+          "#1d252f",
+          "#38414c",
+          "#555e6b",
+          "#77818e",
+          "#9ba6b3",
+          "#c1ccda",
+          "#e5f0fe"
+        ],
+        "cssVar": "--unlit",
+        "mix": "Graphite Gray #4B5563 with 40% Chrome Silver #CBD5E1"
       },
       "rule": {
         "role": "neutral",
-        "displayName": "Flax Rule",
+        "displayName": "Silver Rule",
         "scheme": "light",
-        "canonical": "#c9c2b2",
-        "oklch": "oklch(81.5% 0.023 87.2)",
+        "canonical": "#cbd5e1",
+        "oklch": "oklch(86.9% 0.020 252.9)",
         "tonalRamp": [
-          "#0c0b08",
-          "#272520",
-          "#454239",
-          "#666154",
-          "#888275",
-          "#a9a59b",
-          "#cbc9c3",
-          "#f0eeea"
+          "#060c13",
+          "#1d252e",
+          "#38414a",
+          "#565f69",
+          "#78818c",
+          "#9ca6b1",
+          "#c2ccd8",
+          "#e5f0fc"
         ],
-        "cssVar": "--rule"
+        "cssVar": "--rule",
+        "library": "Chrome Silver"
       },
       "rule-strong": {
         "role": "neutral",
-        "displayName": "Strong Rule",
+        "displayName": "Graphite Rule",
         "scheme": "light",
-        "canonical": "#265789",
-        "oklch": "oklch(44.8% 0.098 251.3)",
+        "canonical": "#4b5563",
+        "oklch": "oklch(44.6% 0.026 256.8)",
         "tonalRamp": [
-          "#040c15",
-          "#182636",
-          "#294461",
-          "#3a6490",
-          "#5b86b4",
-          "#89a8ca",
-          "#b9cbe0",
-          "#e3f0ff"
+          "#050b16",
+          "#1c2531",
+          "#37404e",
+          "#545e6d",
+          "#768190",
+          "#9aa6b5",
+          "#c0ccdc",
+          "#e4f0ff"
         ],
-        "cssVar": "--rule-strong"
-      },
-      "sign": {
-        "role": "neutral",
-        "displayName": "Sign Panel",
-        "scheme": "light",
-        "canonical": "#ece8df",
-        "oklch": "oklch(93.2% 0.013 86.8)",
-        "tonalRamp": [
-          "#0c0b0a",
-          "#262522",
-          "#44423d",
-          "#64615a",
-          "#85827b",
-          "#a7a5a0",
-          "#cac9c6",
-          "#efeeec"
-        ],
-        "cssVar": "--sign"
+        "cssVar": "--rule-strong",
+        "library": "Graphite Gray"
       },
       "sign-ink": {
         "role": "neutral",
         "displayName": "Sign Lettering",
         "scheme": "light",
-        "canonical": "#265789",
-        "oklch": "oklch(44.8% 0.098 251.3)",
+        "canonical": "#080808",
+        "oklch": "oklch(13.4% 0.000 0.0)",
         "tonalRamp": [
-          "#040c15",
-          "#182636",
-          "#294461",
-          "#3a6490",
-          "#5b86b4",
-          "#89a8ca",
-          "#b9cbe0",
-          "#e3f0ff"
+          "#0b0b0b",
+          "#242424",
+          "#404040",
+          "#5d5d5d",
+          "#808080",
+          "#a4a4a4",
+          "#cacaca",
+          "#eeeeee"
         ],
-        "cssVar": "--sign-ink"
+        "cssVar": "--sign-ink",
+        "library": "Future Black"
       },
       "sign-muted": {
         "role": "neutral",
         "displayName": "Sign Subline",
         "scheme": "light",
-        "canonical": "#456690",
-        "oklch": "oklch(50.4% 0.078 254.9)",
+        "canonical": "#4b5563",
+        "oklch": "oklch(44.6% 0.026 256.8)",
+        "tonalRamp": [
+          "#050b16",
+          "#1c2531",
+          "#37404e",
+          "#545e6d",
+          "#768190",
+          "#9aa6b5",
+          "#c0ccdc",
+          "#e4f0ff"
+        ],
+        "cssVar": "--sign-muted",
+        "library": "Graphite Gray"
+      },
+      "shutter": {
+        "role": "neutral",
+        "displayName": "Shutter (Future Black)",
+        "scheme": "both",
+        "canonical": "#080808",
+        "oklch": "oklch(13.4% 0.000 0.0)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#242424",
+          "#404040",
+          "#5d5d5d",
+          "#808080",
+          "#a4a4a4",
+          "#cacaca",
+          "#eeeeee"
+        ],
+        "cssVar": "--shutter",
+        "library": "Future Black"
+      },
+      "shutter-ink": {
+        "role": "neutral",
+        "displayName": "Shutter Lettering (Frost White)",
+        "scheme": "both",
+        "canonical": "#f8fafc",
+        "oklch": "oklch(98.4% 0.003 247.9)",
+        "tonalRamp": [
+          "#0a0b0d",
+          "#232426",
+          "#3e4041",
+          "#5c5e5f",
+          "#7f8082",
+          "#a3a5a7",
+          "#c9cbcd",
+          "#edeff1"
+        ],
+        "cssVar": "--shutter-ink",
+        "library": "Frost White"
+      },
+      "shutter-muted": {
+        "role": "neutral",
+        "displayName": "Shutter Subline (Chrome Silver)",
+        "scheme": "both",
+        "canonical": "#cbd5e1",
+        "oklch": "oklch(86.9% 0.020 252.9)",
         "tonalRamp": [
           "#060c13",
-          "#1c2633",
-          "#30435b",
-          "#466387",
-          "#6785ab",
-          "#91a7c3",
-          "#bdcadc",
-          "#e6effc"
+          "#1d252e",
+          "#38414a",
+          "#565f69",
+          "#78818c",
+          "#9ca6b1",
+          "#c2ccd8",
+          "#e5f0fc"
         ],
-        "cssVar": "--sign-muted"
-      },
-      "sign-border": {
-        "role": "neutral",
-        "displayName": "Sign Edge",
-        "scheme": "light",
-        "canonical": "#265789",
-        "oklch": "oklch(44.8% 0.098 251.3)",
-        "tonalRamp": [
-          "#040c15",
-          "#182636",
-          "#294461",
-          "#3a6490",
-          "#5b86b4",
-          "#89a8ca",
-          "#b9cbe0",
-          "#e3f0ff"
-        ],
-        "cssVar": "--sign-border"
+        "cssVar": "--shutter-muted",
+        "library": "Chrome Silver"
       },
       "accent-dark": {
         "role": "primary",
-        "displayName": "Haven Blue (dark)",
+        "displayName": "Chrome Accent (Chrome Silver)",
         "scheme": "dark",
-        "canonical": "#8fb1da",
-        "oklch": "oklch(75.0% 0.070 253.4)",
+        "canonical": "#cbd5e1",
+        "oklch": "oklch(86.9% 0.020 252.9)",
         "tonalRamp": [
-          "#060c12",
-          "#1c2631",
-          "#324359",
-          "#486384",
-          "#6985a7",
-          "#92a7c0",
-          "#becbda",
-          "#e7effa"
+          "#060c13",
+          "#1d252e",
+          "#38414a",
+          "#565f69",
+          "#78818c",
+          "#9ca6b1",
+          "#c2ccd8",
+          "#e5f0fc"
         ],
-        "cssVar": "--accent"
+        "cssVar": "--accent",
+        "library": "Chrome Silver"
       },
       "accent-ink-dark": {
         "role": "primary",
-        "displayName": "Linen on Blue (dark)",
+        "displayName": "Accent Lettering (Future Black)",
         "scheme": "dark",
-        "canonical": "#0f1724",
-        "oklch": "oklch(20.4% 0.029 259.9)",
+        "canonical": "#080808",
+        "oklch": "oklch(13.4% 0.000 0.0)",
         "tonalRamp": [
-          "#090b0e",
-          "#22252a",
-          "#3c424c",
-          "#596270",
-          "#7a8392",
-          "#9fa5b1",
-          "#c5c9d0",
-          "#eceff3"
+          "#0b0b0b",
+          "#242424",
+          "#404040",
+          "#5d5d5d",
+          "#808080",
+          "#a4a4a4",
+          "#cacaca",
+          "#eeeeee"
         ],
-        "cssVar": "--accent-ink"
-      },
-      "accent-muted-dark": {
-        "role": "primary",
-        "displayName": "Mist Blue (dark)",
-        "scheme": "dark",
-        "canonical": "#1e3f66",
-        "oklch": "oklch(36.3% 0.078 254.0)",
-        "tonalRamp": [
-          "#060c13",
-          "#1b2633",
-          "#30435b",
-          "#466387",
-          "#6685ab",
-          "#91a7c3",
-          "#bdcbdc",
-          "#e6f0fc"
-        ],
-        "cssVar": "--accent-muted"
+        "cssVar": "--accent-ink",
+        "library": "Future Black"
       },
       "ground-dark": {
         "role": "neutral",
-        "displayName": "Linen Ground (dark)",
+        "displayName": "Future Black Ground",
         "scheme": "dark",
-        "canonical": "#0f1724",
-        "oklch": "oklch(20.4% 0.029 259.9)",
+        "canonical": "#080808",
+        "oklch": "oklch(13.4% 0.000 0.0)",
         "tonalRamp": [
-          "#090b0e",
-          "#22252a",
-          "#3c424c",
-          "#596270",
-          "#7a8392",
-          "#9fa5b1",
-          "#c5c9d0",
-          "#eceff3"
+          "#0b0b0b",
+          "#242424",
+          "#404040",
+          "#5d5d5d",
+          "#808080",
+          "#a4a4a4",
+          "#cacaca",
+          "#eeeeee"
         ],
-        "cssVar": "--ground"
+        "cssVar": "--ground",
+        "library": "Future Black"
       },
       "shelf-dark": {
         "role": "neutral",
-        "displayName": "Shelf Linen (dark)",
+        "displayName": "Night Code Shelf",
         "scheme": "dark",
-        "canonical": "#162133",
-        "oklch": "oklch(24.7% 0.038 260.0)",
+        "canonical": "#1f2328",
+        "oklch": "oklch(25.4% 0.011 254.0)",
         "tonalRamp": [
-          "#090b0f",
-          "#21252c",
-          "#3b424f",
-          "#566274",
-          "#778397",
-          "#9da6b4",
-          "#c4c9d2",
-          "#ebeff5"
+          "#080b10",
+          "#202429",
+          "#3c4046",
+          "#595e64",
+          "#7c8187",
+          "#a0a5ac",
+          "#c6cbd2",
+          "#e9eff6"
         ],
-        "cssVar": "--shelf"
+        "cssVar": "--shelf",
+        "mix": "Future Black #080808 with 35% Graphite Gray #4B5563"
+      },
+      "panel-dark": {
+        "role": "neutral",
+        "displayName": "Night Panel",
+        "scheme": "dark",
+        "canonical": "rgba(31, 35, 40, 0.62)",
+        "oklch": "oklch(25.4% 0.011 254.0) / 0.62",
+        "tonalRamp": [
+          "#080b10",
+          "#202429",
+          "#3c4046",
+          "#595e64",
+          "#7c8187",
+          "#a0a5ac",
+          "#c6cbd2",
+          "#e9eff6"
+        ],
+        "cssVar": "--panel",
+        "mix": "shelf-dark #1f2328 at 62% opacity"
       },
       "ink-dark": {
         "role": "neutral",
-        "displayName": "Harbor Navy (dark)",
+        "displayName": "Frost White Ink",
         "scheme": "dark",
-        "canonical": "#e2ddd1",
-        "oklch": "oklch(89.8% 0.017 88.0)",
+        "canonical": "#f8fafc",
+        "oklch": "oklch(98.4% 0.003 247.9)",
         "tonalRamp": [
-          "#0c0b09",
-          "#262522",
-          "#44423c",
-          "#656158",
-          "#868278",
-          "#a8a59e",
-          "#cbc9c5",
-          "#f0eeeb"
+          "#0a0b0d",
+          "#232426",
+          "#3e4041",
+          "#5c5e5f",
+          "#7f8082",
+          "#a3a5a7",
+          "#c9cbcd",
+          "#edeff1"
         ],
-        "cssVar": "--ink"
+        "cssVar": "--ink",
+        "library": "Frost White"
       },
       "muted-dark": {
         "role": "neutral",
-        "displayName": "Slate Blue (dark)",
+        "displayName": "Silver Graphite Muted",
         "scheme": "dark",
-        "canonical": "#aab4c3",
-        "oklch": "oklch(76.7% 0.024 258.4)",
+        "canonical": "#a7b1be",
+        "oklch": "oklch(75.7% 0.022 254.9)",
         "tonalRamp": [
-          "#0a0b0e",
-          "#222529",
-          "#3d424a",
-          "#5a626e",
-          "#7b838f",
-          "#9fa5af",
-          "#c6c9cf",
-          "#eceff3"
+          "#060c14",
+          "#1d252f",
+          "#38404b",
+          "#565e6a",
+          "#78818d",
+          "#9ca6b2",
+          "#c1ccd9",
+          "#e5f0fd"
         ],
-        "cssVar": "--muted"
+        "cssVar": "--muted",
+        "mix": "Chrome Silver #CBD5E1 with 28% Graphite Gray #4B5563"
+      },
+      "unlit-dark": {
+        "role": "neutral",
+        "displayName": "Unlit Grey",
+        "scheme": "dark",
+        "canonical": "#636465",
+        "oklch": "oklch(50.3% 0.002 247.9)",
+        "tonalRamp": [
+          "#0a0b0c",
+          "#232425",
+          "#3f4041",
+          "#5d5e5f",
+          "#7f8081",
+          "#a3a5a6",
+          "#c9cacc",
+          "#edeef0"
+        ],
+        "cssVar": "--unlit",
+        "mix": "Future Black #080808 with 38% Frost White #F8FAFC"
       },
       "rule-dark": {
         "role": "neutral",
-        "displayName": "Flax Rule (dark)",
+        "displayName": "Night Rule",
         "scheme": "dark",
-        "canonical": "#2a3a52",
-        "oklch": "oklch(34.6% 0.047 258.3)",
+        "canonical": "#393d41",
+        "oklch": "oklch(35.8% 0.009 248.1)",
         "tonalRamp": [
-          "#080b10",
-          "#20252e",
-          "#384352",
-          "#536279",
-          "#73839c",
-          "#9aa6b8",
-          "#c2cad5",
-          "#eaeff7"
+          "#080c0f",
+          "#212428",
+          "#3c4044",
+          "#5a5e62",
+          "#7c8185",
+          "#a0a5aa",
+          "#c6cbd0",
+          "#eaeff4"
         ],
         "cssVar": "--rule"
       },
       "rule-strong-dark": {
         "role": "neutral",
-        "displayName": "Strong Rule (dark)",
+        "displayName": "Grey Rule",
         "scheme": "dark",
-        "canonical": "#e2ddd1",
-        "oklch": "oklch(89.8% 0.017 88.0)",
+        "canonical": "#636465",
+        "oklch": "oklch(50.3% 0.002 247.9)",
         "tonalRamp": [
-          "#0c0b09",
-          "#262522",
-          "#44423c",
-          "#656158",
-          "#868278",
-          "#a8a59e",
-          "#cbc9c5",
-          "#f0eeeb"
+          "#0a0b0c",
+          "#232425",
+          "#3f4041",
+          "#5d5e5f",
+          "#7f8081",
+          "#a3a5a6",
+          "#c9cacc",
+          "#edeef0"
         ],
-        "cssVar": "--rule-strong"
-      },
-      "sign-dark": {
-        "role": "neutral",
-        "displayName": "Sign Panel (dark)",
-        "scheme": "dark",
-        "canonical": "#162133",
-        "oklch": "oklch(24.7% 0.038 260.0)",
-        "tonalRamp": [
-          "#090b0f",
-          "#21252c",
-          "#3b424f",
-          "#566274",
-          "#778397",
-          "#9da6b4",
-          "#c4c9d2",
-          "#ebeff5"
-        ],
-        "cssVar": "--sign"
+        "cssVar": "--rule-strong",
+        "mix": "Future Black #080808 with 38% Frost White #F8FAFC"
       },
       "sign-ink-dark": {
         "role": "neutral",
-        "displayName": "Sign Lettering (dark)",
+        "displayName": "Sign Lettering (Frost White)",
         "scheme": "dark",
-        "canonical": "#e2ddd1",
-        "oklch": "oklch(89.8% 0.017 88.0)",
+        "canonical": "#f8fafc",
+        "oklch": "oklch(98.4% 0.003 247.9)",
         "tonalRamp": [
-          "#0c0b09",
-          "#262522",
-          "#44423c",
-          "#656158",
-          "#868278",
-          "#a8a59e",
-          "#cbc9c5",
-          "#f0eeeb"
+          "#0a0b0d",
+          "#232426",
+          "#3e4041",
+          "#5c5e5f",
+          "#7f8082",
+          "#a3a5a7",
+          "#c9cbcd",
+          "#edeff1"
         ],
-        "cssVar": "--sign-ink"
+        "cssVar": "--sign-ink",
+        "library": "Frost White"
       },
       "sign-muted-dark": {
         "role": "neutral",
-        "displayName": "Sign Subline (dark)",
+        "displayName": "Sign Subline (Silver Graphite)",
         "scheme": "dark",
-        "canonical": "#a3b4ca",
-        "oklch": "oklch(76.4% 0.037 254.9)",
+        "canonical": "#a7b1be",
+        "oklch": "oklch(75.7% 0.022 254.9)",
         "tonalRamp": [
-          "#090b0f",
-          "#21252c",
-          "#3a434e",
-          "#556274",
-          "#768496",
-          "#9ca6b4",
-          "#c3cad2",
-          "#eaeff5"
+          "#060c14",
+          "#1d252f",
+          "#38404b",
+          "#565e6a",
+          "#78818d",
+          "#9ca6b2",
+          "#c1ccd9",
+          "#e5f0fd"
         ],
         "cssVar": "--sign-muted"
-      },
-      "sign-border-dark": {
-        "role": "neutral",
-        "displayName": "Sign Edge (dark)",
-        "scheme": "dark",
-        "canonical": "#3d5a80",
-        "oklch": "oklch(46.2% 0.071 255.5)",
-        "tonalRamp": [
-          "#070b13",
-          "#1d2632",
-          "#324359",
-          "#496384",
-          "#6a84a8",
-          "#93a7c1",
-          "#becada",
-          "#e7effb"
-        ],
-        "cssVar": "--sign-border"
       }
     },
     "typographyMeta": {
@@ -492,11 +533,11 @@
       },
       "price": {
         "displayName": "Price",
-        "purpose": "Figures inside blue price labels."
+        "purpose": "The four About figures, plain Bodoni in ink."
       },
       "sign-number": {
         "displayName": "Sign number",
-        "purpose": "Numeral in the sign number box; 1.5rem below 1024px."
+        "purpose": "Sign number, unboxed, at the sign headline size (var(--t-sign))."
       },
       "title-article": {
         "displayName": "Article section",
@@ -508,15 +549,15 @@
       },
       "label-aisle-compact": {
         "displayName": "Aisle label, compact",
-        "purpose": "English aisle names in the phone chip row."
+        "purpose": "English aisle names in the phone row."
       },
       "aisle-number-compact": {
         "displayName": "Aisle number, compact",
-        "purpose": "Number cell in the phone chip row."
+        "purpose": "Numbers in the phone row."
       },
       "aisle-number": {
         "displayName": "Aisle number",
-        "purpose": "Directory number boxes; the Built in-house figure in the was/now strip."
+        "purpose": "Directory numbers (unboxed); the Built in-house figure in the was/now line."
       },
       "title": {
         "displayName": "Title",
@@ -524,15 +565,15 @@
       },
       "lead": {
         "displayName": "Lead",
-        "purpose": "First paragraph of an aisle; role line at weight 600."
+        "purpose": "First paragraph of an aisle, in ink; role line at weight 600."
       },
       "body": {
         "displayName": "Body",
-        "purpose": "Reading text, 64-68ch, tabular numerals."
+        "purpose": "Reading text, 64-68ch, tabular numerals; home prose after the lead is muted."
       },
       "body-small": {
         "displayName": "Body small",
-        "purpose": "Card descriptions, buttons, spec lists, tables, meta."
+        "purpose": "Descriptions, buttons, spec lists, tables, meta, the was/now line."
       },
       "label-sign": {
         "displayName": "Sign subline",
@@ -567,19 +608,24 @@
     ],
     "shadows": [
       {
-        "name": "lift",
-        "value": "0 6px 16px -6px rgba(30, 63, 102, 0.30), 0 1px 2px rgba(30, 63, 102, 0.14)",
-        "purpose": "Hover/focus lift of clickable shelf items (light)."
+        "name": "panel",
+        "value": "0 1px 2px rgba(8, 8, 8, 0.06), 0 12px 28px -14px rgba(8, 8, 8, 0.24)",
+        "purpose": "Highlight panel by day: a soft two-layer drop (--shadow, light)."
       },
       {
-        "name": "lift-dark",
-        "value": "0 8px 18px -8px rgba(0, 0, 0, 0.7), 0 1px 2px rgba(0, 0, 0, 0.5)",
-        "purpose": "Hover/focus lift of clickable shelf items (dark)."
+        "name": "panel-dark",
+        "value": "inset 0 1px 0 rgba(203, 213, 225, 0.1), 0 12px 28px -14px rgba(0, 0, 0, 0.8)",
+        "purpose": "Highlight panel at night: a 1px Chrome Silver top edge at 10% plus a soft drop (--shadow, dark)."
       },
       {
-        "name": "focus-halo",
-        "value": "outline: 2px solid var(--ink); outline-offset: 3px; box-shadow: 0 0 0 5px var(--accent); border-radius: 2px",
-        "purpose": "Every focusable element; stacks with lift on cards."
+        "name": "panel-focus",
+        "value": "var(--shadow), 0 0 0 2px var(--ink)",
+        "purpose": "Keyboard focus on a linked shelf item: the panel with a 2px ink ring, outline removed."
+      },
+      {
+        "name": "focus-outline",
+        "value": "outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 2px",
+        "purpose": "Every other focusable element. No accent halo."
       }
     ],
     "motion": [
@@ -590,28 +636,53 @@
       },
       {
         "name": "press",
-        "value": "160ms; transform scale(0.97) buttons, scale(0.995) cards",
+        "value": "160ms; transform scale(0.97) buttons, scale(0.995) linked shelf items",
         "purpose": "Active press feedback."
       },
       {
-        "name": "lift",
-        "value": "160ms; translateY(-3px), arrow translate(2px,-2px)",
-        "purpose": "Hover/focus lift of clickable shelf items."
+        "name": "panel-fade",
+        "value": "200ms opacity",
+        "purpose": "Highlight panel in and out on hover and keyboard focus."
+      },
+      {
+        "name": "arrow-nudge",
+        "value": "160ms; translate(2px, -2px)",
+        "purpose": "Arrow on linked items, more-links and inventory links on hover or focus."
       },
       {
         "name": "directory-light",
-        "value": "200ms background-color/color",
-        "purpose": "Directory number box hover and current."
+        "value": "200ms color",
+        "purpose": "Directory number and name lighting to ink on hover and current."
       },
       {
-        "name": "sign-invert",
-        "value": "240ms background-color/color",
-        "purpose": "Aisle sign inversion when current."
+        "name": "sign-light",
+        "value": "240ms color and border-color",
+        "purpose": "Sign number unlit to ink and hairline rule to accent when current."
       },
       {
         "name": "flicker",
         "value": "300ms steps(1, end) once; opacity 1/0.55/1/0.8/1 at 0/18/30/52/64%",
-        "purpose": "First arrival at an aisle; disabled under prefers-reduced-motion."
+        "purpose": "First arrival at an aisle, on the sign number only; disabled under prefers-reduced-motion."
+      },
+      {
+        "name": "shelf-focus",
+        "value": "220ms opacity to 0.5",
+        "purpose": "The rest of a shelf steps back while one item has the pointer or focus."
+      },
+      {
+        "name": "row-panel",
+        "value": "200ms background-color",
+        "purpose": "Inventory row taking the panel colour on hover."
+      },
+      {
+        "name": "worklight",
+        "value": "500ms opacity; transform only, once a frame",
+        "purpose": "Work light following a fine pointer; off under reduced motion."
+      },
+      {
+        "name": "shutter",
+        "value": "700ms opacity cubic-bezier(0.4, 0, 0.2, 1); page drift 900ms translateY(40px) to none, 60ms delay",
+        "purpose": "First-visit loading screen fading away."
       }
     ],
     "breakpoints": [
@@ -630,14 +701,32 @@
       {
         "name": "short-laptop",
         "value": "min-width: 1024px and max-height: 820px"
+      },
+      {
+        "name": "inventory-stack",
+        "value": "max-width: 860px"
+      },
+      {
+        "name": "inventory-stack",
+        "value": "max-width: 860px"
       }
     ],
     "exceptions": [
       {
         "surface": "resume.html",
-        "note": "Deliberately keeps the owner's LaTeX résumé look in Computer Modern Serif (CMU Serif), black on white, small-caps section rules, Letter print page; outside the aisle system."
+        "note": "Deliberately keeps the owner's LaTeX résumé look in Computer Modern Serif (CMU Serif), black on white, small-caps section rules, centered header, Letter print page; outside the aisle system."
       }
-    ]
+    ],
+    "panel": {
+      "selector": "::before of each shelf item",
+      "radius": "6px",
+      "zIndex": -1,
+      "inset": "-16px clamp(-24px, calc(var(--gutter) * -0.75), -12px)",
+      "insetBinRow": "0 clamp(-16px, calc(var(--gutter) * -0.75), -12px)",
+      "background": "var(--panel)",
+      "shadow": "var(--shadow)",
+      "trigger": "(hover: hover) and (pointer: fine) hover of any item; :focus-visible of a linked item"
+    }
   },
   "components": [
     {
@@ -646,7 +735,7 @@
       "refersTo": "button-primary",
       "description": "The one accent action per group (Résumé, email, back to portfolio).",
       "html": "<a class=\"ds-btn ds-btn-primary\" href=\"#\"><svg class=\"ds-icon\" viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M1.5 3.5h13v9h-13zM1.8 3.8L8 8.6l6.2-4.8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/></svg>salderete29@gmail.com</a>",
-      "css": ".ds-btn{display:inline-flex;align-items:center;gap:10px;padding:14px 18px;font:700 1.0625rem/1.6 var(--sans,\"Inter\",ui-sans-serif,system-ui,sans-serif);text-decoration:none;color:var(--ink,#1e3f66);border:1px solid var(--rule-strong,#265789);border-radius:0;transition:transform 160ms cubic-bezier(0.23,1,0.32,1),background-color 160ms cubic-bezier(0.23,1,0.32,1)}.ds-btn-primary{background:var(--accent,#265789);border-color:var(--accent,#265789);color:var(--accent-ink,#ece8df)}.ds-btn:active{transform:scale(0.97)}.ds-btn:focus-visible{outline:2px solid var(--ink,#1e3f66);outline-offset:3px;box-shadow:0 0 0 5px var(--accent,#265789);border-radius:2px}.ds-icon{width:18px;height:18px;flex:none}"
+      "css": ".ds-btn{display:inline-flex;align-items:center;gap:10px;padding:14px 18px;font:700 1.0625rem/1.6 var(--sans,\"Inter\",ui-sans-serif,system-ui,sans-serif);text-decoration:none;color:var(--ink,#080808);border:1px solid var(--rule-strong,#4b5563);border-radius:0;transition:transform 160ms cubic-bezier(0.23,1,0.32,1),background-color 160ms cubic-bezier(0.23,1,0.32,1)}.ds-btn-primary{background:var(--accent,#080808);border-color:var(--accent,#080808);color:var(--accent-ink,#f8fafc)}.ds-btn:active{transform:scale(0.97)}.ds-btn:focus-visible{outline:2px solid var(--ink,#080808);outline-offset:3px;border-radius:2px}.ds-icon{width:18px;height:18px;flex:none}"
     },
     {
       "name": "Outline Button",
@@ -654,39 +743,39 @@
       "refersTo": "button-outline",
       "description": "Secondary actions; fills ink on hover.",
       "html": "<a class=\"ds-btn-o\" href=\"#\">Résumé (PDF)</a>",
-      "css": ".ds-btn-o{display:inline-flex;align-items:center;gap:10px;padding:14px 18px;font:700 1.0625rem/1.6 var(--sans,\"Inter\",ui-sans-serif,system-ui,sans-serif);text-decoration:none;color:var(--ink,#1e3f66);background:transparent;border:1px solid var(--rule-strong,#265789);border-radius:0;transition:transform 160ms cubic-bezier(0.23,1,0.32,1),background-color 160ms cubic-bezier(0.23,1,0.32,1)}.ds-btn-o:hover{background:var(--ink,#1e3f66);color:var(--ground,#e2ddd1)}.ds-btn-o:active{transform:scale(0.97)}.ds-btn-o:focus-visible{outline:2px solid var(--ink,#1e3f66);outline-offset:3px;box-shadow:0 0 0 5px var(--accent,#265789);border-radius:2px}"
+      "css": ".ds-btn-o{display:inline-flex;align-items:center;gap:10px;padding:14px 18px;font:700 1.0625rem/1.6 var(--sans,\"Inter\",ui-sans-serif,system-ui,sans-serif);text-decoration:none;color:var(--ink,#080808);background:transparent;border:1px solid var(--rule-strong,#4b5563);border-radius:0;transition:transform 160ms cubic-bezier(0.23,1,0.32,1),background-color 160ms cubic-bezier(0.23,1,0.32,1)}.ds-btn-o:hover{background:var(--ink,#080808);color:var(--ground,#edf1f5)}.ds-btn-o:active{transform:scale(0.97)}.ds-btn-o:focus-visible{outline:2px solid var(--ink,#080808);outline-offset:3px;border-radius:2px}"
     },
     {
       "name": "Aisle Sign",
       "kind": "custom",
       "refersTo": "aisle-sign",
-      "description": "Overhead sign opening every aisle: a linen panel in a blue edge that inverts to solid blue when current.",
+      "description": "Unboxed overhead sign opening every aisle: the number rests unlit and lights to ink when current, and the hairline under it lights to the accent.",
       "html": "<div class=\"ds-sign\"><span class=\"ds-sign-no\">02</span><h2 class=\"ds-sign-h\"><b>Experience</b><span lang=\"es\">Experiencia</span></h2></div><div class=\"ds-sign is-here\"><span class=\"ds-sign-no\">01</span><h2 class=\"ds-sign-h\"><b>About</b><span lang=\"es\">Sobre mí</span></h2></div>",
-      "css": ".ds-sign{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:18px;margin:0 0 16px;padding:14px 18px 14px 14px;border:1px solid var(--sign-border,#265789);background:var(--sign,#ece8df);color:var(--sign-ink,#265789);transition:background-color 240ms cubic-bezier(0.23,1,0.32,1),color 240ms cubic-bezier(0.23,1,0.32,1)}.ds-sign-no{display:grid;place-items:center;min-width:64px;height:56px;padding:0 8px;background:var(--accent,#265789);color:var(--accent-ink,#ece8df);font-family:var(--display,\"Bodoni Moda\",Didot,\"Bodoni 72\",Georgia,serif);font-weight:600;font-size:2rem;transition:background-color 240ms cubic-bezier(0.23,1,0.32,1),color 240ms cubic-bezier(0.23,1,0.32,1)}.ds-sign-h{margin:0;display:flex;flex-wrap:wrap;align-items:baseline;column-gap:14px;row-gap:4px;line-height:1;font-size:clamp(1.75rem,1.2rem + 1.8vw,2.75rem)}.ds-sign-h b{font-family:var(--display,\"Bodoni Moda\",Didot,\"Bodoni 72\",Georgia,serif);font-weight:600;letter-spacing:-0.01em}.ds-sign-h span{font-family:var(--sans,\"Inter\",ui-sans-serif,system-ui,sans-serif);font-size:0.875rem;font-weight:500;text-transform:uppercase;letter-spacing:0.14em;color:var(--sign-muted,#456690)}.ds-sign.is-here{background:var(--accent,#265789);border-color:var(--accent,#265789);color:var(--accent-ink,#ece8df)}.ds-sign.is-here .ds-sign-no{background:var(--sign,#ece8df);color:var(--accent,#265789)}.ds-sign.is-here .ds-sign-h span{color:var(--accent-muted,#c9d6e6)}"
+      "css": ".ds-sign{display:flex;align-items:baseline;gap:18px;margin:0 0 32px;padding:0 0 16px;border-bottom:1px solid var(--rule,#cbd5e1);color:var(--sign-ink,#080808);transition:border-color 240ms cubic-bezier(0.23,1,0.32,1)}.ds-sign-no{flex:none;color:var(--unlit,#7e8895);font-family:var(--display,\"Bodoni Moda\",Didot,\"Bodoni 72\",Georgia,serif);font-weight:600;font-size:clamp(1.75rem,1.2rem + 1.8vw,2.75rem);line-height:1;transition:color 240ms cubic-bezier(0.23,1,0.32,1)}.ds-sign-h{margin:0;display:flex;flex-wrap:wrap;align-items:baseline;column-gap:14px;row-gap:4px;line-height:1;font-size:clamp(1.75rem,1.2rem + 1.8vw,2.75rem)}.ds-sign-h b{font-family:var(--display,\"Bodoni Moda\",Didot,\"Bodoni 72\",Georgia,serif);font-weight:600;letter-spacing:-0.01em}.ds-sign-h span{font-family:var(--sans,\"Inter\",ui-sans-serif,system-ui,sans-serif);font-size:0.875rem;font-weight:500;text-transform:uppercase;letter-spacing:0.14em;color:var(--sign-muted,#4b5563)}.ds-sign.is-here{border-bottom-color:var(--accent,#080808)}.ds-sign.is-here .ds-sign-no{color:var(--ink,#080808);animation:ds-flicker 300ms steps(1,end) 1}@keyframes ds-flicker{0%{opacity:1}18%{opacity:0.55}30%{opacity:1}52%{opacity:0.8}64%{opacity:1}}@media (prefers-reduced-motion:reduce){.ds-sign.is-here .ds-sign-no{animation:none}}"
     },
     {
       "name": "Aisle Directory",
       "kind": "nav",
       "refersTo": "directory-number",
-      "description": "Numbered pinned nav; the current aisle number fills accent.",
+      "description": "Numbered pinned nav with no boxes or rules; number and name rest muted, and the current row lights to ink.",
       "html": "<ol class=\"ds-aisles\"><li><a href=\"#\" aria-current=\"true\"><span class=\"ds-no\">01</span><span class=\"ds-lb\"><b>About</b><span>Sobre mí</span></span></a></li><li><a href=\"#\"><span class=\"ds-no\">02</span><span class=\"ds-lb\"><b>Experience</b><span>Experiencia</span></span></a></li></ol>",
-      "css": ".ds-aisles{margin:0;padding:0;list-style:none;font-family:var(--sans,\"Inter\",ui-sans-serif,system-ui,sans-serif)}.ds-aisles a{display:grid;grid-template-columns:44px 1fr;align-items:center;gap:14px;padding:9px 0;text-decoration:none;color:var(--muted,#3e5e83);border-top:1px solid var(--rule,#c9c2b2)}.ds-aisles li:last-child a{border-bottom:1px solid var(--rule,#c9c2b2)}.ds-no{display:grid;place-items:center;width:44px;height:36px;border:1px solid var(--rule-strong,#265789);color:var(--ink,#1e3f66);font-family:var(--display,\"Bodoni Moda\",Didot,\"Bodoni 72\",Georgia,serif);font-weight:600;font-size:1.125rem;transition:background-color 200ms cubic-bezier(0.23,1,0.32,1),color 200ms cubic-bezier(0.23,1,0.32,1)}.ds-lb{display:flex;flex-direction:column;line-height:1.2}.ds-lb b{font-family:var(--display,\"Bodoni Moda\",Didot,\"Bodoni 72\",Georgia,serif);font-weight:600;font-size:1.1875rem;color:var(--ink,#1e3f66)}.ds-lb span{font-size:0.8125rem}.ds-aisles a:hover .ds-no{background:var(--ink,#1e3f66);color:var(--ground,#e2ddd1)}.ds-aisles a[aria-current=\"true\"] .ds-no,.ds-aisles a[aria-current=\"true\"]:hover .ds-no{background:var(--accent,#265789);color:var(--accent-ink,#ece8df)}.ds-aisles a:focus-visible{outline:2px solid var(--ink,#1e3f66);outline-offset:3px;box-shadow:0 0 0 5px var(--accent,#265789);border-radius:2px}"
+      "css": ".ds-aisles{margin:0;padding:0;list-style:none;font-family:var(--sans,\"Inter\",ui-sans-serif,system-ui,sans-serif)}.ds-aisles a{display:grid;grid-template-columns:2.5rem 1fr;align-items:baseline;gap:10px;padding:8px 0;text-decoration:none;color:var(--muted,#4b5563)}.ds-no{color:var(--muted,#4b5563);font-family:var(--display,\"Bodoni Moda\",Didot,\"Bodoni 72\",Georgia,serif);font-weight:600;font-size:1.125rem;line-height:1;transition:color 200ms cubic-bezier(0.23,1,0.32,1)}.ds-lb{display:flex;flex-direction:column;line-height:1.2}.ds-lb b{font-family:var(--display,\"Bodoni Moda\",Didot,\"Bodoni 72\",Georgia,serif);font-weight:600;font-size:1.1875rem;color:var(--muted,#4b5563);transition:color 200ms cubic-bezier(0.23,1,0.32,1)}.ds-lb span{font-size:0.8125rem}.ds-aisles a:hover .ds-no,.ds-aisles a:hover .ds-lb b,.ds-aisles a[aria-current=\"true\"] .ds-no,.ds-aisles a[aria-current=\"true\"] .ds-lb b{color:var(--ink,#080808)}.ds-aisles a:focus-visible{outline:2px solid var(--ink,#080808);outline-offset:3px;border-radius:2px}"
     },
     {
       "name": "Price Channel",
       "kind": "custom",
       "refersTo": "price-label",
-      "description": "Shelf strip on a 3px rail; blue price labels hang flush from it.",
-      "html": "<ul class=\"ds-channel\"><li><span class=\"ds-price\">3</span><p>businesses running on KasaPro</p></li><li><span class=\"ds-price\">940</span><p>automated tests</p></li></ul>",
-      "css": ".ds-channel{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(2,1fr);border-top:3px solid var(--rule-strong,#265789);border-bottom:1px solid var(--rule-strong,#265789);background:var(--shelf,#ece8df);font-family:var(--sans,\"Inter\",ui-sans-serif,system-ui,sans-serif)}.ds-channel li{padding:0 14px 14px}.ds-channel li+li{border-left:1px solid var(--rule,#c9c2b2)}.ds-price{display:inline-block;margin:-1px 0 10px;padding:4px 8px 2px;background:var(--accent,#265789);color:var(--accent-ink,#ece8df);font-family:var(--display,\"Bodoni Moda\",Didot,\"Bodoni 72\",Georgia,serif);font-weight:600;font-size:clamp(1.75rem,1.3rem + 1.4vw,2.5rem);line-height:1.05;font-variant-numeric:tabular-nums}.ds-channel p{margin:0;font-size:0.875rem;line-height:1.4;color:var(--muted,#3e5e83)}"
+      "description": "Plain Bodoni figures in ink under one 1px hairline; no fills, no cell dividers, no rail.",
+      "html": "<ul class=\"ds-channel\"><li><span class=\"ds-price\">3</span><p>businesses running on KasaPro</p></li><li><span class=\"ds-price\">940</span><p>automated tests on KasaPro</p></li></ul>",
+      "css": ".ds-channel{margin:0;padding:20px 0 0;list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:22px 24px;border-top:1px solid var(--rule,#cbd5e1);font-family:var(--sans,\"Inter\",ui-sans-serif,system-ui,sans-serif);font-variant-numeric:tabular-nums}.ds-price{display:block;margin:0 0 8px;white-space:nowrap;color:var(--ink,#080808);font-family:var(--display,\"Bodoni Moda\",Didot,\"Bodoni 72\",Georgia,serif);font-weight:600;font-size:clamp(1.75rem,1.3rem + 1.4vw,2.5rem);line-height:1.05}.ds-channel p{margin:0;font-size:0.875rem;line-height:1.4;color:var(--muted,#4b5563)}"
     },
     {
       "name": "Shelf Tag",
       "kind": "card",
       "refersTo": "shelf-tag",
-      "description": "Dated experience card; lifts 3px on hover and focus when linked.",
-      "html": "<a class=\"ds-tag\" href=\"#\"><p class=\"ds-when\">Jan 2026 – Present</p><div><h3>Founder &amp; Developer <span class=\"ds-at\">· Nerrix Digital</span></h3><p>Four client sites across contracting, rental and service businesses.</p><ul class=\"ds-sku\"><li>React</li><li>Node.js</li></ul></div></a>",
-      "css": ".ds-tag{display:grid;grid-template-columns:128px 1fr;gap:6px 24px;padding:20px 20px 20px 18px;background:var(--shelf,#ece8df);border:1px solid var(--rule,#c9c2b2);color:var(--ink,#1e3f66);text-decoration:none;font:400 1.0625rem/1.6 var(--sans,\"Inter\",ui-sans-serif,system-ui,sans-serif);transition:transform 160ms cubic-bezier(0.23,1,0.32,1),box-shadow 160ms cubic-bezier(0.23,1,0.32,1),border-color 160ms cubic-bezier(0.23,1,0.32,1)}.ds-tag:hover,.ds-tag:focus-visible{transform:translateY(-3px);box-shadow:var(--shadow,0 6px 16px -6px rgba(30,63,102,0.30),0 1px 2px rgba(30,63,102,0.14));border-color:var(--rule-strong,#265789)}.ds-tag:focus-visible{outline:2px solid var(--ink,#1e3f66);outline-offset:3px}.ds-when{margin:0;font-size:0.8125rem;font-weight:600;color:var(--muted,#3e5e83);text-transform:uppercase;letter-spacing:0.06em;line-height:1.5;padding-top:3px}.ds-tag h3{margin:0;font-size:1.1875rem;line-height:1.3;font-weight:700}.ds-at{font-weight:500;color:var(--muted,#3e5e83)}.ds-tag p{margin:6px 0 0;color:var(--muted,#3e5e83)}.ds-sku{margin:14px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}.ds-sku li{font-size:0.8125rem;font-weight:600;padding:3px 8px;border:1px solid var(--rule,#c9c2b2);color:var(--ink,#1e3f66);background:var(--ground,#e2ddd1)}"
+      "description": "Dated experience entry with no card; the highlight panel fades up under it on hover and, when linked, on keyboard focus with an ink ring.",
+      "html": "<a class=\"ds-tag\" href=\"#\"><p class=\"ds-when\">Jan 2026 – Present</p><div><h3>Founder &amp; Developer <span class=\"ds-at\">· Nerrix Digital</span><svg class=\"ds-go\" viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M4.5 11.5l7-7M6 4.5h5.5V10\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"square\"/></svg></h3><p>Four client sites across contracting, rental and service businesses.</p><ul class=\"ds-sku\"><li>React</li><li>Node.js</li></ul></div></a>",
+      "css": ".ds-tag{position:relative;isolation:isolate;display:grid;grid-template-columns:128px 1fr;gap:6px 24px;color:var(--ink,#080808);text-decoration:none;font:400 1.0625rem/1.6 var(--sans,\"Inter\",ui-sans-serif,system-ui,sans-serif);transition:transform 160ms cubic-bezier(0.23,1,0.32,1)}.ds-tag::before{content:\"\";position:absolute;z-index:-1;inset:-16px clamp(-24px,calc(var(--gutter,24px) * -0.75),-12px);border-radius:6px;background:var(--panel,#ffffff);box-shadow:var(--shadow,0 1px 2px rgba(8,8,8,0.06),0 12px 28px -14px rgba(8,8,8,0.24));opacity:0;transition:opacity 200ms cubic-bezier(0.23,1,0.32,1)}.ds-tag:hover::before,.ds-tag:focus-visible::before{opacity:1}.ds-tag:focus-visible{outline:none}.ds-tag:focus-visible::before{box-shadow:var(--shadow,0 1px 2px rgba(8,8,8,0.06),0 12px 28px -14px rgba(8,8,8,0.24)),0 0 0 2px var(--ink,#080808)}.ds-tag:active{transform:scale(0.995)}.ds-go{display:inline-block;width:14px;height:14px;margin-left:4px;vertical-align:1px;transition:transform 160ms cubic-bezier(0.23,1,0.32,1)}.ds-tag:hover .ds-go,.ds-tag:focus-visible .ds-go{transform:translate(2px,-2px)}.ds-when{margin:0;font-size:0.8125rem;font-weight:600;color:var(--muted,#4b5563);text-transform:uppercase;letter-spacing:0.06em;line-height:1.5;padding-top:3px}.ds-tag h3{margin:0;font-size:1.1875rem;line-height:1.3;font-weight:700}.ds-at{font-weight:500;color:var(--muted,#4b5563)}.ds-tag p{margin:6px 0 0;color:var(--muted,#4b5563)}.ds-sku{margin:14px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}.ds-sku li{font-size:0.8125rem;font-weight:600;padding:3px 8px;border:1px solid var(--rule,#cbd5e1);color:var(--ink,#080808);background:var(--ground,#edf1f5)}"
     },
     {
       "name": "SKU Chip",
@@ -694,15 +783,15 @@
       "refersTo": "sku-chip",
       "description": "Stamped tech/scope tag; static, no states.",
       "html": "<ul class=\"ds-chips\"><li>Playwright</li><li>TypeScript</li><li>PostgreSQL</li></ul>",
-      "css": ".ds-chips{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px;font-family:var(--sans,\"Inter\",ui-sans-serif,system-ui,sans-serif)}.ds-chips li{font-size:0.8125rem;font-weight:600;padding:3px 8px;border:1px solid var(--rule,#c9c2b2);color:var(--ink,#1e3f66);background:var(--ground,#e2ddd1)}"
+      "css": ".ds-chips{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px;font-family:var(--sans,\"Inter\",ui-sans-serif,system-ui,sans-serif)}.ds-chips li{font-size:0.8125rem;font-weight:600;padding:3px 8px;border:1px solid var(--rule,#cbd5e1);color:var(--ink,#080808);background:var(--ground,#edf1f5)}"
     },
     {
-      "name": "Was / Now Strip",
+      "name": "Was / Now Line",
       "kind": "custom",
       "refersTo": "was-price",
-      "description": "Accent strip striking the replaced item; only for real replacements.",
+      "description": "Plain muted line: the struck subscription, then Built in-house in Bodoni ink; only for real replacements.",
       "html": "<p class=\"ds-was\"><s>Paid EndTest.io subscription</s> <b>Built in-house</b> saving thousands a year</p>",
-      "css": ".ds-was{display:inline-flex;flex-wrap:wrap;align-items:baseline;gap:8px;margin:0;padding:6px 10px;background:var(--accent,#265789);color:var(--accent-ink,#ece8df);font:600 0.875rem/1.6 var(--sans,\"Inter\",ui-sans-serif,system-ui,sans-serif)}.ds-was s{font-weight:500;text-decoration-thickness:2px;opacity:0.8}.ds-was b{font-family:var(--display,\"Bodoni Moda\",Didot,\"Bodoni 72\",Georgia,serif);font-weight:600;font-size:1.125rem}"
+      "css": ".ds-was{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 10px;margin:0;color:var(--muted,#4b5563);font:600 0.875rem/1.6 var(--sans,\"Inter\",ui-sans-serif,system-ui,sans-serif)}.ds-was s{font-weight:500;text-decoration-thickness:1px}.ds-was b{font-family:var(--display,\"Bodoni Moda\",Didot,\"Bodoni 72\",Georgia,serif);font-weight:600;font-size:1.125rem;color:var(--ink,#080808)}"
     },
     {
       "name": "Spec List",
@@ -710,78 +799,85 @@
       "refersTo": "product-card",
       "description": "Term/value grid inside product cards.",
       "html": "<dl class=\"ds-spec\"><dt>Users</dt><dd>3 businesses</dd><dt>Tests</dt><dd>940</dd></dl>",
-      "css": ".ds-spec{margin:0;display:grid;grid-template-columns:7.5rem 1fr;border-top:1px solid var(--rule-strong,#265789);font:400 0.875rem/1.6 var(--sans,\"Inter\",ui-sans-serif,system-ui,sans-serif);color:var(--ink,#1e3f66)}.ds-spec dt,.ds-spec dd{margin:0;padding:6px 0;border-bottom:1px solid var(--rule,#c9c2b2)}.ds-spec dt{font-weight:700;text-transform:uppercase;letter-spacing:0.06em;font-size:0.8125rem;padding-right:18px;color:var(--muted,#3e5e83);padding-top:7px}.ds-spec dd{font-weight:600}"
+      "css": ".ds-spec{margin:0;display:grid;grid-template-columns:7.5rem 1fr;border-top:1px solid var(--rule-strong,#4b5563);font:400 0.875rem/1.6 var(--sans,\"Inter\",ui-sans-serif,system-ui,sans-serif);color:var(--ink,#080808)}.ds-spec dt,.ds-spec dd{margin:0;padding:6px 0;border-bottom:1px solid var(--rule,#cbd5e1)}.ds-spec dt{font-weight:700;text-transform:uppercase;letter-spacing:0.06em;font-size:0.8125rem;padding-right:18px;color:var(--muted,#4b5563);padding-top:7px}.ds-spec dd{font-weight:600}"
     },
     {
       "name": "More-link",
       "kind": "button",
-      "description": "Inline onward link with a 2px accent underline; fills accent on hover.",
-      "html": "<a class=\"ds-more\" href=\"#\">Full résumé (PDF)<svg viewBox=\"0 0 16 16\" width=\"14\" height=\"14\" aria-hidden=\"true\"><path d=\"M4.5 11.5l7-7M6 4.5h5.5V10\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"square\"/></svg></a>",
-      "css": ".ds-more{display:inline-flex;align-items:center;gap:6px;font:700 1.0625rem/1.6 var(--sans,\"Inter\",ui-sans-serif,system-ui,sans-serif);color:var(--ink,#1e3f66);text-decoration:none;border-bottom:2px solid var(--accent,#265789);padding-bottom:2px}.ds-more:hover{background:var(--accent,#265789);color:var(--accent-ink,#ece8df)}.ds-more:focus-visible{outline:2px solid var(--ink,#1e3f66);outline-offset:3px;box-shadow:0 0 0 5px var(--accent,#265789);border-radius:2px}"
+      "refersTo": "more-link",
+      "description": "Inline onward link with a 2px accent underline; on hover the underline turns ink and the arrow nudges, with no fill.",
+      "html": "<a class=\"ds-more\" href=\"#\">Full résumé (PDF)<svg class=\"ds-go\" viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M4.5 11.5l7-7M6 4.5h5.5V10\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"square\"/></svg></a>",
+      "css": ".ds-more{display:inline-flex;align-items:center;gap:6px;font:700 1.0625rem/1.6 var(--sans,\"Inter\",ui-sans-serif,system-ui,sans-serif);color:var(--ink,#080808);text-decoration:none;border-bottom:2px solid var(--accent,#080808);padding-bottom:2px;transition:border-color 160ms cubic-bezier(0.23,1,0.32,1)}.ds-go{width:14px;height:14px;transition:transform 160ms cubic-bezier(0.23,1,0.32,1)}.ds-more:hover{border-bottom-color:var(--ink,#080808)}.ds-more:hover .ds-go{transform:translate(2px,-2px)}.ds-more:focus-visible{outline:2px solid var(--ink,#080808);outline-offset:3px;border-radius:2px}"
     }
   ],
   "narrative": {
-    "northStar": "The Well-Run Aisle, in Haven Blue",
-    "overview": "**Creative North Star: \"The Well-Run Aisle, in Haven Blue\"**\n\nThe site is a bilingual aisle held to signage discipline. A pinned directory on the left lists numbered aisles. Each section on the right opens under a full-width overhead sign: a solid blue number box, the English aisle name in a high-contrast Didone, and its Spanish pair after it on the same baseline in small tracked capitals. Work is stocked as shelf tags, product cards with spec lists, a bin of smaller items, and blue price labels hanging from a heavy shelf rail. Type, rules, numbering and the bilingual pairs carry the metaphor. There are no props, no illustrations and no retailer colours or marks.\n\nThe palette is Haven, from the Nerrix design library: one blue on linen. Every chromatic value is that single blue family. The deep blue (`accent`) fills current signs, prices and primary actions and draws the strong rules, a darker navy (`ink`) sets the text, and warm linen grounds and shelves (`ground`, `shelf`) hold everything. Dark mode turns the ground to night navy, the text to linen, and lifts the accent to a pale sky blue so it still reads as the one light in the room. Density is moderate and legible: a 17px Inter reading face, generous aisle breaks, and 1px rules that every tag, sign and table snaps to. Hierarchy comes from the pairing. Bodoni Moda at weight 600 names things, and Inter reads, labels and acts.\n\nThe one motion idea is the aisle lighting up. As you scroll, the current aisle's sign inverts from a linen panel to solid blue, its number lights in the directory, and the sign flickers once like a fluorescent tube the first time you reach it. Clickable shelf items lift 3px with a soft shadow on hover or keyboard focus. Nothing else moves.\n\n**Exception: the résumé page.** `resume.html` deliberately keeps the owner's own LaTeX résumé look: Computer Modern Serif (CMU Serif, self-hosted from `assets/fonts/cmu`), black on white, centered header, small-caps section rules, a Letter page with print margins. It sits outside the aisle system. Don't restyle it in aisle grammar, and don't borrow its serif, its small caps or its black-on-white for aisle surfaces.",
+    "northStar": "The Well-Run Aisle, in Chrome",
+    "overview": "**Creative North Star: \"The Well-Run Aisle, in Chrome\"**\n\nThe site is a bilingual aisle held to signage discipline. A pinned directory on the left lists numbered aisles. Each section on the right opens under a full-width overhead sign: the aisle number, the English aisle name in a high-contrast Didone, and its Spanish pair after it on the same baseline in small tracked capitals, all standing over one hairline. Work is stocked as shelf tags, product cards with spec lists, a bin of smaller items, and price figures standing on one shelf edge. Nothing is boxed: items sit straight on the page, and type, rules, numbering and the bilingual pairs carry the metaphor. There are no props, no illustrations and no retailer colours or marks.\n\nThe palette is Chrome, from the Nerrix design library (dopely-fashion-brand-08): Future Black, Graphite Gray, Chrome Silver and Frost White, and no hue at all. Dark is the palette as the library draws it: Frost White type on a Future Black ground, Chrome Silver for primary actions and the lit rule. Light is its matching day version: Future Black type on Frost White with a quarter of the silver in it (`ground`), so the white work light still shows, and white for the highlight panel and code. Every word pair passes WCAG AA, with body pairs at 6.7:1 or better. Density is moderate and legible: a 17px Inter reading face, generous aisle breaks, and 1px rules. Hierarchy comes from the pairing. Bodoni Moda at weight 600 names things, and Inter reads, labels and acts.\n\nThe one motion idea is the aisle lighting up. Sign numbers rest unlit. As you scroll, the current aisle's sign number lights to ink, the hairline under its sign lights to the accent, its directory row lights, and the first time you reach it the number flickers once like a fluorescent tube. When you reach for a shelf item (a fine pointer over it, or keyboard focus on its link) a soft panel fades up under it, and the rest of its shelf steps back to half strength (shelf focus). With a mouse or trackpad, a soft work light follows the pointer along the aisle floor, under the shelves: a white light by day, a faint cold silver light at night. Touch screens and reduced motion get no light. On the first visit of a session the store opens: a plain Future Black screen with Frost White lettering, in both schemes. \"Hello\" lights like a sign and holds a beat, then eleven more languages speed past (Hola, Olá, Bonjour, Hallo, Xin chào, Korean, Japanese, Mandarin, Hindi, Arabic and Navajo) to the store's own sign, Open with Abierto after it in Chrome Silver. Once the page has loaded (2 s at least, 3.3 s at most; a key, click, scroll or touch opens it at once) the shutter fades away over 700 ms while the page drifts up 40px into place, and the first aisle's sign flickers on. It never shows for a link to a section, on a return from an article, or under reduced motion. Nothing else moves.\n\n**Exception: the résumé page.** `resume.html` deliberately keeps the owner's own LaTeX résumé look: Computer Modern Serif (CMU Serif, self-hosted from `assets/fonts/cmu`), black on white, centered header, small-caps section rules, a Letter page with print margins. It sits outside the aisle system. Don't restyle it in aisle grammar, and don't borrow its serif, its small caps or its centered LaTeX header for aisle surfaces. Chrome's day scheme is black on a frosted white too, so the line between them is the type, not the colour.",
     "keyCharacteristics": [
       "Two self-hosted families: Bodoni Moda (variable, wght 400–900, used at 600) for naming, Inter (wght 400–800) for everything else. No width axes and no condensed type.",
-      "One blue on linen. The accent always means \"current\", \"price\", \"primary\" or \"selected\".",
-      "Square everything: 0 radius, 1px rules, a 3px shelf rail, and a dashed 1px rule for receipts.",
+      "Chrome: black, graphite, silver and white, with no hue. The accent always means \"current\", \"primary\" or \"selected\".",
+      "Nothing boxed: no cards, no number boxes, no filled labels. Items sit on the page and a panel comes up only when you reach for one.",
+      "Square everything except the highlight panel (6px): 0 radius, 1px rules, and a dashed 1px rule for receipts.",
       "Bilingual pairs on every aisle name: English first, Spanish after it on the baseline.",
-      "Flat at rest. The only shadow is the hover/focus lift.",
+      "Flat at rest. The only shadow belongs to the highlight panel, and the only gradient is the work light, which is light on the floor rather than paint on a surface.",
       "Light and dark follow `prefers-color-scheme`, and numerals are tabular everywhere."
     ],
     "rules": [
       {
-        "name": "The One Blue Rule",
-        "body": "Every chromatic value in the system belongs to the Haven blue family, set on linen. Ink, muted text and rules are deeper or greyer steps of the same blue. A second hue, a gradient, or a retailer's colour is never introduced.",
+        "name": "The No-Hue Rule",
+        "body": "Every value in the system is Future Black, Graphite Gray, Chrome Silver, Frost White or a mix of them. A hue, a tint, a gradient fill or a retailer's colour is never introduced.",
         "section": "colors"
       },
       {
-        "name": "The Inversion Rule",
-        "body": "\"Current\" is shown by swapping roles, not by adding a colour. The sign's linen panel goes solid accent, its number box goes linen with an accent numeral, and its Spanish subline goes Mist Blue. The directory number box fills accent. Nothing else changes.",
+        "name": "The Lit Rule",
+        "body": "\"Current\" is shown by light, not by inversion or a new colour. Sign numbers rest unlit and directory rows rest in Muted; the current aisle's sign number and its directory row light to ink, and the hairline under its sign lights to the accent. Article, inventory and 404 signs name the aisle you are in, so they are always lit.",
         "section": "colors"
       },
       {
         "name": "The Two Voices Rule",
-        "body": "Bodoni Moda names things: the owner, aisles, sign numbers, prices, article titles and section heads, and the \"Built in-house\" figure. Inter does everything else, including every button, chip, label, date and paragraph. Bodoni is never used for running text, never set in capitals, and never set below the 0.9375rem phone chip label.",
+        "body": "Bodoni Moda names things: the owner, aisles, sign numbers, prices, article titles and section heads, and the \"Built in-house\" figure. Inter does everything else, including every button, chip, label, date and paragraph. Bodoni is never used for running text, never set in capitals, and never set below the 0.9375rem phone row label.",
         "section": "typography"
       },
       {
         "name": "The Bilingual Pair Rule",
-        "body": "Every aisle name comes as English and then Spanish. On signs, the Spanish runs after the English on the same baseline in Inter capitals (`label-sign`, tracked 0.14em) in Sign Subline, marked `lang=\"es\"`. In the directory it sits underneath at 13px in Inter sentence case, and on phones it is dropped from the chips. Spanish never sits above the English, and the sign never leaves it out.",
+        "body": "Every aisle name comes as English and then Spanish. On signs, the Spanish runs after the English on the same baseline in Inter capitals (`label-sign`, tracked 0.14em) in Sign Subline, marked `lang=\"es\"`. In the directory it sits underneath at 13px in Inter sentence case, and on phones it is dropped from the row. Spanish never sits above the English, and the sign never leaves it out.",
         "section": "typography"
       },
       {
-        "name": "The Lift-Only Rule",
-        "body": "Nothing casts a shadow at rest. A shelf item lifts a few pixels when you reach for it, and keyboard focus gets the same lift as the pointer. Static (non-link) tags never lift.",
+        "name": "The Panel Rule",
+        "body": "Nothing has a surface at rest. A panel comes up under an item only when you reach for it, by opacity alone, and keyboard focus gets the same panel with an ink ring. Items never move up, never gain a border, and never keep the panel once you leave.",
         "section": "elevation"
       },
       {
         "name": "The One Line Rule",
-        "body": "Rules are 1px. The only exceptions are the 3px shelf rail and the 2px accent underline on more-links. There are no double borders.",
+        "body": "Rules are 1px. The only heavier line is the 2px accent underline on more-links and inventory links. There are no double borders and no rails.",
         "section": "shapes"
       }
     ],
     "dos": [
-      "Do open every aisle and every secondary page with an aisle sign: a linen panel in a 1px blue edge, a solid accent number box, the English name in Bodoni Moda 600 and the Spanish pair after it in tracked Inter capitals.",
-      "Do show \"current\" by inversion (panel to solid accent, number box to linen), driven by scroll position, with a one-time flicker that respects reduced motion.",
-      "Do put figures in blue price labels hung flush from a 3px shelf rail, and keep tabular numerals on.",
-      "Do use the `accent-ink` token for text on every accent fill, and `accent-muted` for secondary text on it, in both colour schemes.",
-      "Do keep Bodoni Moda at weight 600 for naming roles only, and set everything else in Inter.",
-      "Do give clickable shelf items the 3px lift with the Lift shadow on hover *and* keyboard focus, and nothing at rest.",
-      "Do keep corners square and rules at 1px, with the 3px rail and dashed receipt rule as the only exceptions.",
-      "Do draw icons as inline SVG on the 16px grid with square caps."
+      "**Do** open every aisle and every secondary page with an unboxed aisle sign: the number at the headline size, the English name in Bodoni Moda 600 and the Spanish pair after it in tracked Inter capitals, over one 1px hairline.",
+      "**Do** show \"current\" by light: the sign number from unlit to ink and the directory row from Muted to ink, the hairline from Silver Rule to the accent, driven by scroll position, with a one-time number flicker that respects reduced motion.",
+      "**Do** set figures as plain Bodoni in ink, and keep tabular numerals on.",
+      "**Do** use the `accent-ink` token for text on every accent fill, in both colour schemes.",
+      "**Do** keep Bodoni Moda at weight 600 for naming roles only, and set everything else in Inter.",
+      "**Do** let shelf items sit on the page with no fill, border or padding, and bring the 6px highlight panel up under them on fine-pointer hover and on keyboard focus of a linked item, by opacity over 200ms, with a 2px ink ring for the keyboard.",
+      "**Do** quiet the rest of a shelf (experience tags, product cards, writing entries, bin rows, inventory rows) to 0.5 opacity while one item has the pointer or keyboard focus, over 220ms.",
+      "**Do** keep the shutter to the first visit of a session, under 3.3 s, skippable by any key, click or scroll, and absent for #links and reduced motion (`index.html` head script, `.shutter`, `site.js`).",
+      "**Do** keep the work light under the shelves, moved by transform only, for fine pointers only, and off under reduced motion (`site.js`, `.worklight`, token `--lamp`).",
+      "**Do** keep corners square and rules at 1px, with the 6px panel, the 2px accent underline and the dashed receipt rule as the only exceptions.",
+      "**Do** draw icons as inline SVG on the 16px grid with square caps."
     ],
     "donts": [
-      "Don't add a second hue, a gradient, or any real retailer's colours or marks.",
-      "Don't use cartoon props, illustrations or hardware clip-art. The aisle is carried by type, rules, numbering and bilingual pairs.",
-      "Don't set a kicker or eyebrow label above a heading. The Spanish pair runs after the English on the sign's baseline, and on phones dates move under the title.",
-      "Don't set Bodoni Moda in capitals, in running text, or at any weight other than 600.",
-      "Don't bring back condensed type or width-axis hierarchy.",
-      "Don't round corners or add resting shadows to cards, signs or chips.",
-      "Don't use Unicode glyphs or emoji as icons.",
-      "Don't use Computer Modern, small caps or black on white outside the résumé page."
+      "**Don't** add a hue, a tint, a gradient fill, or any real retailer's colours or marks. The work light is the one radial gradient, and it stays a light, not a surface.",
+      "**Don't** use cartoon props, illustrations or hardware clip-art. The aisle is carried by type, rules, numbering and bilingual pairs.",
+      "**Don't** set a kicker or eyebrow label above a heading. The Spanish pair runs after the English on the sign's baseline, and on phones dates move under the title.",
+      "**Don't** set Bodoni Moda in capitals, in running text, or at any weight other than 600.",
+      "**Don't** bring back condensed type or width-axis hierarchy.",
+      "**Don't** put boxes, fills or cards around numbers, headings, figures or shelf items, or bring back the 3px rail.",
+      "**Don't** lift items, move them up on hover, or give anything a shadow at rest. The panel's shadow is the only one.",
+      "**Don't** round anything other than the highlight panel and the focus outline.",
+      "**Don't** use Unicode glyphs or emoji as icons.",
+      "**Don't** use Computer Modern, small caps or the centered LaTeX header outside the résumé page."
     ]
   }
 }

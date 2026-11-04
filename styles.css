@@ -26,12 +26,11 @@
   --panel: #ffffff;                   /* the highlight under the item you reach for */
   --ink: #080808;
   --muted: #4b5563;
-  --unlit: #7e8895;                   /* a sign number before its aisle lights: Graphite with 40% Silver */
+  --unlit: #7e8895;                   /* a sign's number before its aisle lights (large type only): Graphite with 40% Silver */
   --rule: #cbd5e1;
   --rule-strong: #4b5563;
   --accent: #080808;
   --accent-ink: #f8fafc;
-  --accent-muted: #cbd5e1;
   --sign-ink: #080808;
   --sign-muted: #4b5563;
   --shadow: 0 1px 2px rgba(8, 8, 8, 0.06), 0 12px 28px -14px rgba(8, 8, 8, 0.24);
@@ -66,12 +65,11 @@
     --panel: rgba(31, 35, 40, 0.62);
     --ink: #f8fafc;
     --muted: #a7b1be;                 /* Chrome Silver with 28% Graphite */
-    --unlit: #636465;
+    --unlit: #636465;                 /* Future Black with 38% Frost White */
     --rule: #393d41;
     --rule-strong: #636465;
     --accent: #cbd5e1;
     --accent-ink: #080808;
-    --accent-muted: #4b5563;
     --sign-ink: #f8fafc;
     --sign-muted: #a7b1be;
     --shadow: inset 0 1px 0 rgba(203, 213, 225, 0.1), 0 12px 28px -14px rgba(0, 0, 0, 0.8);
@@ -139,7 +137,7 @@ html { scrollbar-color: var(--muted) var(--ground); }
   padding: 8px 0; text-decoration: none; color: var(--muted);
 }
 .aisle-no {
-  color: var(--unlit);
+  color: var(--muted);              /* part of the link's text, so it keeps full text contrast */
   font-family: var(--display); font-weight: 600; font-size: 1.125rem; line-height: 1;
   transition: color 200ms var(--ease-out);
 }
