@@ -40,7 +40,7 @@ He runs software in production for real businesses, not class projects: KasaPro 
 
 - Show email and LinkedIn on the site; the phone number stays on the PDF résumé only.
 - No invented proof: no testimonials, logos of companies he hasn't worked with, or numbers he hasn't confirmed.
-- KasaPro, KasaRentals and the internship code are private; say "code walkthrough on request" rather than linking.
+- KasaPro, KasaRentals, the Nerrix Digital site and the internship code are private; say "code walkthrough on request" rather than linking.
 - Screenshots of KasaPro use demo data, never real customers.
 - Gracias Por Invitar's events are sample data with fictional organizers: never present them as real listings.
 - Writing section: short technical write-ups drafted from his real code, reviewed by him before publishing.
