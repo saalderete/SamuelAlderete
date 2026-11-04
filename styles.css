@@ -40,13 +40,11 @@
   --gutter: clamp(16px, 4vw, 48px);
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
-  /* the shutter: the sign blue, linen lettering, 1px slat rules, a navy bottom rail */
+  /* the shutter: the sign blue, linen lettering, 1px slat rules */
   --shutter: #265789;
   --shutter-ink: #ece8df;
   --shutter-muted: #c9d6e6;
   --slat: rgba(236, 232, 223, 0.11);
-  --slat-tight: rgba(236, 232, 223, 0.24);
-  --rail: #1e3f66;
 
   --t-body: 1.0625rem;      /* 17px */
   --t-small: 0.875rem;      /* 14px */
@@ -79,8 +77,6 @@
     --shutter-ink: #e2ddd1;
     --shutter-muted: #a3b4ca;
     --slat: rgba(226, 221, 209, 0.06);
-    --slat-tight: rgba(226, 221, 209, 0.14);
-    --rail: #8fb1da;
     color-scheme: dark;
   }
 }
@@ -445,35 +441,27 @@ a.tag:focus-visible, a.product:focus-visible, .notes a:focus-visible { transform
 }
 
 /* ---------- the shutter: the store opens, once a visit ----------
-   A roll-up shutter in the sign blue: a door of 1px slat rules over a heavy rail, under a coil housing at the
-   top where the rolled slats sit packed tight. "Hello" holds a beat, then eleven more languages speed past
-   until the shutter shows the store's own sign (Open, with Abierto after it). Once the page has loaded, the
-   door starts slow, picks up speed and eases into the coil; the coil clears; the page drifts up into place
-   underneath and the first aisle's sign flickers on. The <head> script shows it only on the first visit of a
-   session, never for a link to a section and never under reduced motion. */
+   A closed shutter in the sign blue, drawn with 1px slat rules. "Hello" holds a beat, then eleven more
+   languages speed past until the shutter shows the store's own sign (Open, with Abierto after it). Once the
+   page has loaded, the shutter fades away while the page drifts up into place underneath, and the first
+   aisle's sign flickers on. The <head> script shows it only on the first visit of a session, never for a
+   link to a section and never under reduced motion. */
 .shutter { display: none; }
 html.opening { overflow: hidden; }
-html.opening .shutter { display: block; position: fixed; inset: 0; z-index: 60; overflow: hidden; }
+html.opening .shutter {
+  display: block; position: fixed; inset: 0; z-index: 60;
+  transition: opacity 700ms cubic-bezier(0.4, 0, 0.2, 1);
+}
 .shutter-door {
   position: absolute; inset: 0;
   display: grid; place-items: center;
   background-color: var(--shutter); color: var(--shutter-ink);
   background-image: repeating-linear-gradient(to bottom, transparent 0 27px, var(--slat) 27px 28px);
-  border-bottom: 6px solid var(--rail);
-  transition: transform 900ms cubic-bezier(0.7, 0, 0.2, 1);
 }
-.shutter-coil {
-  position: absolute; left: 0; right: 0; top: 0; z-index: 1; height: 36px;
-  background-color: var(--shutter);
-  background-image: repeating-linear-gradient(to bottom, transparent 0 3px, var(--slat-tight) 3px 4px);
-  border-bottom: 2px solid var(--rail);
-  transition: transform 260ms var(--ease-out);
-}
-html.opening.opened .shutter-door { transform: translateY(-100%); }
-html.opening.opened .shutter-coil { transform: translateY(-100%); transition-delay: 820ms; }
-/* the page waits a little low, then drifts up as the door clears */
-html.opening .store { transform: translateY(56px); }
-html.opening.opened .store { transform: none; transition: transform 860ms var(--ease-out) 200ms; }
+html.opening.opened .shutter { opacity: 0; pointer-events: none; }
+/* the page waits a little low, then drifts up as the shutter fades */
+html.opening .store { transform: translateY(40px); }
+html.opening.opened .store { transform: none; transition: transform 900ms var(--ease-out) 60ms; }
 
 .shutter-words { margin: 0; display: grid; place-items: center; }
 .shutter-words > span {
