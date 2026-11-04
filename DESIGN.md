@@ -418,6 +418,7 @@ Authored inline SVG symbols on a 16px viewBox. Drawn icons use a 1.5–1.6 strok
 - **Do** let shelf items sit on the page with no fill, border or padding, and bring the 6px highlight panel up under them on fine-pointer hover and on keyboard focus of a linked item, by opacity over 200ms, with a 2px ink ring for the keyboard.
 - **Do** quiet the rest of a shelf (experience tags, product cards, writing entries, bin rows, inventory rows) to 0.5 opacity while one item has the pointer or keyboard focus, over 220ms.
 - **Do** keep the shutter to the first visit of a session and to refreshes, under 3.3 s, skippable by any key, click or scroll, and absent for links straight to a section and for reduced motion (`index.html` head script, `.shutter`, `site.js`).
+- **Do** open the links that leave the portfolio (live sites, GitHub, LinkedIn) and the PDF résumé in a new tab, with `rel="noopener"` and the page's hidden "Opens in a new tab" description, so the portfolio stays open behind them. In-page aisles, email and the portfolio's own pages (articles, the inventory) open where you are.
 - **Do** keep the work light under the shelves, moved by transform only, for fine pointers only, and off under reduced motion (`site.js`, `.worklight`, token `--lamp`).
 - **Do** keep corners square and rules at 1px, with the 6px panel, the 2px accent underline and the dashed receipt rule as the only exceptions.
 - **Do** draw icons as inline SVG on the 16px grid with square caps.

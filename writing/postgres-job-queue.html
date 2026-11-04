@@ -16,7 +16,7 @@
 <main class="article">
   <nav class="article-top" aria-label="Site">
     <a href="../#writing"><svg class="icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M13 8H3.5M7.5 4L3.5 8l4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/></svg> Samuel Alderete</a>
-    <a href="../resume.pdf">Résumé</a>
+    <a href="../resume.pdf" target="_blank" rel="noopener" aria-describedby="newtab">Résumé</a>
   </nav>
 
   <div class="sign"><span class="sign-no" aria-hidden="true">04</span><p class="sign-h"><b>Writing</b><span lang="es">Notas</span></p></div>
@@ -25,7 +25,7 @@
     <h1>A job queue on Postgres, no Redis</h1>
     <p class="meta">November 2026 · 7 minute read · TestHarvest</p>
 
-    <p><a href="https://github.com/saalderete/endtest-clone">TestHarvest</a> runs browser tests: a worker opens real Chromium, signs in to your app, clicks through it and checks what it sees. Tests run when someone presses Run, and on schedules, like every hour against production. Two things have to be true or the tool is worse than nothing:</p>
+    <p><a href="https://github.com/saalderete/endtest-clone" target="_blank" rel="noopener" aria-describedby="newtab">TestHarvest</a> runs browser tests: a worker opens real Chromium, signs in to your app, clicks through it and checks what it sees. Tests run when someone presses Run, and on schedules, like every hour against production. Two things have to be true or the tool is worse than nothing:</p>
     <ol>
       <li>If a worker dies halfway through a test, the run isn't lost or stuck "running" forever.</li>
       <li>A scheduled test runs once per due time, no matter how many worker processes are up.</li>
@@ -85,9 +85,10 @@ WHERE id = $3 AND next_run_at = $2</code></pre>
     <h2>What it costs</h2>
     <p>Polling adds up to two seconds of latency before a run starts, which doesn't matter for browser tests that take ten. Every worker queries the run table every two seconds. That's trivial for a team's test runner, and it's the first thing I'd revisit at real scale, probably with <code>LISTEN/NOTIFY</code> to wake workers instead of polling. If I needed thousands of jobs a second or fan-out across services, I'd use a real queue. TestHarvest needs neither.</p>
 
-    <p class="end">The code is on GitHub: <a href="https://github.com/saalderete/endtest-clone">saalderete/endtest-clone</a>, mainly <code>server/runner/worker.ts</code> and <code>server/runner/scheduler.ts</code>. <a href="../#writing">Back to all writing</a></p>
+    <p class="end">The code is on GitHub: <a href="https://github.com/saalderete/endtest-clone" target="_blank" rel="noopener" aria-describedby="newtab">saalderete/endtest-clone</a>, mainly <code>server/runner/worker.ts</code> and <code>server/runner/scheduler.ts</code>. <a href="../#writing">Back to all writing</a></p>
   </article>
 </main>
 <script src="../site.js" defer></script>
+<span id="newtab" hidden>Opens in a new tab</span>
 </body>
 </html>
