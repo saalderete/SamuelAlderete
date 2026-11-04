@@ -24,7 +24,9 @@ python3 -m http.server 8000
 
 ## Update the résumé PDF
 
-Edit `resume.html`, then print it to PDF from Chrome (Letter, margins "Default", background graphics on) and save over `resume.pdf`. Check that it is still one page.
+Edit `resume.html`, then open `resume.html?phone=YOUR-NUMBER` in Chrome and print it to PDF (Letter, margins "Default", background graphics on), saving over `resume.pdf`. Check that it is still one page.
+
+The phone number is only on the PDF. The page leaves it out, and shows the `phone` parameter in print alone, so the number is never in this repository or on a page people read.
 
 ## Fonts
 

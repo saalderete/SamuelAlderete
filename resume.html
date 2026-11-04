@@ -32,6 +32,9 @@
   header p { margin: 2px 0 0; font-size: 10pt; }
   header a { text-decoration: underline; text-underline-offset: 1.5px; text-decoration-thickness: 0.5px; }
   .sep { padding: 0 4px; }
+  /* the phone number is on the printed résumé only (see the script at the end) */
+  .print-phone { display: none; }
+  @media print { .print-phone:not(:empty) { display: inline; } }
 
   h2 { margin: 7px 0 3px; font-size: 11.6pt; font-weight: 400; font-variant: small-caps; letter-spacing: 0.02em; border-bottom: 0.6px solid #000; padding-bottom: 1px; }
   .entry { margin: 0 0 4px; padding-left: 0.14in; }
@@ -52,7 +55,7 @@
 <div class="page">
   <header>
     <h1>Samuel Alderete</h1>
-    <p>915-383-6722<span class="sep">|</span><a href="mailto:salderete29@gmail.com">salderete29@gmail.com</a><span class="sep">|</span>El Paso, TX</p>
+    <p><span class="print-phone" id="phone"></span><a href="mailto:salderete29@gmail.com">salderete29@gmail.com</a><span class="sep">|</span>El Paso, TX</p>
     <p><a href="https://www.linkedin.com/in/saalderete/">linkedin.com/in/saalderete</a><span class="sep">|</span><a href="https://github.com/saalderete">github.com/saalderete</a><span class="sep">|</span><a href="https://saalderete.github.io/SamuelAlderete/">saalderete.github.io/SamuelAlderete</a></p>
   </header>
 
@@ -128,5 +131,19 @@
     <p><b>Spoken Languages</b>: English, Spanish (fully bilingual)</p>
   </div>
 </div>
+<script>
+  // The phone number is on the printed résumé only, never in this page: to print the PDF, open
+  // resume.html?phone=YOUR-NUMBER and print. The number shows in print alone, so a link carrying
+  // some other number can't put it in front of anyone reading the page.
+  (function () {
+    var n = new URLSearchParams(location.search).get("phone");
+    if (!n || !/^[0-9+().\- ]{7,20}$/.test(n)) return;
+    var slot = document.getElementById("phone"), sep = document.createElement("span");
+    sep.className = "sep";
+    sep.textContent = "|";
+    slot.textContent = n;
+    slot.appendChild(sep);
+  })();
+</script>
 </body>
 </html>
