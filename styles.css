@@ -40,11 +40,10 @@
   --gutter: clamp(16px, 4vw, 48px);
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
-  /* the shutter: the sign blue, linen lettering, 1px slat rules */
+  /* the loading screen: the sign blue with linen lettering */
   --shutter: #265789;
   --shutter-ink: #ece8df;
   --shutter-muted: #c9d6e6;
-  --slat: rgba(236, 232, 223, 0.11);
 
   --t-body: 1.0625rem;      /* 17px */
   --t-small: 0.875rem;      /* 14px */
@@ -76,7 +75,6 @@
     --shutter: #162133;
     --shutter-ink: #e2ddd1;
     --shutter-muted: #a3b4ca;
-    --slat: rgba(226, 221, 209, 0.06);
     color-scheme: dark;
   }
 }
@@ -441,7 +439,7 @@ a.tag:focus-visible, a.product:focus-visible, .notes a:focus-visible { transform
 }
 
 /* ---------- the shutter: the store opens, once a visit ----------
-   A closed shutter in the sign blue, drawn with 1px slat rules. "Hello" holds a beat, then eleven more
+   A plain screen in the sign blue. "Hello" holds a beat, then eleven more
    languages speed past until the shutter shows the store's own sign (Open, with Abierto after it). Once the
    page has loaded, the shutter fades away while the page drifts up into place underneath, and the first
    aisle's sign flickers on. The <head> script shows it only on the first visit of a session, never for a
@@ -456,7 +454,6 @@ html.opening .shutter {
   position: absolute; inset: 0;
   display: grid; place-items: center;
   background-color: var(--shutter); color: var(--shutter-ink);
-  background-image: repeating-linear-gradient(to bottom, transparent 0 27px, var(--slat) 27px 28px);
 }
 html.opening.opened .shutter { opacity: 0; pointer-events: none; }
 /* the page waits a little low, then drifts up as the shutter fades */
