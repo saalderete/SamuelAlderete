@@ -439,12 +439,12 @@ a.tag:focus-visible .go, a.product:focus-visible .go, .notes a:focus-visible .go
   .inventory td.at { white-space: normal; }
 }
 
-/* ---------- the shutter: the store opens, once a visit ----------
+/* ---------- the shutter: the store opens on a first visit and on every refresh ----------
    A plain screen in Future Black. "Hello" holds a beat, then eleven more
    languages speed past until the shutter shows the store's own sign (Open, with Abierto after it). Once the
-   page has loaded, the shutter fades away while the page drifts up into place underneath, and the first
-   aisle's sign flickers on. The <head> script shows it only on the first visit of a session, never for a
-   link to a section and never under reduced motion. */
+   page has loaded, the shutter fades away while the page drifts up into place underneath, and the sign of
+   the aisle you're in flickers on. The <head> script shows it on the first visit of a session and on every
+   refresh, never for a link straight to a section and never under reduced motion. */
 .shutter { display: none; }
 html.opening { overflow: hidden; }
 html.opening .shutter {
@@ -457,9 +457,10 @@ html.opening .shutter {
   background-color: var(--shutter); color: var(--shutter-ink);
 }
 html.opening.opened .shutter { opacity: 0; pointer-events: none; }
-/* the page waits a little low, then drifts up as the shutter fades */
-html.opening .store { transform: translateY(40px); }
-html.opening.opened .store { transform: none; transition: transform 900ms var(--ease-out) 60ms; }
+/* as the shutter fades, the page drifts up 40px into place. It sits in place while the page loads, so a
+   refresh on a #section address lands on that section's sign exactly */
+html.opening.opened .store { animation: drift-in 900ms var(--ease-out) 60ms both; }
+@keyframes drift-in { from { transform: translateY(40px); } to { transform: none; } }
 
 .shutter-words { margin: 0; display: grid; place-items: center; }
 .shutter-words > span {

@@ -87,9 +87,10 @@
   still.addEventListener("change", () => { if (still.matches) lamp.remove(); });
 })();
 
-// The shutter (index.html): the <head> decides whether it shows (html.opening). It fades once the page has
-// loaded and the greetings have played to the store's sign (2 s at least, 3.3 s at most); a key, a click, a
-// scroll or a touch fades it straight away. Then the first aisle's sign flickers on, as if the lights came on.
+// The shutter (index.html): the <head> decides whether it shows (html.opening), on the first visit of a session
+// and on every refresh. It fades once the page has loaded and the greetings have played to the store's sign
+// (2 s at least, 3.3 s at most); a key, a click, a scroll or a touch fades it straight away. Then the sign of
+// the aisle you're in flickers on, as if the lights came on (after a refresh, that can be any aisle).
 (() => {
   const d = document.documentElement;
   const shutter = document.querySelector(".shutter");
@@ -111,10 +112,12 @@
       if (done) return;
       done = true;
       d.classList.remove("opening", "opened");
-      const first = document.querySelector(".aisle");
-      if (first) {
-        first.classList.add("lit");
-        first.addEventListener("animationend", () => first.classList.remove("lit"), { once: true });
+      const here = document.querySelector(".aisle.is-here") || document.querySelector(".aisle");
+      if (here) {
+        here.classList.remove("lit");
+        void here.offsetWidth; // restart the flicker if the scroll-spy just played it under the shutter
+        here.classList.add("lit");
+        here.addEventListener("animationend", () => here.classList.remove("lit"), { once: true });
       }
     };
     d.classList.add("opened");

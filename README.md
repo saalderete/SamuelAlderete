@@ -11,7 +11,7 @@ Plain HTML, CSS and a little JavaScript, with no build step. GitHub Pages serves
 | `writing/` | Three technical write-ups drawn from the real code |
 | `resume.html` / `resume.pdf` / `resume.md` | The résumé, as a page, as a one-page PDF and as plain text |
 | `styles.css` | Every style on the site, including the articles and the 404 |
-| `site.js` | Scroll-spy for the directory, the one-time sign flicker, the work light that follows the pointer, and the shutter of greetings that fades away on a first visit |
+| `site.js` | Scroll-spy for the directory, the one-time sign flicker, the work light that follows the pointer, and the shutter of greetings that fades away on a first visit and on every refresh |
 | `assets/` | Screenshots (demo data only), the favicon and self-hosted fonts |
 | `PRODUCT.md`, `DESIGN.md` | Who the site is for, and the design system it follows |
 
