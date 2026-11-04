@@ -7,10 +7,11 @@ Plain HTML, CSS and a little JavaScript, with no build step. GitHub Pages serves
 | Path | What it is |
 |---|---|
 | `index.html` | The portfolio: a pinned directory on the left, five aisles on the right |
+| `inventory.html` | Everything built or shipped, on one table: what it is, where it was made, the stack, where to see it |
 | `writing/` | Three technical write-ups drawn from the real code |
 | `resume.html` / `resume.pdf` / `resume.md` | The résumé, as a page, as a one-page PDF and as plain text |
 | `styles.css` | Every style on the site, including the articles and the 404 |
-| `site.js` | Scroll-spy for the directory, and the one-time sign flicker |
+| `site.js` | Scroll-spy for the directory, the one-time sign flicker, and the work light that follows the pointer |
 | `assets/` | Screenshots (demo data only), the favicon and self-hosted fonts |
 | `PRODUCT.md`, `DESIGN.md` | Who the site is for, and the design system it follows |
 

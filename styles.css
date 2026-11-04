@@ -33,6 +33,7 @@
   --sign-muted: #456690;
   --sign-border: #265789;
   --shadow: 0 6px 16px -6px rgba(30, 63, 102, 0.30), 0 1px 2px rgba(30, 63, 102, 0.14);
+  --lamp: rgba(247, 245, 239, 0.9);   /* the work light on linen */
 
   --sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --display: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
@@ -65,6 +66,7 @@
     --sign-muted: #a3b4ca;
     --sign-border: #3d5a80;
     --shadow: 0 8px 18px -8px rgba(0, 0, 0, 0.7), 0 1px 2px rgba(0, 0, 0, 0.5);
+    --lamp: rgba(143, 177, 218, 0.11);  /* a blue shop light at night */
     color-scheme: dark;
   }
 }
@@ -360,3 +362,70 @@ a.tag:focus-visible, a.product:focus-visible, .notes a:focus-visible { transform
 
 /* phones: the date sits under the title, never above it as a kicker */
 @media (max-width: 640px) { .tag .when, .notes .when { order: 1; padding-top: 0; margin-top: 12px; } .tag, .notes a { display: flex; flex-direction: column; } }
+
+/* ---------- the work light ----------
+   A soft lamp that follows a mouse or trackpad along the aisle floor, under the shelves (site.js moves it
+   with transform only). Off on touch screens and under reduced motion; it fades out when the pointer leaves. */
+.store, .article { position: relative; z-index: 1; }
+.worklight {
+  position: fixed; left: 0; top: 0; z-index: 0;
+  width: 900px; height: 900px; pointer-events: none;
+  background: radial-gradient(closest-side, var(--lamp), color-mix(in srgb, var(--lamp) 35%, transparent) 55%, transparent);
+  opacity: 0; transition: opacity 500ms var(--ease-out); will-change: transform;
+}
+.worklight.on { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .worklight { display: none; } }
+
+/* ---------- shelf focus ----------
+   The item you're on comes forward and the rest of that shelf steps back, for the pointer and for the
+   keyboard. Linked items still lift (above); this only quiets their neighbours. */
+.tags-list > li, .products > li, .notes > li, .bin > li, .inventory tbody > tr { transition: opacity 220ms var(--ease-out); }
+@media (hover: hover) and (pointer: fine) {
+  .tags-list:has(> li:hover) > li:not(:hover),
+  .products:has(> li:hover) > li:not(:hover),
+  .notes:has(> li:hover) > li:not(:hover),
+  .bin:has(> li:hover) > li:not(:hover),
+  .inventory tbody:has(> tr:hover) > tr:not(:hover) { opacity: 0.5; }
+  a.product:hover img { border-color: var(--rule-strong); }
+}
+.tags-list:has(:focus-visible) > li:not(:focus-within),
+.products:has(:focus-visible) > li:not(:focus-within),
+.notes:has(:focus-visible) > li:not(:focus-within),
+.bin:has(:focus-visible) > li:not(:focus-within),
+.inventory tbody:has(:focus-visible) > tr:not(:focus-within) { opacity: 0.5; }
+.product img { transition: border-color 160ms var(--ease-out); }
+
+/* ---------- the inventory (everything on one list) ---------- */
+.inventory-page { max-width: 1080px; }
+.inventory-page .lead { font-size: var(--t-lead); line-height: 1.5; max-width: 60ch; margin: 0 0 28px; }
+.inventory-wrap { overflow-x: auto; }
+.inventory { width: 100%; border-collapse: collapse; background: var(--shelf); border-top: 3px solid var(--rule-strong); font-size: var(--t-small); }
+.inventory caption { caption-side: bottom; text-align: left; padding-top: 10px; color: var(--muted); font-size: var(--t-tiny); }
+.inventory th, .inventory td { text-align: left; vertical-align: top; padding: 14px 14px 14px 0; border-bottom: 1px solid var(--rule); }
+.inventory th:first-child, .inventory td:first-child { padding-left: 14px; }
+.inventory thead th { padding-top: 10px; padding-bottom: 10px; font-size: var(--t-tiny); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+.inventory tbody th { font-weight: 400; min-width: 16rem; }
+.inventory tbody th b { display: block; font-size: 1.0625rem; font-weight: 700; color: var(--ink); }
+.inventory tbody th span { display: block; margin-top: 2px; color: var(--muted); }
+.inventory td.at { white-space: nowrap; font-weight: 600; }
+.inventory .sku { margin: 0; }
+.inventory .sku li { background: var(--ground); }
+.inventory td.link { white-space: nowrap; }
+.inventory td.link a { font-weight: 700; text-decoration: none; border-bottom: 2px solid var(--accent); padding-bottom: 1px; }
+.inventory td.link a .go { transition: transform 160ms var(--ease-out); }
+.inventory td.link em { font-style: normal; color: var(--muted); }
+@media (hover: hover) and (pointer: fine) {
+  .inventory td.link a:hover { background: var(--accent); color: var(--accent-ink); }
+  .inventory td.link a:hover .go { transform: translate(2px, -2px); }
+}
+@media (max-width: 860px) {
+  /* phones: each row becomes a shelf tag */
+  .inventory, .inventory tbody, .inventory tr, .inventory th, .inventory td { display: block; }
+  .inventory thead { display: none; }
+  .inventory caption { display: block; padding: 12px 14px 0; }
+  .inventory tbody tr { padding: 14px; border-bottom: 1px solid var(--rule); }
+  .inventory th, .inventory td, .inventory th:first-child, .inventory td:first-child { padding: 0; border: 0; min-width: 0; }
+  .inventory td { margin-top: 10px; }
+  .inventory td.at::before, .inventory td.link::before { content: attr(data-label) ": "; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; font-size: var(--t-tiny); }
+  .inventory td.at { white-space: normal; }
+}

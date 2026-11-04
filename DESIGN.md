@@ -233,7 +233,7 @@ The site is a bilingual aisle held to signage discipline. A pinned directory on 
 
 The palette is Haven, from the Nerrix design library: one blue on linen. Every chromatic value is that single blue family. The deep blue (`accent`) fills current signs, prices and primary actions and draws the strong rules, a darker navy (`ink`) sets the text, and warm linen grounds and shelves (`ground`, `shelf`) hold everything. Dark mode turns the ground to night navy, the text to linen, and lifts the accent to a pale sky blue so it still reads as the one light in the room. Density is moderate and legible: a 17px Inter reading face, generous aisle breaks, and 1px rules that every tag, sign and table snaps to. Hierarchy comes from the pairing. Bodoni Moda at weight 600 names things, and Inter reads, labels and acts.
 
-The one motion idea is the aisle lighting up. As you scroll, the current aisle's sign inverts from a linen panel to solid blue, its number lights in the directory, and the sign flickers once like a fluorescent tube the first time you reach it. Clickable shelf items lift 3px with a soft shadow on hover or keyboard focus. Nothing else moves.
+The one motion idea is the aisle lighting up. As you scroll, the current aisle's sign inverts from a linen panel to solid blue, its number lights in the directory, and the sign flickers once like a fluorescent tube the first time you reach it. Clickable shelf items lift 3px with a soft shadow on hover or keyboard focus, and while one item is in focus the rest of its shelf steps back to half strength (shelf focus). With a mouse or trackpad, a soft work light follows the pointer along the aisle floor, under the shelves: pale linen by day, a faint blue shop light at night. Touch screens and reduced motion get no light. Nothing else moves.
 
 **Exception: the résumé page.** `resume.html` deliberately keeps the owner's own LaTeX résumé look: Computer Modern Serif (CMU Serif, self-hosted from `assets/fonts/cmu`), black on white, centered header, small-caps section rules, a Letter page with print margins. It sits outside the aisle system. Don't restyle it in aisle grammar, and don't borrow its serif, its small caps or its black-on-white for aisle surfaces.
 
@@ -242,7 +242,7 @@ The one motion idea is the aisle lighting up. As you scroll, the current aisle's
 - One blue on linen. The accent always means "current", "price", "primary" or "selected".
 - Square everything: 0 radius, 1px rules, a 3px shelf rail, and a dashed 1px rule for receipts.
 - Bilingual pairs on every aisle name: English first, Spanish after it on the baseline.
-- Flat at rest. The only shadow is the hover/focus lift.
+- Flat at rest. The only shadow is the hover/focus lift, and the only gradient is the work light, which is light on the floor rather than paint on a surface.
 - Light and dark follow `prefers-color-scheme`, and numerals are tabular everywhere.
 
 ## Colors
@@ -381,11 +381,13 @@ Authored inline SVG symbols on a 16px viewBox. Drawn icons use a 1.5–1.6 strok
 - **Do** use the `accent-ink` token for text on every accent fill, and `accent-muted` for secondary text on it, in both colour schemes.
 - **Do** keep Bodoni Moda at weight 600 for naming roles only, and set everything else in Inter.
 - **Do** give clickable shelf items the 3px lift with the Lift shadow on hover *and* keyboard focus, and nothing at rest.
+- **Do** quiet the rest of a shelf (experience tags, product cards, writing cards, bin rows, inventory rows) to 0.5 opacity while one item has the pointer or keyboard focus, over 220ms.
+- **Do** keep the work light under the shelves, moved by transform only, for fine pointers only, and off under reduced motion (`site.js`, `.worklight`, token `--lamp`).
 - **Do** keep corners square and rules at 1px, with the 3px rail and dashed receipt rule as the only exceptions.
 - **Do** draw icons as inline SVG on the 16px grid with square caps.
 
 ### Don't:
-- **Don't** add a second hue, a gradient, or any real retailer's colours or marks.
+- **Don't** add a second hue, a gradient fill, or any real retailer's colours or marks. The work light is the one radial gradient, and it stays a light, not a surface.
 - **Don't** use cartoon props, illustrations or hardware clip-art. The aisle is carried by type, rules, numbering and bilingual pairs.
 - **Don't** set a kicker or eyebrow label above a heading. The Spanish pair runs after the English on the sign's baseline, and on phones dates move under the title.
 - **Don't** set Bodoni Moda in capitals, in running text, or at any weight other than 600.
