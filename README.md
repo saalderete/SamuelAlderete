@@ -27,4 +27,4 @@ Edit `resume.html`, then print it to PDF from Chrome (Letter, margins "Default",
 
 ## Fonts
 
-Archivo (SIL Open Font License 1.1) and Computer Modern Serif (SIL Open Font License 1.1), both self-hosted in `assets/fonts/`.
+Bodoni Moda for headings and Inter for text on the site, and Computer Modern Serif on the résumé. All three are under the SIL Open Font License 1.1 and self-hosted in `assets/fonts/`. The palette is Haven (one blue on linen) from the Nerrix design library.
