@@ -17,8 +17,25 @@
 <link rel="preload" href="assets/fonts/bodoni-moda-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<script>
+  // The shutter (see site.js): the store opens once a visit, decided before the first paint. Not for a
+  // link straight to a section, not on a return from an article, never under reduced motion, and gone
+  // after 4 s even if site.js never runs.
+  (function () {
+    try {
+      if (location.hash || sessionStorage.getItem("opened") || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      sessionStorage.setItem("opened", "1");
+      var d = document.documentElement;
+      d.classList.add("opening");
+      setTimeout(function () { d.classList.remove("opening", "opened"); }, 4000);
+    } catch (e) {}
+  })();
+</script>
 </head>
 <body>
+<div class="shutter" aria-hidden="true">
+  <p class="shutter-words"><span>Hello</span><span lang="es">Hola</span><span class="open"><b>Open</b><i lang="es">Abierto</i></span></p>
+</div>
 <a class="skip" href="#about">Skip to content</a>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">

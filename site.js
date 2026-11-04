@@ -86,3 +86,40 @@
   document.addEventListener("mouseout", (e) => { if (!e.relatedTarget) lamp.classList.remove("on"); });
   still.addEventListener("change", () => { if (still.matches) lamp.remove(); });
 })();
+
+// The shutter (index.html): the <head> decides whether it shows (html.opening). It rolls up once the page
+// has loaded and the three words have played (1.1 s at least, 2.6 s at most); a key, a click or a scroll
+// opens it straight away. Then the first aisle's sign flickers on, as if the lights just came on.
+(() => {
+  const d = document.documentElement;
+  const shutter = document.querySelector(".shutter");
+  if (!shutter || !d.classList.contains("opening")) return;
+
+  const wait = (ms) => new Promise((r) => setTimeout(r, Math.max(0, ms)));
+  const loaded = new Promise((r) => (document.readyState === "complete" ? r() : addEventListener("load", r, { once: true })));
+  const fonts = document.fonts ? document.fonts.ready : Promise.resolve();
+  const skip = new Promise((r) => {
+    for (const type of ["keydown", "pointerdown", "wheel", "touchstart"]) addEventListener(type, r, { once: true, passive: true });
+  });
+
+  let lifted = false;
+  const lift = () => {
+    if (lifted) return;
+    lifted = true;
+    let done = false;
+    const finish = () => {
+      if (done) return;
+      done = true;
+      d.classList.remove("opening", "opened");
+      const first = document.querySelector(".aisle");
+      if (first) {
+        first.classList.add("lit");
+        first.addEventListener("animationend", () => first.classList.remove("lit"), { once: true });
+      }
+    };
+    d.classList.add("opened");
+    shutter.addEventListener("transitionend", (e) => { if (e.target === shutter) finish(); });
+    setTimeout(finish, 1100);
+  };
+  Promise.race([Promise.all([loaded, fonts, wait(1100 - performance.now())]), wait(2600 - performance.now()), skip]).then(lift);
+})();
