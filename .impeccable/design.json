@@ -1,0 +1,654 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-04T18:36:57+00:00",
+  "title": "Design System: Samuel Alderete",
+  "extensions": {
+    "colorMeta": {
+      "lime": {
+        "role": "primary",
+        "displayName": "Shelf-Light Lime",
+        "scheme": "both",
+        "canonical": "#c6ff34",
+        "oklch": "oklch(92.8% 0.220 125.0)",
+        "tonalRamp": [
+          "#080e00",
+          "#1e2a00",
+          "#374a0a",
+          "#516c01",
+          "#6e9014",
+          "#8db620",
+          "#b4d96f",
+          "#defcab"
+        ],
+        "cssVar": "--lime"
+      },
+      "lime-ink": {
+        "role": "primary",
+        "displayName": "Lime Ink",
+        "scheme": "both",
+        "canonical": "#171717",
+        "oklch": "oklch(20.5% 0.000 89.9)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "lime-muted": {
+        "role": "primary",
+        "displayName": "Olive Ink",
+        "scheme": "both",
+        "canonical": "#3c4a12",
+        "oklch": "oklch(38.4% 0.081 122.4)",
+        "tonalRamp": [
+          "#090d00",
+          "#21290a",
+          "#3c471f",
+          "#5a6836",
+          "#7a8a57",
+          "#9eac80",
+          "#c3cfaa",
+          "#e9f3d6"
+        ]
+      },
+      "ground": {
+        "role": "neutral",
+        "displayName": "Warehouse Floor",
+        "scheme": "light",
+        "canonical": "#f2f3ee",
+        "oklch": "oklch(96.2% 0.007 115.7)",
+        "tonalRamp": [
+          "#0b0b0a",
+          "#252523",
+          "#42423f",
+          "#61625e",
+          "#82837f",
+          "#a5a5a2",
+          "#c9c9c6",
+          "#eeefec"
+        ]
+      },
+      "shelf": {
+        "role": "neutral",
+        "displayName": "Shelf White",
+        "scheme": "light",
+        "canonical": "#ffffff",
+        "oklch": "oklch(100.0% 0.000 89.9)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Stencil Ink",
+        "scheme": "light",
+        "canonical": "#171717",
+        "oklch": "oklch(20.5% 0.000 89.9)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Tag Grey",
+        "scheme": "light",
+        "canonical": "#4a4e46",
+        "oklch": "oklch(41.8% 0.014 128.8)",
+        "tonalRamp": [
+          "#0a0c09",
+          "#242621",
+          "#40433d",
+          "#5f635b",
+          "#80847c",
+          "#a3a69f",
+          "#c7cac4",
+          "#edefeb"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Light Rule",
+        "scheme": "light",
+        "canonical": "#d3d6cc",
+        "oklch": "oklch(87.1% 0.014 120.3)",
+        "tonalRamp": [
+          "#0b0c08",
+          "#242621",
+          "#41433d",
+          "#60625a",
+          "#81847b",
+          "#a4a69f",
+          "#c8cac4",
+          "#eeefea"
+        ]
+      },
+      "rule-strong": {
+        "role": "neutral",
+        "displayName": "Strong Rule",
+        "scheme": "light",
+        "canonical": "#171717",
+        "oklch": "oklch(20.5% 0.000 89.9)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "sign": {
+        "role": "neutral",
+        "displayName": "Sign Black",
+        "scheme": "light",
+        "canonical": "#171717",
+        "oklch": "oklch(20.5% 0.000 89.9)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "sign-ink": {
+        "role": "neutral",
+        "displayName": "Sign Lettering",
+        "scheme": "light",
+        "canonical": "#f2f3ee",
+        "oklch": "oklch(96.2% 0.007 115.7)",
+        "tonalRamp": [
+          "#0b0b0a",
+          "#252523",
+          "#42423f",
+          "#61625e",
+          "#82837f",
+          "#a5a5a2",
+          "#c9c9c6",
+          "#eeefec"
+        ]
+      },
+      "sign-muted": {
+        "role": "neutral",
+        "displayName": "Sign Subline",
+        "scheme": "light",
+        "canonical": "#a9ada0",
+        "oklch": "oklch(74.1% 0.019 120.8)",
+        "tonalRamp": [
+          "#0b0c08",
+          "#242620",
+          "#41433b",
+          "#606358",
+          "#818479",
+          "#a3a79c",
+          "#c8cac2",
+          "#edefe9"
+        ]
+      },
+      "ground-dark": {
+        "role": "neutral",
+        "displayName": "Warehouse Floor (dark)",
+        "scheme": "dark",
+        "canonical": "#121311",
+        "oklch": "oklch(18.5% 0.004 128.7)",
+        "tonalRamp": [
+          "#0b0b0a",
+          "#252524",
+          "#414240",
+          "#60625f",
+          "#818380",
+          "#a4a5a3",
+          "#c8c9c7",
+          "#eeefed"
+        ]
+      },
+      "shelf-dark": {
+        "role": "neutral",
+        "displayName": "Shelf White (dark)",
+        "scheme": "dark",
+        "canonical": "#1b1d19",
+        "oklch": "oklch(22.7% 0.008 128.9)",
+        "tonalRamp": [
+          "#0b0b0a",
+          "#242623",
+          "#41433f",
+          "#60625e",
+          "#81837e",
+          "#a4a6a2",
+          "#c8cac6",
+          "#edefec"
+        ]
+      },
+      "ink-dark": {
+        "role": "neutral",
+        "displayName": "Stencil Ink (dark)",
+        "scheme": "dark",
+        "canonical": "#eef0e8",
+        "oklch": "oklch(95.1% 0.011 118.0)",
+        "tonalRamp": [
+          "#0b0b09",
+          "#252622",
+          "#41433e",
+          "#60625c",
+          "#82837d",
+          "#a4a6a0",
+          "#c8cac5",
+          "#eeefeb"
+        ]
+      },
+      "muted-dark": {
+        "role": "neutral",
+        "displayName": "Tag Grey (dark)",
+        "scheme": "dark",
+        "canonical": "#b0b4a8",
+        "oklch": "oklch(76.3% 0.017 121.9)",
+        "tonalRamp": [
+          "#0a0c08",
+          "#242620",
+          "#41433b",
+          "#5f6359",
+          "#808479",
+          "#a3a69d",
+          "#c8cac3",
+          "#edefe9"
+        ]
+      },
+      "rule-dark": {
+        "role": "neutral",
+        "displayName": "Light Rule (dark)",
+        "scheme": "dark",
+        "canonical": "#2e312b",
+        "oklch": "oklch(30.8% 0.011 128.9)",
+        "tonalRamp": [
+          "#0a0c09",
+          "#242622",
+          "#40433e",
+          "#5f625c",
+          "#80847d",
+          "#a3a6a0",
+          "#c8cac5",
+          "#edefeb"
+        ]
+      },
+      "rule-strong-dark": {
+        "role": "neutral",
+        "displayName": "Strong Rule (dark)",
+        "scheme": "dark",
+        "canonical": "#eef0e8",
+        "oklch": "oklch(95.1% 0.011 118.0)",
+        "tonalRamp": [
+          "#0b0b09",
+          "#252622",
+          "#41433e",
+          "#60625c",
+          "#82837d",
+          "#a4a6a0",
+          "#c8cac5",
+          "#eeefeb"
+        ]
+      },
+      "sign-dark": {
+        "role": "neutral",
+        "displayName": "Sign Black (dark)",
+        "scheme": "dark",
+        "canonical": "#30332b",
+        "oklch": "oklch(31.5% 0.014 124.0)",
+        "tonalRamp": [
+          "#0a0c08",
+          "#242621",
+          "#41433d",
+          "#5f635a",
+          "#80847b",
+          "#a3a69f",
+          "#c8cac4",
+          "#edefea"
+        ]
+      },
+      "sign-ink-dark": {
+        "role": "neutral",
+        "displayName": "Sign Lettering (dark)",
+        "scheme": "dark",
+        "canonical": "#eef0e8",
+        "oklch": "oklch(95.1% 0.011 118.0)",
+        "tonalRamp": [
+          "#0b0b09",
+          "#252622",
+          "#41433e",
+          "#60625c",
+          "#82837d",
+          "#a4a6a0",
+          "#c8cac5",
+          "#eeefeb"
+        ]
+      },
+      "sign-muted-dark": {
+        "role": "neutral",
+        "displayName": "Sign Subline (dark)",
+        "scheme": "dark",
+        "canonical": "#9da196",
+        "oklch": "oklch(70.3% 0.016 123.2)",
+        "tonalRamp": [
+          "#0a0c08",
+          "#242620",
+          "#41433c",
+          "#5f6359",
+          "#80847a",
+          "#a3a69e",
+          "#c8cac3",
+          "#edefea"
+        ]
+      },
+      "sign-edge-dark": {
+        "role": "neutral",
+        "displayName": "Sign Edge (dark)",
+        "scheme": "dark",
+        "canonical": "#464a3f",
+        "oklch": "oklch(40.2% 0.019 123.5)",
+        "tonalRamp": [
+          "#0a0c08",
+          "#242620",
+          "#40433b",
+          "#5f6358",
+          "#808479",
+          "#a3a79d",
+          "#c7cac2",
+          "#edf0e9"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The owner name atop the directory; once per site."
+      },
+      "headline": {
+        "displayName": "Sign headline",
+        "purpose": "English aisle name on an overhead sign."
+      },
+      "headline-article": {
+        "displayName": "Article headline",
+        "purpose": "Article title under the sign."
+      },
+      "price": {
+        "displayName": "Price",
+        "purpose": "Figures inside lime price labels."
+      },
+      "title-article": {
+        "displayName": "Article section",
+        "purpose": "Article section heads."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Shelf-tag and product names."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "First paragraph of an aisle."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Reading text, 64-68ch, tabular numerals."
+      },
+      "body-small": {
+        "displayName": "Body small",
+        "purpose": "Card descriptions, buttons, spec lists, tables."
+      },
+      "label-sign": {
+        "displayName": "Sign subline",
+        "purpose": "Spanish half of a sign, uppercase tracked."
+      },
+      "label-aisle": {
+        "displayName": "Aisle label",
+        "purpose": "English aisle names in the directory; bin heading."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Dates, spec terms, bin categories, table heads; uppercase."
+      },
+      "code": {
+        "displayName": "Code",
+        "purpose": "Article code blocks and inline code."
+      }
+    },
+    "shadows": [
+      {
+        "name": "lift",
+        "value": "0 6px 16px -6px rgba(23, 23, 23, 0.28), 0 1px 2px rgba(23, 23, 23, 0.12)",
+        "purpose": "Hover/focus lift of clickable shelf items (light)."
+      },
+      {
+        "name": "lift-dark",
+        "value": "0 8px 18px -8px rgba(0, 0, 0, 0.7), 0 1px 2px rgba(0, 0, 0, 0.5)",
+        "purpose": "Hover/focus lift of clickable shelf items (dark)."
+      },
+      {
+        "name": "focus-halo",
+        "value": "outline: 2px solid var(--ink); outline-offset: 3px; box-shadow: 0 0 0 5px var(--lime)",
+        "purpose": "Every focusable element; stacks with lift on cards."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "purpose": "All state transitions."
+      },
+      {
+        "name": "press",
+        "value": "160ms; transform scale(0.97) buttons, scale(0.995) cards",
+        "purpose": "Active press feedback."
+      },
+      {
+        "name": "lift",
+        "value": "160ms; translateY(-3px), arrow translate(2px,-2px)",
+        "purpose": "Hover/focus lift of clickable shelf items."
+      },
+      {
+        "name": "directory-light",
+        "value": "200ms background-color/color",
+        "purpose": "Directory number box hover and current."
+      },
+      {
+        "name": "sign-invert",
+        "value": "240ms background-color/color",
+        "purpose": "Aisle sign inversion when current."
+      },
+      {
+        "name": "flicker",
+        "value": "300ms steps(1, end) once; opacity 1/0.55/1/0.8/1 at 0/18/30/52/64%",
+        "purpose": "First arrival at an aisle; disabled under prefers-reduced-motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "phone",
+        "value": "max-width: 640px"
+      },
+      {
+        "name": "product-stack",
+        "value": "max-width: 720px"
+      },
+      {
+        "name": "single-column",
+        "value": "max-width: 1023px"
+      },
+      {
+        "name": "short-laptop",
+        "value": "min-width: 1024px and max-height: 820px"
+      }
+    ],
+    "exceptions": [
+      {
+        "surface": "resume.html",
+        "note": "Deliberately keeps the owner's LaTeX résumé look in Computer Modern Serif (CMU Serif), black on white, small-caps section rules, Letter print page; outside the aisle system."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one lime action per group (Résumé, email, back to portfolio).",
+      "html": "<a class=\"ds-btn ds-btn-primary\" href=\"#\"><svg class=\"ds-icon\" viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M1.5 3.5h13v9h-13zM1.8 3.8L8 8.6l6.2-4.8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/></svg>salderete29@gmail.com</a>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;gap:10px;padding:14px 18px;font:700 1.0625rem/1.6 var(--sans,\"Archivo\",system-ui,sans-serif);text-decoration:none;color:var(--ink,#171717);border:1px solid var(--rule-strong,#171717);border-radius:0;transition:transform 160ms cubic-bezier(0.23,1,0.32,1),background-color 160ms cubic-bezier(0.23,1,0.32,1)}.ds-btn-primary{background:var(--lime,#c6ff34);border-color:var(--lime,#c6ff34);color:var(--lime-ink,#171717)}.ds-btn:active{transform:scale(0.97)}.ds-btn:focus-visible{outline:2px solid var(--ink,#171717);outline-offset:3px;box-shadow:0 0 0 5px var(--lime,#c6ff34)}.ds-icon{width:18px;height:18px;flex:none}"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Secondary actions; fills ink on hover.",
+      "html": "<a class=\"ds-btn-o\" href=\"#\">Résumé (PDF)</a>",
+      "css": ".ds-btn-o{display:inline-flex;align-items:center;gap:10px;padding:14px 18px;font:700 1.0625rem/1.6 var(--sans,\"Archivo\",system-ui,sans-serif);text-decoration:none;color:var(--ink,#171717);background:transparent;border:1px solid var(--rule-strong,#171717);border-radius:0;transition:transform 160ms cubic-bezier(0.23,1,0.32,1),background-color 160ms cubic-bezier(0.23,1,0.32,1)}.ds-btn-o:hover{background:var(--ink,#171717);color:var(--ground,#f2f3ee)}.ds-btn-o:active{transform:scale(0.97)}.ds-btn-o:focus-visible{outline:2px solid var(--ink,#171717);outline-offset:3px;box-shadow:0 0 0 5px var(--lime,#c6ff34)}"
+    },
+    {
+      "name": "Aisle Sign",
+      "kind": "custom",
+      "refersTo": "aisle-sign",
+      "description": "Overhead sign opening every aisle; inverts to lime when current.",
+      "html": "<div class=\"ds-sign\"><span class=\"ds-sign-no\">02</span><h2 class=\"ds-sign-h\"><b>Experience</b><span lang=\"es\">Experiencia</span></h2></div><div class=\"ds-sign is-here\"><span class=\"ds-sign-no\">01</span><h2 class=\"ds-sign-h\"><b>About</b><span lang=\"es\">Sobre mí</span></h2></div>",
+      "css": ".ds-sign{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:18px;margin:0 0 16px;padding:14px 18px 14px 14px;background:var(--sign,#171717);color:var(--sign-ink,#f2f3ee);font-family:var(--sans,\"Archivo\",system-ui,sans-serif);transition:background-color 240ms cubic-bezier(0.23,1,0.32,1),color 240ms cubic-bezier(0.23,1,0.32,1)}.ds-sign-no{display:grid;place-items:center;min-width:64px;height:56px;padding:0 8px;background:var(--lime,#c6ff34);color:var(--lime-ink,#171717);font-weight:800;font-stretch:75%;font-size:2rem}.ds-sign-h{margin:0;display:flex;flex-wrap:wrap;align-items:baseline;column-gap:14px;line-height:1;font-size:clamp(1.75rem,1.2rem + 1.8vw,2.75rem)}.ds-sign-h b{font-weight:800;font-stretch:75%;text-transform:uppercase;letter-spacing:0.01em}.ds-sign-h span{font-size:1rem;font-weight:500;font-stretch:87.5%;text-transform:uppercase;letter-spacing:0.08em;color:var(--sign-muted,#a9ada0)}.ds-sign.is-here{background:var(--lime,#c6ff34);color:var(--lime-ink,#171717)}.ds-sign.is-here .ds-sign-no{background:var(--sign,#171717);color:var(--lime,#c6ff34)}.ds-sign.is-here .ds-sign-h span{color:#3c4a12}"
+    },
+    {
+      "name": "Aisle Directory",
+      "kind": "nav",
+      "refersTo": "directory-number",
+      "description": "Numbered pinned nav; the current aisle number fills lime.",
+      "html": "<ol class=\"ds-aisles\"><li><a href=\"#\" aria-current=\"true\"><span class=\"ds-no\">01</span><span class=\"ds-lb\"><b>About</b><span>Sobre mí</span></span></a></li><li><a href=\"#\"><span class=\"ds-no\">02</span><span class=\"ds-lb\"><b>Experience</b><span>Experiencia</span></span></a></li></ol>",
+      "css": ".ds-aisles{margin:0;padding:0;list-style:none;font-family:var(--sans,\"Archivo\",system-ui,sans-serif)}.ds-aisles a{display:grid;grid-template-columns:44px 1fr;align-items:center;gap:14px;padding:9px 0;text-decoration:none;color:var(--muted,#4a4e46);border-top:1px solid var(--rule,#d3d6cc)}.ds-aisles li:last-child a{border-bottom:1px solid var(--rule,#d3d6cc)}.ds-no{display:grid;place-items:center;width:44px;height:36px;border:1px solid var(--rule-strong,#171717);color:var(--ink,#171717);font-weight:800;font-stretch:75%;font-size:1.125rem;transition:background-color 200ms cubic-bezier(0.23,1,0.32,1),color 200ms cubic-bezier(0.23,1,0.32,1)}.ds-lb{display:flex;flex-direction:column;line-height:1.2}.ds-lb b{font-weight:700;font-stretch:75%;text-transform:uppercase;font-size:1.125rem;letter-spacing:0.03em;color:var(--ink,#171717)}.ds-lb span{font-size:0.8125rem}.ds-aisles a:hover .ds-no{background:var(--ink,#171717);color:var(--ground,#f2f3ee)}.ds-aisles a[aria-current=\"true\"] .ds-no{background:var(--lime,#c6ff34);color:var(--lime-ink,#171717)}.ds-aisles a:focus-visible{outline:2px solid var(--ink,#171717);outline-offset:3px;box-shadow:0 0 0 5px var(--lime,#c6ff34)}"
+    },
+    {
+      "name": "Price Channel",
+      "kind": "custom",
+      "refersTo": "price-label",
+      "description": "Shelf strip on a 3px rail; lime price labels hang flush from it.",
+      "html": "<ul class=\"ds-channel\"><li><span class=\"ds-price\">3</span><p>businesses running on KasaPro</p></li><li><span class=\"ds-price\">940</span><p>automated tests</p></li></ul>",
+      "css": ".ds-channel{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(2,1fr);border-top:3px solid var(--rule-strong,#171717);border-bottom:1px solid var(--rule-strong,#171717);background:var(--shelf,#fff);font-family:var(--sans,\"Archivo\",system-ui,sans-serif)}.ds-channel li{padding:0 14px 14px}.ds-channel li+li{border-left:1px solid var(--rule,#d3d6cc)}.ds-price{display:inline-block;margin:-1px 0 10px;padding:4px 8px 2px;background:var(--lime,#c6ff34);color:var(--lime-ink,#171717);font-weight:800;font-stretch:75%;font-size:clamp(1.75rem,1.3rem + 1.4vw,2.5rem);line-height:1.05;font-variant-numeric:tabular-nums}.ds-channel p{margin:0;font-size:0.875rem;line-height:1.4;color:var(--muted,#4a4e46)}"
+    },
+    {
+      "name": "Shelf Tag",
+      "kind": "card",
+      "refersTo": "shelf-tag",
+      "description": "Dated experience/writing card; lifts 3px on hover and focus when linked.",
+      "html": "<a class=\"ds-tag\" href=\"#\"><p class=\"ds-when\">Jan 2026 – Present</p><div><h3>Founder &amp; Developer <span class=\"ds-at\">· Nerrix Digital</span></h3><p>Four client sites across contracting, rental and service businesses.</p><ul class=\"ds-sku\"><li>React</li><li>Node.js</li></ul></div></a>",
+      "css": ".ds-tag{display:grid;grid-template-columns:128px 1fr;gap:6px 24px;padding:20px 20px 20px 18px;background:var(--shelf,#fff);border:1px solid var(--rule,#d3d6cc);color:var(--ink,#171717);text-decoration:none;font:400 1.0625rem/1.6 var(--sans,\"Archivo\",system-ui,sans-serif);transition:transform 160ms cubic-bezier(0.23,1,0.32,1),box-shadow 160ms cubic-bezier(0.23,1,0.32,1),border-color 160ms cubic-bezier(0.23,1,0.32,1)}.ds-tag:hover,.ds-tag:focus-visible{transform:translateY(-3px);box-shadow:var(--shadow,0 6px 16px -6px rgba(23,23,23,0.28),0 1px 2px rgba(23,23,23,0.12));border-color:var(--rule-strong,#171717)}.ds-tag:focus-visible{outline:2px solid var(--ink,#171717);outline-offset:3px}.ds-when{margin:0;font-size:0.8125rem;font-weight:600;color:var(--muted,#4a4e46);text-transform:uppercase;letter-spacing:0.06em;line-height:1.5;padding-top:3px}.ds-tag h3{margin:0;font-size:1.1875rem;line-height:1.3;font-weight:700}.ds-at{font-weight:500;color:var(--muted,#4a4e46)}.ds-tag p{margin:6px 0 0;color:var(--muted,#4a4e46)}.ds-sku{margin:14px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}.ds-sku li{font-size:0.8125rem;font-weight:600;padding:3px 8px;border:1px solid var(--rule,#d3d6cc);color:var(--ink,#171717);background:var(--ground,#f2f3ee)}"
+    },
+    {
+      "name": "SKU Chip",
+      "kind": "chip",
+      "refersTo": "sku-chip",
+      "description": "Stamped tech/scope tag; static, no states.",
+      "html": "<ul class=\"ds-chips\"><li>Playwright</li><li>TypeScript</li><li>PostgreSQL</li></ul>",
+      "css": ".ds-chips{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px;font-family:var(--sans,\"Archivo\",system-ui,sans-serif)}.ds-chips li{font-size:0.8125rem;font-weight:600;padding:3px 8px;border:1px solid var(--rule,#d3d6cc);color:var(--ink,#171717);background:var(--ground,#f2f3ee)}"
+    },
+    {
+      "name": "Was / Now Strip",
+      "kind": "custom",
+      "refersTo": "was-price",
+      "description": "Lime strip striking the replaced item; only for real replacements.",
+      "html": "<p class=\"ds-was\"><s>Paid EndTest.io subscription</s> <b>Built in-house</b> saving thousands a year</p>",
+      "css": ".ds-was{display:inline-flex;flex-wrap:wrap;align-items:baseline;gap:8px;margin:0;padding:6px 10px;background:var(--lime,#c6ff34);color:var(--lime-ink,#171717);font:600 0.875rem/1.6 var(--sans,\"Archivo\",system-ui,sans-serif)}.ds-was s{font-weight:500;text-decoration-thickness:2px;opacity:0.8}.ds-was b{font-weight:800;font-stretch:75%;text-transform:uppercase;letter-spacing:0.03em;font-size:1rem}"
+    },
+    {
+      "name": "Spec List",
+      "kind": "custom",
+      "refersTo": "product-card",
+      "description": "Term/value grid inside product cards.",
+      "html": "<dl class=\"ds-spec\"><dt>Users</dt><dd>3 businesses</dd><dt>Tests</dt><dd>940</dd></dl>",
+      "css": ".ds-spec{margin:0;display:grid;grid-template-columns:7.5rem 1fr;border-top:1px solid var(--rule-strong,#171717);font:400 0.875rem/1.6 var(--sans,\"Archivo\",system-ui,sans-serif);color:var(--ink,#171717)}.ds-spec dt,.ds-spec dd{margin:0;padding:6px 0;border-bottom:1px solid var(--rule,#d3d6cc)}.ds-spec dt{font-weight:700;text-transform:uppercase;letter-spacing:0.06em;font-size:0.8125rem;padding-right:18px;color:var(--muted,#4a4e46);padding-top:7px}.ds-spec dd{font-weight:600}"
+    },
+    {
+      "name": "More-link",
+      "kind": "button",
+      "description": "Inline onward link with a 2px lime underline; fills lime on hover.",
+      "html": "<a class=\"ds-more\" href=\"#\">Full résumé (PDF)<svg viewBox=\"0 0 16 16\" width=\"14\" height=\"14\" aria-hidden=\"true\"><path d=\"M4.5 11.5l7-7M6 4.5h5.5V10\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"square\"/></svg></a>",
+      "css": ".ds-more{display:inline-flex;align-items:center;gap:6px;font:700 1.0625rem/1.6 var(--sans,\"Archivo\",system-ui,sans-serif);color:var(--ink,#171717);text-decoration:none;border-bottom:2px solid var(--lime,#c6ff34);padding-bottom:2px}.ds-more:hover{background:var(--lime,#c6ff34);color:var(--lime-ink,#171717)}.ds-more:focus-visible{outline:2px solid var(--ink,#171717);outline-offset:3px;box-shadow:0 0 0 5px var(--lime,#c6ff34)}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Well-Run Aisle",
+    "overview": "**Creative North Star: \"The Well-Run Aisle\"**\n\nThe site is a bilingual hardware-store aisle held to signage discipline. A pinned directory on the left lists numbered aisles; each section on the right opens under a full-width overhead sign with a lime number box, an English name in heavy condensed capitals and its Spanish pair after it on the same baseline. Work is stocked as shelf tags, product cards with spec labels, a bin of smaller items, and lime price labels hanging from a heavy shelf rail. The metaphor is carried only by type, rules, numbering and bilingual pairs. There are no props, no illustrations and no retailer colours or marks.\n\nDensity is moderate and legible: a single 17px reading face, generous aisle breaks, and hard 1px rules that every tag, sign and table snaps to. Hierarchy comes from Archivo's width axis rather than from extra families: condensed capitals for signage, normal width for reading. One acid lime carries every \"you are here\", every price and every primary action against an off-white ground (light) or a near-black ground (dark). Dark mode keeps the same lime and inverts only the neutrals.\n\nThe one motion idea is the aisle lighting up. As you scroll, the current aisle's sign inverts to lime, its number lights in the directory, and the sign flickers once like a fluorescent tube the first time you reach it. Clickable shelf items lift 3px with a soft shadow on hover or keyboard focus, and nothing else moves.\n\n**Exception: the résumé page.** `resume.html` deliberately keeps the owner's own LaTeX résumé look: Computer Modern Serif (CMU Serif, self-hosted), black on white, centered header, small-caps section rules, a Letter page with print margins. It sits outside the aisle system. Don't restyle it in aisle grammar, and don't borrow its serif or small caps for aisle surfaces.",
+    "keyCharacteristics": [
+      "One family (Archivo variable, wdth 62–125, wght 400–800, self-hosted latin subset); width does the hierarchy work.",
+      "One accent (acid lime) on neutral ground; it always means \"current\", \"price\" or \"primary\".",
+      "Square everything: 0 radius, 1px rules, a 3px shelf rail, dashed 1px for receipts.",
+      "Bilingual pairs on every aisle name: English first, Spanish after it on the baseline.",
+      "Flat at rest. The only shadow is the hover/focus lift.",
+      "Light and dark follow `prefers-color-scheme`; tabular numerals everywhere."
+    ],
+    "rules": [
+      {
+        "name": "The One Lime Rule",
+        "body": "Lime is the only chroma in the system. It marks four things: where you are, what something cost, what to do next, and what was selected. A second hue, a gradient or a tint of lime is never introduced.",
+        "section": "colors"
+      },
+      {
+        "name": "The Inversion Rule",
+        "body": "\"Current\" is shown by swapping roles, not by adding a colour. The sign ground goes lime and its number box goes sign-black with a lime numeral. The directory number box fills lime. Nothing else changes.",
+        "section": "colors"
+      },
+      {
+        "name": "The Width Axis Rule",
+        "body": "Condensed (75%) capitals are for naming: the owner, aisles, signs, prices, article titles. Section heads sit at 87.5%, reading text at 100%. Condensed text is never set in sentence case, and body copy is never condensed.",
+        "section": "typography"
+      },
+      {
+        "name": "The Bilingual Pair Rule",
+        "body": "Every aisle name comes as English and then Spanish. On signs, the Spanish runs after the English on the same baseline: smaller, weight 500, 87.5% width, tracked 0.08em, muted, marked `lang=\"es\"`. In the directory it sits underneath at 13px sentence case. Spanish never sits above the English, and it is never left out.",
+        "section": "typography"
+      },
+      {
+        "name": "The Lift-Only Rule",
+        "body": "Nothing casts a shadow at rest. A shelf item lifts a few pixels when you reach for it, and keyboard focus gets the same lift as the pointer. Static (non-link) tags never lift.",
+        "section": "elevation"
+      },
+      {
+        "name": "The One Line Rule",
+        "body": "Rules are 1px. The only exceptions are the 3px shelf rail and the 2px lime underline on more-links. There are no hairline greys and no double borders.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "Do open every aisle and every secondary page with an aisle sign: a lime number box, the English name in condensed capitals and the Spanish pair after it.",
+      "Do show \"current\" by inversion (sign to lime, number box to Sign Black), driven by scroll position, with a one-time flicker that respects reduced motion.",
+      "Do put figures in lime price labels hung flush from a 3px shelf rail, and keep tabular numerals on.",
+      "Do use Lime Ink on every lime fill, in both colour schemes.",
+      "Do give clickable shelf items the 3px lift with the Lift shadow on hover *and* keyboard focus, and nothing at rest.",
+      "Do keep corners square and rules at 1px, with the 3px rail and dashed receipt rule as the only exceptions.",
+      "Do draw icons as inline SVG on the 16px grid with square caps."
+    ],
+    "donts": [
+      "Don't add a second accent hue, a lime tint or gradient, or any real retailer's colours or marks.",
+      "Don't use cartoon props, illustrations or hardware clip-art. The aisle is carried by type, rules, numbering and bilingual pairs.",
+      "Don't set a kicker or eyebrow label above a heading. The Spanish pair runs after the English on the sign's baseline, and on phones dates move under the title.",
+      "Don't round corners or add resting shadows to cards, signs or chips.",
+      "Don't use Unicode glyphs or emoji as icons.",
+      "Don't introduce a second typeface on aisle surfaces. Hierarchy comes from Archivo's width and weight. Computer Modern belongs to the résumé page only.",
+      "Don't put white text on lime."
+    ]
+  }
+}

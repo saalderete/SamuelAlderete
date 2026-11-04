@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>A job queue on Postgres, no Redis · Samuel Alderete</title>
+<meta name="description" content="Leases, heartbeats and one compare-and-set that let TestHarvest's test runs survive a crashed worker and its schedules fire once per due time.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f2f3ee">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#121311">
+<link rel="preload" href="../assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../styles.css">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<a class="skip" href="#text">Skip to the article</a>
+<main class="article">
+  <nav class="article-top" aria-label="Site">
+    <a href="../#writing"><svg class="icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M13 8H3.5M7.5 4L3.5 8l4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/></svg> Samuel Alderete</a>
+    <a href="../resume.pdf">Résumé</a>
+  </nav>
+
+  <div class="sign"><span class="sign-no" aria-hidden="true">04</span><p class="sign-h"><b>Writing</b><span lang="es">Notas</span></p></div>
+
+  <article id="text">
+    <h1>A job queue on Postgres, no Redis</h1>
+    <p class="meta">November 2026 · 7 minute read · TestHarvest</p>
+
+    <p><a href="https://github.com/saalderete/endtest-clone">TestHarvest</a> runs browser tests: a worker opens real Chromium, signs in to your app, clicks through it and checks what it sees. Tests run when someone presses Run, and on schedules, like every hour against production. Two things have to be true or the tool is worse than nothing:</p>
+    <ol>
+      <li>If a worker dies halfway through a test, the run isn't lost or stuck "running" forever.</li>
+      <li>A scheduled test runs once per due time, no matter how many worker processes are up.</li>
+    </ol>
+    <p>The standard answer is a queue like Redis with BullMQ. TestHarvest is self-hosted, though, and every service I add is one more thing the person installing it has to run, back up and debug. Postgres was already there and already held the run rows. So the run table is the queue.</p>
+
+    <h2>Claiming a run</h2>
+    <p>Each worker polls every two seconds. Claiming is one statement:</p>
+<pre><code>UPDATE test_executions
+SET status = 'starting', worker_id = $1,
+    lease_expires_at = now() + interval '60 seconds',
+    heartbeat_at = now(), start_time = coalesce(start_time, now())
+WHERE id = (
+  SELECT e.id FROM test_executions e
+  WHERE e.status = 'queued'
+    AND (SELECT count(*) FROM test_executions r
+         WHERE r.workspace_id = e.workspace_id
+           AND r.status IN ('starting','running','cancel_requested')) &lt; $2
+  ORDER BY e.queued_at
+  FOR UPDATE SKIP LOCKED
+  LIMIT 1)
+RETURNING id</code></pre>
+    <p><code>FOR UPDATE</code> locks the row the subquery picks, and <code>SKIP LOCKED</code> means a second worker running the same statement at the same instant doesn't wait on that lock. It moves on to the next queued row. Two workers never get the same run, and neither one blocks. The inner count caps how many runs one workspace can have going at once, so one team's 200-test suite can't starve everyone else.</p>
+
+    <h2>Leases and heartbeats</h2>
+    <p>A claimed run has a 60-second lease. While a test is running, the worker's heartbeat extends the lease every 10 seconds for every run it holds. A worker that crashes, gets killed by a deploy or loses its network stops heartbeating, and its lease runs out.</p>
+    <p>Every 15 seconds a reaper looks for runs whose lease expired more than 15 seconds ago. What it does depends on that run's history:</p>
+    <ul>
+      <li><b>First time:</b> put it back in the queue and record a <code>requeued</code> event, so the run page says "The worker running this test stopped responding; queued again."</li>
+      <li><b>Second time:</b> stop. Mark it <code>infrastructure_error</code> with "The worker stopped responding twice while running this test."</li>
+      <li><b>Someone had pressed Cancel:</b> mark it cancelled.</li>
+    </ul>
+    <p>The limit of one retry matters more than the retry. Some tests crash the browser, and the worker can die with it. Without a limit, that test would take down worker after worker forever. Requeuing once covers the ordinary case, a deploy or a dead machine, and a second failure is almost always the test itself.</p>
+    <p>The requeue also re-checks the lease in its own <code>WHERE</code>:</p>
+<pre><code>UPDATE test_executions SET status = 'queued', worker_id = NULL, lease_expires_at = NULL
+WHERE id = $1 AND lease_expires_at &lt; now()
+RETURNING id</code></pre>
+    <p>If the worker was only slow and its heartbeat landed between the reaper's read and its write, the row no longer matches and nothing happens.</p>
+
+    <h2>Schedules that fire once</h2>
+    <p>Every worker process can also run the scheduler, so it has to be safe to start ten of them. Only one leads at a time. It holds a Postgres advisory lock (<code>pg_try_advisory_lock</code>) on a dedicated connection, and the rest wait. If the leader's process dies, its connection closes, the lock is released, and another process takes over on its next tick.</p>
+    <p>The leader checks for due schedules every 10 seconds. For each one, it advances the schedule <em>before</em> queuing anything, with a compare-and-set:</p>
+<pre><code>UPDATE schedules SET next_run_at = $1, last_run_at = $2, updated_at = now()
+WHERE id = $3 AND next_run_at = $2</code></pre>
+    <p>That only matches if <code>next_run_at</code> is still the due time this process read. If anything else advanced it first, zero rows change and this process skips it. Advancing first also decides what a crash costs: if the process dies between advancing and queuing, that one run is missed and recorded, rather than fired twice when it restarts. For a monitoring tool, a duplicate alert at 3 a.m. is worse than a gap.</p>
+    <p>Then the run is queued with an idempotency key, <code>schedule:&lt;due time&gt;:&lt;test id&gt;</code>, backed by a unique index:</p>
+<pre><code>CREATE UNIQUE INDEX test_executions_idempotency_idx
+  ON test_executions (idempotency_key) WHERE idempotency_key IS NOT NULL;</code></pre>
+    <p>The advisory lock is the first guard and the compare-and-set is the second. The unique index is the one that can't be wrong, because the database enforces it. A test schedule and its suite's schedule due at the same minute produce the same key, so they make one run, not two.</p>
+    <p>One more decision: if the scheduler was down for longer than ten minutes, it doesn't backfill. It skips the missed times and writes the reason on the schedule ("Skipped the 2026-11-04T14:00:00.000Z run: the scheduler was offline at the time."). Waking up to a burst of 40 stale runs helps nobody.</p>
+
+    <h2>How I know it works</h2>
+    <p>The API suite starts two schedulers against one database and one due schedule, waits, and asserts there is exactly one run with the expected key. Other tests cover a test schedule and a suite schedule colliding, no backfill after downtime, and daylight-saving changes (07:00 in Denver is 13:00 UTC in October and 14:00 after November 1). The end-to-end suite runs real Chromium against a small fictional app bundled in the repo.</p>
+
+    <blockquote><p>The database was already the source of truth for runs. Letting it be the queue too meant there was only one place a run's state could be wrong.</p></blockquote>
+
+    <h2>What it costs</h2>
+    <p>Polling adds up to two seconds of latency before a run starts, which doesn't matter for browser tests that take ten. Every worker queries the run table every two seconds. That's trivial for a team's test runner, and it's the first thing I'd revisit at real scale, probably with <code>LISTEN/NOTIFY</code> to wake workers instead of polling. If I needed thousands of jobs a second or fan-out across services, I'd use a real queue. TestHarvest needs neither.</p>
+
+    <p class="end">The code is on GitHub: <a href="https://github.com/saalderete/endtest-clone">saalderete/endtest-clone</a>, mainly <code>server/runner/worker.ts</code> and <code>server/runner/scheduler.ts</code>. <a href="../#writing">Back to all writing</a></p>
+  </article>
+</main>
+</body>
+</html>

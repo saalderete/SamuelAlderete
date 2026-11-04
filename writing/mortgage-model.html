@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>What 483,685 Texas mortgage applications say · Samuel Alderete</title>
+<meta name="description" content="Choosing a model before looking at the test set, calibrating it, and the 3.9-point gap in denials that the financial inputs don't explain.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f2f3ee">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#121311">
+<link rel="preload" href="../assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../styles.css">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<a class="skip" href="#text">Skip to the article</a>
+<main class="article">
+  <nav class="article-top" aria-label="Site">
+    <a href="../#writing"><svg class="icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M13 8H3.5M7.5 4L3.5 8l4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/></svg> Samuel Alderete</a>
+    <a href="../resume.pdf">Résumé</a>
+  </nav>
+
+  <div class="sign"><span class="sign-no" aria-hidden="true">04</span><p class="sign-h"><b>Writing</b><span lang="es">Notas</span></p></div>
+
+  <article id="text">
+    <h1>What 483,685 Texas mortgage applications say</h1>
+    <p class="meta">November 2026 · 6 minute read · Loan Approval ML</p>
+
+    <p>Every year, US mortgage lenders report each application they decide under the Home Mortgage Disclosure Act (HMDA): the loan, the property, the applicant's income and debt, the decision, and the applicant's race, ethnicity, sex and age. The data is public. I took the 2025 file for Texas and asked two questions:</p>
+    <ol>
+      <li><b>How did lenders decide?</b> Given an application's financial details, what share of applications like it were denied, and which details moved that number?</li>
+      <li><b>Were outcomes different across groups</b> in ways those financial details don't explain?</li>
+    </ol>
+    <p>This is a research project, not a credit model. It estimates what lenders did, not what they should do, and nothing in it is meant for a real lending decision.</p>
+
+    <h2>Most of the work is deciding what the model can't see</h2>
+    <p>After filtering to applications that were approved or denied, complete, and for site-built 1–4 unit homes, there were 483,685 rows, and 16.8% of them were denials. The file downloads with a SHA-256 checksum, so every run starts from the same bytes.</p>
+    <p>The HMDA file has dozens of columns, and many of them would make the model look brilliant for the wrong reason:</p>
+    <ul>
+      <li><b>Fields recorded after the decision.</b> Interest rate, rate spread, loan costs and the denial reasons only exist, or only have real values, once the lender has decided. A model that sees them is reading the answer.</li>
+      <li><b>Process artifacts.</b> Some columns are coded "not applicable" when an application never got far enough to need them, like the automated underwriting system or the credit score type. The code itself tells you how far the application got.</li>
+      <li><b>Missing values.</b> For the same reason, I trained only on complete applications. Which fields are blank turned out to leak the decision too.</li>
+      <li><b>Protected characteristics and geography.</b> Race, ethnicity, sex and age are never inputs; they're used only in the audit. Census tract, county and lender identity are out too, because they can stand in for the same characteristics.</li>
+    </ul>
+    <p>That leaves 13 inputs known when someone applies: loan amount, property value, income, debt-to-income ratio, combined loan-to-value, term, loan type, purpose, lien position, occupancy, number of units, whether a preapproval was requested, and whether the loan is within the conforming limit.</p>
+
+    <h2>Choosing before looking</h2>
+    <p>The easiest way to fool yourself with a model is to keep checking the test set while you choose. So the split was fixed before any training, with its hash recorded: 60% train, 10% calibration, 10% selection, 20% test. I also decided in advance which number would pick the winner. With denials the minority class, I chose PR-AUC, which rewards finding denials without drowning them in false alarms, rather than accuracy, which a model can score well on by never predicting a denial.</p>
+    <p>Tuning used cross-validation on the training split only. Each candidate was calibrated on its own split, and the winner was chosen on the selection split. Then the test split, 96,737 applications, was scored once.</p>
+
+    <div class="table-wrap">
+    <table>
+      <caption>Held-out test split, 96,737 applications. 95% intervals from 200 bootstrap resamples.</caption>
+      <thead><tr><th scope="col">Model</th><th scope="col">ROC-AUC</th><th scope="col">PR-AUC</th><th scope="col">ECE</th></tr></thead>
+      <tbody>
+        <tr class="sel"><th scope="row">Histogram gradient boosting (selected)</th><td>0.857 <span>0.853–0.860</span></td><td>0.685 <span>0.679–0.691</span></td><td>0.0028</td></tr>
+        <tr><th scope="row">Random forest</th><td>0.848 <span>0.844–0.851</span></td><td>0.659 <span>0.653–0.666</span></td><td>0.0035</td></tr>
+        <tr><th scope="row">Logistic regression</th><td>0.820 <span>0.816–0.824</span></td><td>0.589 <span>0.582–0.596</span></td><td>0.0036</td></tr>
+        <tr><th scope="row">Always guess the base rate</th><td>0.500</td><td>0.168</td><td>–</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p>Gradient boosting won on the selection split and also came out ahead on the test split, with intervals that don't overlap the others. The gap to logistic regression is real but not enormous, which is worth knowing: most of the signal is in a few financial ratios, and a linear model already finds much of it.</p>
+
+    <h2>Why calibration mattered more than the score</h2>
+    <p>The output is meant to be read as a share: "about 22% of applications like this one were denied." That only means something if, across all the applications where the model says 22%, about 22% really were denied. Boosted trees are good at ranking and often bad at that.</p>
+    <p>So each model gets an isotonic calibration fitted on a split it never trained on. Afterwards, the selected model's expected calibration error is 0.0028: across the test set its stated percentages are, on average, less than a third of a percentage point from what happened. That's the number that lets the dashboard show a percentage instead of a vague "risk score."</p>
+
+    <h2>What drove decisions</h2>
+    <p>Shuffling one input at a time and measuring how much PR-AUC drops gives a ranking of what the model relies on: debt-to-income ratio by a wide margin, then loan purpose, loan amount, property value and combined loan-to-value. Income on its own matters much less than the ratio of debt to it. For individual applications, the dashboard shows exact Shapley values over eight groups of inputs. Loan amount, property value, loan-to-value and the conforming limit move together as one group, so the explanation never asks the model about an impossible application, like a new loan amount with the old loan-to-value ratio.</p>
+
+    <h2>The gap the inputs don't explain</h2>
+    <p>The audit compares, for each group, how often applications were actually denied with the model's average estimate for that group's applications. The model never saw the group, so its estimate is roughly "what these financial profiles would predict." The difference is what's left over.</p>
+    <blockquote><p>Black applicants in the test split were denied 24.5% of the time. The model, from the 13 financial inputs alone, expected 20.6%. That's a 3.9-point gap the inputs don't account for.</p></blockquote>
+    <p>For White applicants the same comparison is −1.2 points: denied slightly less often than their financial profile predicts. Asian applicants were −0.3, and Hispanic or Latino applicants +0.6.</p>
+    <p>That gap is a reason to look further, not a finding of discrimination, and I wrote it that way on purpose. HMDA has no credit scores, assets or employment history, and any of those could explain part of it. A small gap isn't proof of fairness, either. Groups with fewer than 300 applications in the test split are reported as "insufficient data" rather than as a rate that would look precise and isn't.</p>
+
+    <h2>What I'd do next</h2>
+    <p>The obvious next step is credit data, which HMDA doesn't publish, to see how much of the gap it closes. The less obvious one is time: lenders' behavior moves with rates, and a model trained on 2025 should be checked against 2026 before anyone reads it as current. The project already records input drift (PSI) for that reason, and won't promote a new model version unless it passes 10 automated gates.</p>
+
+    <p class="end">The code, the model card and a 10-page dashboard are on GitHub: <a href="https://github.com/saalderete/Loan-Approval-ML">saalderete/Loan-Approval-ML</a>. Every number in this post comes from the model card, which is generated from the saved evaluation files. <a href="../#writing">Back to all writing</a></p>
+  </article>
+</main>
+</body>
+</html>

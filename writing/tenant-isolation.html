@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>A test that reads every SQL query · Samuel Alderete</title>
+<meta name="description" content="How KasaPro keeps one contractor from ever seeing another's customers: an ownership helper, and a test that reads every SQL statement in the codebase.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f2f3ee">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#121311">
+<link rel="preload" href="../assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../styles.css">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<a class="skip" href="#text">Skip to the article</a>
+<main class="article">
+  <nav class="article-top" aria-label="Site">
+    <a href="../#writing"><svg class="icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M13 8H3.5M7.5 4L3.5 8l4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/></svg> Samuel Alderete</a>
+    <a href="../resume.pdf">Résumé</a>
+  </nav>
+
+  <div class="sign"><span class="sign-no" aria-hidden="true">04</span><p class="sign-h"><b>Writing</b><span lang="es">Notas</span></p></div>
+
+  <article id="text">
+    <h1>A test that reads every SQL query</h1>
+    <p class="meta">November 2026 · 6 minute read · KasaPro</p>
+
+    <p>KasaPro is one deployment that serves several contractors and rental businesses. Every row of their data, from customers and estimates to invoices and signed agreements, belongs to exactly one business and carries that business's <code>business_id</code>. The whole security model comes down to one rule: every query that touches one of those rows filters on <code>business_id</code>.</p>
+
+    <p>If a single query forgets, one contractor sees another contractor's customers. That isn't a bug report you triage on Monday. It's the failure that ends the product, because the people using it are small businesses who handed me their customer list.</p>
+
+    <h2>87 correct fences, and the 88th</h2>
+    <p>For a long time the fence was written by hand at every call site:</p>
+<pre><code>SELECT * FROM invoices WHERE id = ? AND business_id = ?</code></pre>
+    <p>When I counted, there were 87 of them, and every one was correct. That was the problem. The next one would also be written by hand, and the day someone types the <code>id</code> check and forgets the <code>business_id</code> check, nothing fails. The page renders and the data is simply someone else's.</p>
+
+    <p>So the first change was to make the safe query the easy one. <code>findOwned(table, id, businessId)</code> fetches a row only if it belongs to the caller:</p>
+<pre><code>async function findOwned(table, id, businessId, options = {}) {
+  if (!OWNED_TABLES.has(table)) {
+    throw new Error(`findOwned: "${table}" is not an allowlisted tenant table`);
+  }
+  const columns = options.columns || "*";
+  const [rows] = await db.query(
+    `SELECT ${columns} FROM ${table} WHERE id = ? AND business_id = ?`,
+    [id, businessId]
+  );
+  return rows[0] || null;
+}</code></pre>
+    <p>Two details matter here. A table name can't be a bind parameter, because SQL placeholders hold values, not identifiers, so the name is checked against a fixed allowlist instead of being spliced in on faith. And the function returns <code>null</code> for both "doesn't exist" and "exists but belongs to someone else." If those gave different answers, a 404 that only appears for rows you don't own would tell an attacker which IDs are real.</p>
+
+    <h2>An audit proves the code was right the day it was read</h2>
+    <p>A helper only protects the code that uses it. What I wanted was a guarantee about code that doesn't exist yet. The answer was a test, <code>lib/tenancy.test.js</code>, that reads every JavaScript file under <code>routes/</code>, <code>lib/</code> and <code>scripts/</code>, pulls out every SQL statement, and fails the build if any statement touching a tenant table doesn't mention <code>business_id</code>.</p>
+
+    <p>It doesn't parse JavaScript. It looks for the SQL verbs, then reads forward to the end of the enclosing <code>db.query(...)</code> call:</p>
+<pre><code>const re = /(SELECT|INSERT\s+INTO|UPDATE|DELETE\s+FROM)\b/gi;
+while ((m = re.exec(source)) !== null) {
+  const chunk = source.slice(m.index, m.index + 1400);
+  const end = chunk.indexOf(");");
+  out.push({ sql: end &gt; 0 ? chunk.slice(0, end) : chunk, line: ... });
+}</code></pre>
+    <p>The first version stopped at the end of the string literal instead, and it reported correct queries as unscoped, because a multi-line statement often carries its <code>AND business_id = ?</code> several lines down. Reading to the closing <code>);</code> includes the parameter array too, which is harmless: it holds the variable <code>businessId</code>, not the column name.</p>
+
+    <p>When something fails, the message says why it matters and what to do. Here it is for a made-up bad query:</p>
+<pre><code>Queries on tenant-owned tables with no business_id filter.
+Each one can return another contractor's data. Add the filter, or if it is
+genuinely global, add it to ALLOWLIST in this file with a reason.
+
+routes/example.js:42  [invoices]
+      SELECT total FROM invoices WHERE id = ?</code></pre>
+
+    <h2>The allowlist has to explain itself</h2>
+    <p>Some queries really can't be scoped to a business, and pretending otherwise just teaches people to work around the test. So there is an allowlist, and every entry carries a reason written for the next person who reads it. Three examples:</p>
+    <ul>
+      <li><b>Signup.</b> Checking whether an email is taken has to look across every business, because emails are unique across the whole system. It returns existence only, never another tenant's row.</li>
+      <li><b>Signing links.</b> A customer signing an estimate has no session. The 256-bit token in the link <em>is</em> the authorization, and it's looked up before anything is shown or written.</li>
+      <li><b>Square webhooks.</b> Square knows an order ID, not a KasaPro business. KasaPro minted that order ID for one specific invoice or rental, so it identifies the tenant rather than needing to be filtered by one.</li>
+    </ul>
+    <p>Adding a line to that list should feel deliberate, because it's the only way past the check.</p>
+
+    <h2>What it doesn't prove</h2>
+    <p>It's a text match, not a proof. A query that mentions <code>business_id</code> in the wrong place would pass. Three tables (<code>estimate_items</code>, <code>job_notes</code>, <code>job_photos</code>) have no <code>business_id</code> of their own; they're safe only because the handler has already loaded the parent job or estimate with a business filter. I checked those paths by hand, and a second, coarser test fails if one of those tables shows up in a file that never mentions <code>business_id</code> at all.</p>
+    <p>The same file holds two other rules I learned to write down:</p>
+    <ul>
+      <li><b>Public tokens are at least 128 bits.</b> Signing and payment links carry no session, so a short token is the classic way a multi-tenant app leaks across tenants. The test fails on any <code>randomBytes(n)</code> with <code>n</code> under 16.</li>
+      <li><b>Uploads live outside <code>public/</code>.</b> Job photos often show the inside of someone's home. If the upload folder sits under the static directory, anyone who guesses a filename can see every tenant's photos. That rule exists because it happened once.</li>
+    </ul>
+
+    <blockquote><p>A code review protects the code you reviewed. A test protects the next query too.</p></blockquote>
+
+    <p>KasaPro has 940 automated tests now, and this is the file I'd keep if I could keep only one. The whole file runs in about 140 milliseconds, and it turns "be careful with tenant data" from something I have to remember into something the build checks.</p>
+
+    <p class="end">KasaPro is a private codebase. I'm happy to walk through this file and the routes it guards on a call: <a href="mailto:salderete29@gmail.com">salderete29@gmail.com</a>. <a href="../#writing">Back to all writing</a></p>
+  </article>
+</main>
+</body>
+</html>
