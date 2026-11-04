@@ -32,6 +32,7 @@ He runs software in production for real businesses, not class projects: KasaPro 
 - KasaPro (May 2026): 3 businesses in production, ~$100,000 processed, 940 automated tests, multi-tenant with a test that enforces the tenant filter on every query, Stripe Connect and Square payments, e-signatures, PDFs, public booking API.
 - TestHarvest (Oct. 2026): self-hosted EndTest.io alternative; Postgres job queue with worker leases, crash recovery and exactly-once scheduling; RBAC, AES-256-GCM secrets, host allowlists.
 - Loan Approval ML (Oct. 2026): 483,685 Texas HMDA applications, ROC-AUC 0.857, leakage-safe pipeline, isotonic calibration, fair-lending audit, FastAPI service, 10-page Streamlit dashboard, 95 tests.
+- Gracias Por Invitar (Oct. 2026): team project for CS 4390/5388 Software Project Management at UTEP, Fall 2026. He built the event site, a working mock of the product the team is planning (Vite, React 19, Tailwind 4, Motion, React Router; sample events with fictional organizers), live at gpi-j4aw.onrender.com, and is the main contributor to the team's project portal (Next.js, MDX, every document printed to PDF in CI) at gpi-portal.onrender.com.
 - Links: github.com/saalderete, linkedin.com/in/samuel-alderete-005b40333, nerrixdigital.com, salderete29@gmail.com.
 - Spoken languages: English and Spanish (fully bilingual).
 
@@ -41,6 +42,7 @@ He runs software in production for real businesses, not class projects: KasaPro 
 - No invented proof: no testimonials, logos of companies he hasn't worked with, or numbers he hasn't confirmed.
 - KasaPro, KasaRentals and the internship code are private; say "code walkthrough on request" rather than linking.
 - Screenshots of KasaPro use demo data, never real customers.
+- Gracias Por Invitar's events are sample data with fictional organizers: never present them as real listings.
 - Writing section: short technical write-ups drafted from his real code, reviewed by him before publishing.
 
 ## Accessibility
