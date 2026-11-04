@@ -18,32 +18,34 @@
 }
 
 :root {
-  /* Haven: one blue on linen */
-  --ground: #e2ddd1;
-  --shelf: #ece8df;
-  --ink: #1e3f66;
-  --muted: #3e5e83;
-  --rule: #c9c2b2;
-  --rule-strong: #265789;
-  --accent: #265789;
-  --accent-ink: #ece8df;
-  --accent-muted: #c9d6e6;
-  --sign: #ece8df;
-  --sign-ink: #265789;
-  --sign-muted: #456690;
-  --sign-border: #265789;
-  --shadow: 0 6px 16px -6px rgba(30, 63, 102, 0.30), 0 1px 2px rgba(30, 63, 102, 0.14);
-  --lamp: rgba(247, 245, 239, 0.9);   /* the work light on linen */
+  /* Chrome, from the Nerrix design library (dopely-fashion-brand-08): Future Black, Graphite Gray,
+     Chrome Silver and Frost White, and no hue at all. By day the type is Future Black on Frost White
+     with a quarter of the silver in it, so the white work light still shows. */
+  --ground: #edf1f5;
+  --shelf: #ffffff;
+  --panel: #ffffff;                   /* the highlight under the item you reach for */
+  --ink: #080808;
+  --muted: #4b5563;
+  --unlit: #7e8895;                   /* a sign number before its aisle lights: Graphite with 40% Silver */
+  --rule: #cbd5e1;
+  --rule-strong: #4b5563;
+  --accent: #080808;
+  --accent-ink: #f8fafc;
+  --accent-muted: #cbd5e1;
+  --sign-ink: #080808;
+  --sign-muted: #4b5563;
+  --shadow: 0 1px 2px rgba(8, 8, 8, 0.06), 0 12px 28px -14px rgba(8, 8, 8, 0.24);
+  --lamp: rgba(255, 255, 255, 0.9);   /* the work light on the frost ground */
 
   --sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --display: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
   --gutter: clamp(16px, 4vw, 48px);
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
-  /* the loading screen: the sign blue with linen lettering */
-  --shutter: #265789;
-  --shutter-ink: #ece8df;
-  --shutter-muted: #c9d6e6;
+  /* the loading screen: Future Black with Frost White lettering, by day and at night */
+  --shutter: #080808;
+  --shutter-ink: #f8fafc;
+  --shutter-muted: #cbd5e1;
 
   --t-body: 1.0625rem;      /* 17px */
   --t-small: 0.875rem;      /* 14px */
@@ -57,24 +59,23 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --ground: #0f1724;
-    --shelf: #162133;
-    --ink: #e2ddd1;
-    --muted: #aab4c3;
-    --rule: #2a3a52;
-    --rule-strong: #e2ddd1;
-    --accent: #8fb1da;
-    --accent-ink: #0f1724;
-    --accent-muted: #1e3f66;
-    --sign: #162133;
-    --sign-ink: #e2ddd1;
-    --sign-muted: #a3b4ca;
-    --sign-border: #3d5a80;
-    --shadow: 0 8px 18px -8px rgba(0, 0, 0, 0.7), 0 1px 2px rgba(0, 0, 0, 0.5);
-    --lamp: rgba(143, 177, 218, 0.11);  /* a blue shop light at night */
-    --shutter: #162133;
-    --shutter-ink: #e2ddd1;
-    --shutter-muted: #a3b4ca;
+    /* Chrome at night, as the library draws it: Frost White on Future Black, with Chrome Silver for
+       primary and selected */
+    --ground: #080808;
+    --shelf: #1f2328;                 /* Future Black with 35% Graphite */
+    --panel: rgba(31, 35, 40, 0.62);
+    --ink: #f8fafc;
+    --muted: #a7b1be;                 /* Chrome Silver with 28% Graphite */
+    --unlit: #636465;
+    --rule: #393d41;
+    --rule-strong: #636465;
+    --accent: #cbd5e1;
+    --accent-ink: #080808;
+    --accent-muted: #4b5563;
+    --sign-ink: #f8fafc;
+    --sign-muted: #a7b1be;
+    --shadow: inset 0 1px 0 rgba(203, 213, 225, 0.1), 0 12px 28px -14px rgba(0, 0, 0, 0.8);
+    --lamp: rgba(203, 213, 225, 0.1);  /* a cold shop light at night */
     color-scheme: dark;
   }
 }
@@ -93,7 +94,7 @@ body {
 ::selection { background: var(--accent); color: var(--accent-ink); }
 img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 0.22em; }
-:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; box-shadow: 0 0 0 5px var(--accent); border-radius: 2px; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 2px; }
 html { scrollbar-color: var(--muted) var(--ground); }
 .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .skip { position: absolute; left: 12px; top: -60px; z-index: 20; background: var(--accent); color: var(--accent-ink); padding: 10px 14px; font-weight: 700; text-decoration: none; }
@@ -131,26 +132,23 @@ html { scrollbar-color: var(--muted) var(--ground); }
 .role { margin: 14px 0 0; font-size: var(--t-lead); font-weight: 600; }
 .line { margin: 10px 0 0; max-width: 34ch; color: var(--muted); }
 
+/* the aisle list: numbers and names rest unlit, and the aisle you're in lights up */
 .aisles { margin: clamp(28px, 6vh, 64px) 0 0; padding: 0; list-style: none; }
 .aisles a {
-  display: grid; grid-template-columns: 44px 1fr; align-items: center; gap: 14px;
-  padding: 9px 0; text-decoration: none; color: var(--muted);
-  border-top: 1px solid var(--rule);
+  display: grid; grid-template-columns: 2.5rem 1fr; align-items: baseline; gap: 10px;
+  padding: 8px 0; text-decoration: none; color: var(--muted);
 }
-.aisles li:last-child a { border-bottom: 1px solid var(--rule); }
 .aisle-no {
-  display: grid; place-items: center; width: 44px; height: 36px;
-  border: 1px solid var(--rule-strong); color: var(--ink);
-  font-family: var(--display); font-weight: 600; font-size: 1.125rem;
-  transition: background-color 200ms var(--ease-out), color 200ms var(--ease-out);
+  color: var(--unlit);
+  font-family: var(--display); font-weight: 600; font-size: 1.125rem; line-height: 1;
+  transition: color 200ms var(--ease-out);
 }
 .aisle-label { display: flex; flex-direction: column; line-height: 1.2; }
-.aisle-label b { font-family: var(--display); font-weight: 600; font-size: 1.1875rem; color: var(--ink); }
+.aisle-label b { font-family: var(--display); font-weight: 600; font-size: 1.1875rem; color: var(--muted); transition: color 200ms var(--ease-out); }
 .aisle-label span { font-size: var(--t-tiny); }
-.aisles a[aria-current="true"] .aisle-no { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.aisles a[aria-current="true"] .aisle-no, .aisles a[aria-current="true"] .aisle-label b { color: var(--ink); }
 @media (hover: hover) and (pointer: fine) {
-  .aisles a:hover .aisle-no { background: var(--ink); color: var(--ground); }
-  .aisles a[aria-current="true"]:hover .aisle-no { background: var(--accent); color: var(--accent-ink); }
+  .aisles a:hover .aisle-no, .aisles a:hover .aisle-label b { color: var(--ink); }
 }
 
 .links { margin-top: auto; padding-top: 28px; display: flex; flex-wrap: wrap; gap: 8px; }
@@ -172,72 +170,62 @@ html { scrollbar-color: var(--muted) var(--ground); }
 .floor { padding: clamp(40px, 8vh, 88px) 0 0; min-width: 0; }
 .aisle { scroll-margin-top: 16px; padding-bottom: clamp(64px, 10vh, 112px); }
 
-/* the overhead aisle sign */
+/* the overhead aisle sign: the number, the English name and the Spanish after it, over one hairline.
+   The number rests unlit; when you reach its aisle it lights (flickering the first time, like a tube)
+   and the hairline under the sign lights with it. */
 .sign {
-  border: 1px solid var(--sign-border);
-  display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 18px;
-  margin: 0 0 32px; padding: 14px 18px 14px 14px;
-  background: var(--sign); color: var(--sign-ink);
-  transition: background-color 240ms var(--ease-out), color 240ms var(--ease-out);
+  display: flex; align-items: baseline; gap: 18px;
+  margin: 0 0 32px; padding: 0 0 16px;
+  border-bottom: 1px solid var(--rule);
+  color: var(--sign-ink);
+  transition: border-color 240ms var(--ease-out);
 }
 .sign-no {
-  display: grid; place-items: center; min-width: 64px; height: 56px; padding: 0 8px;
-  background: var(--accent); color: var(--accent-ink);
-  font-family: var(--display); font-weight: 600; font-size: 2rem;
-  transition: background-color 240ms var(--ease-out), color 240ms var(--ease-out);
+  flex: none; color: var(--unlit);
+  font-family: var(--display); font-weight: 600; font-size: var(--t-sign); line-height: 1;
+  transition: color 240ms var(--ease-out);
 }
 .sign h2, .sign-h { margin: 0; font-size: var(--t-sign); line-height: 1; display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 14px; row-gap: 4px; }
 .sign h2 b, .sign-h b { font-family: var(--display); font-size: var(--t-sign); font-weight: 600; letter-spacing: -0.01em; }
-.sign h2 span, .sign-h span { font-size: 0.875rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.14em; color: var(--sign-muted); transition: color 240ms var(--ease-out); }
-.aisle.is-here .sign { background: var(--accent); color: var(--accent-ink); }
-.aisle.is-here .sign-no { background: var(--sign); color: var(--accent); }
-.aisle.is-here .sign h2 span { color: var(--accent-muted); }
-.aisle.lit .sign { animation: flicker 300ms steps(1, end) 1; }
+.sign h2 span, .sign-h span { font-family: var(--sans); font-size: 0.875rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.14em; color: var(--sign-muted); }
+/* on the inventory and the 404 the sign's heading is the page's h1: it keeps the sign's sizes, not the article title's */
+.article h1.sign-h { margin: 0; font-family: var(--sans); font-size: var(--t-sign); line-height: 1; letter-spacing: 0; }
+.aisle.is-here .sign, .article .sign { border-bottom-color: var(--accent); }
+.aisle.is-here .sign-no, .article .sign-no { color: var(--ink); }
+.aisle.lit .sign-no { animation: flicker 300ms steps(1, end) 1; }
 @keyframes flicker { 0% { opacity: 1; } 18% { opacity: 0.55; } 30% { opacity: 1; } 52% { opacity: 0.8; } 64% { opacity: 1; } }
-@media (prefers-reduced-motion: reduce) { .aisle.lit .sign { animation: none; } .sign, .sign-no { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .aisle.lit .sign-no { animation: none; } .sign, .sign-no { transition: none; } }
 @media (max-width: 1023px) {
-  .sign { position: sticky; top: 0; z-index: 3; margin-left: calc(var(--gutter) * -1); margin-right: calc(var(--gutter) * -1); padding-left: var(--gutter); }
-  .sign-no { min-width: 48px; height: 42px; font-size: 1.5rem; }
+  .sign { position: sticky; top: 0; z-index: 3; margin-left: calc(var(--gutter) * -1); margin-right: calc(var(--gutter) * -1); padding: 14px var(--gutter); background: var(--ground); }
 }
 
-.prose p { margin: 0 0 18px; max-width: 64ch; }
+.prose p { margin: 0 0 18px; max-width: 64ch; color: var(--muted); }
 .prose p.lead { font-size: var(--t-lead); line-height: 1.5; color: var(--ink); }
-.prose a { font-weight: 600; }
+.prose a { font-weight: 600; color: var(--ink); }
 
-/* price channel: one shelf edge with four labels */
+/* the price channel: four figures hung from one shelf edge, with nothing boxed around them */
 .channel {
-  margin: 36px 0 0; padding: 0; list-style: none;
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  border-top: 3px solid var(--rule-strong); border-bottom: 1px solid var(--rule-strong);
-  background: var(--shelf);
+  margin: 40px 0 0; padding: 20px 0 0; list-style: none;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px 24px;
+  border-top: 1px solid var(--rule);
 }
-.channel li { padding: 0 14px 14px; }
-.channel li + li { border-left: 1px solid var(--rule); }
 .price {
-  display: inline-block; margin: -1px 0 10px; padding: 4px 8px 2px;
-  background: var(--accent); color: var(--accent-ink);
+  display: block; margin: 0 0 8px; white-space: nowrap;
   font-family: var(--display); font-weight: 600; font-size: clamp(1.75rem, 1.3rem + 1.4vw, 2.5rem); line-height: 1.05;
 }
 .channel p { margin: 0; font-size: var(--t-small); line-height: 1.4; color: var(--muted); }
-@media (max-width: 640px) {
-  .channel { grid-template-columns: 1fr 1fr; }
-  .channel li:nth-child(3) { border-left: 0; }
-  .channel li:nth-child(n+3) { border-top: 1px solid var(--rule); padding-top: 0; }
-}
+@media (max-width: 640px) { .channel { grid-template-columns: 1fr 1fr; } }
 
 /* ---------- shelf tags (experience) ---------- */
-.tags-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 12px; }
+.tags-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 44px; }
 .tag {
-  position: relative; display: grid; grid-template-columns: 128px 1fr; gap: 6px 24px;
-  padding: 20px 20px 20px 18px; background: var(--shelf);
-  border: 1px solid var(--rule); color: inherit; text-decoration: none;
-  transition: transform 160ms var(--ease-out), box-shadow 160ms var(--ease-out), border-color 160ms var(--ease-out);
+  position: relative; isolation: isolate;
+  display: grid; grid-template-columns: 128px 1fr; gap: 6px 24px;
+  color: inherit; text-decoration: none;
+  transition: transform 160ms var(--ease-out);
 }
-a.tag:active { transform: translateY(0) scale(0.995); }
-@media (hover: hover) and (pointer: fine) {
-  a.tag:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: var(--rule-strong); }
-  a.tag:hover .go { transform: translate(2px, -2px); }
-}
+a.tag:active { transform: scale(0.995); }
+@media (hover: hover) and (pointer: fine) { a.tag:hover .go { transform: translate(2px, -2px); } }
 .when { font-size: var(--t-tiny); font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; line-height: 1.5; padding-top: 3px; }
 .tag h3 { margin: 0; font-size: 1.1875rem; line-height: 1.3; font-weight: 700; }
 .tag h3 .at { font-weight: 500; color: var(--muted); }
@@ -249,26 +237,23 @@ a.tag:active { transform: translateY(0) scale(0.995); }
 .sku { margin: 14px 0 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 6px; }
 .sku li { font-size: var(--t-tiny); font-weight: 600; padding: 3px 8px; border: 1px solid var(--rule); color: var(--ink); background: var(--ground); }
 
-.tag p.was, .was { color: var(--accent-ink); }
-.was { display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: 8px; margin: 14px 0 0; padding: 6px 10px; background: var(--accent); color: var(--accent-ink); font-size: var(--t-small); font-weight: 600; }
-.was s { font-weight: 500; text-decoration-thickness: 2px; opacity: 0.8; }
-.was b { font-family: var(--display); font-weight: 600; font-size: 1.125rem; }
+/* was / now: the paid subscription struck through, then what replaced it */
+.tag p.was { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 10px; margin: 14px 0 0; font-size: var(--t-small); font-weight: 600; color: var(--muted); }
+.was s { font-weight: 500; text-decoration-thickness: 1px; }
+.was b { font-family: var(--display); font-weight: 600; font-size: 1.125rem; color: var(--ink); }
 
-.more-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 22px; font-weight: 700; text-decoration: none; border-bottom: 2px solid var(--accent); padding-bottom: 2px; }
-@media (hover: hover) and (pointer: fine) { .more-link:hover { background: var(--accent); color: var(--accent-ink); } }
+.more-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 28px; font-weight: 700; text-decoration: none; border-bottom: 2px solid var(--accent); padding-bottom: 2px; transition: border-color 160ms var(--ease-out); }
+@media (hover: hover) and (pointer: fine) { .more-link:hover { border-bottom-color: var(--ink); } .more-link:hover .go { transform: translate(2px, -2px); } }
 
 /* ---------- products (projects) ---------- */
-.products { margin: 0; padding: 0; list-style: none; display: grid; gap: 14px; }
+.products { margin: 0; padding: 0; list-style: none; display: grid; gap: 48px; }
 .product {
-  display: grid; grid-template-columns: 220px 1fr; gap: 22px;
-  padding: 18px; background: var(--shelf); border: 1px solid var(--rule);
+  position: relative; isolation: isolate;
+  display: grid; grid-template-columns: 220px 1fr; gap: 24px;
   color: inherit; text-decoration: none;
-  transition: transform 160ms var(--ease-out), box-shadow 160ms var(--ease-out), border-color 160ms var(--ease-out);
+  transition: transform 160ms var(--ease-out);
 }
-@media (hover: hover) and (pointer: fine) {
-  a.product:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: var(--rule-strong); }
-  a.product:hover .go { transform: translate(2px, -2px); }
-}
+@media (hover: hover) and (pointer: fine) { a.product:hover .go { transform: translate(2px, -2px); } }
 a.product:active { transform: scale(0.995); }
 .product img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top left; border: 1px solid var(--rule); background: var(--ground); }
 .product h3 { margin: 0; font-size: 1.1875rem; font-weight: 700; line-height: 1.3; }
@@ -278,26 +263,25 @@ a.product:active { transform: scale(0.995); }
 .spec dt { font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; font-size: var(--t-tiny); padding-right: 18px; color: var(--muted); padding-top: 7px; }
 .spec dd { font-weight: 600; }
 .note { font-size: var(--t-tiny); color: var(--muted); margin-top: 10px; }
-@media (max-width: 720px) { .product { grid-template-columns: 1fr; } }
+@media (max-width: 720px) { .product { grid-template-columns: 1fr; gap: 16px; } }
 
-.bin { margin: 28px 0 0; padding: 0; list-style: none; border-top: 1px solid var(--rule-strong); }
-.bin li { border-bottom: 1px solid var(--rule); }
+.bin { margin: 20px 0 0; padding: 0; list-style: none; }
 .bin a, .bin div.row {
+  position: relative; isolation: isolate;
   display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; align-items: baseline;
-  padding: 14px 4px; text-decoration: none;
-  transition: background-color 160ms var(--ease-out);
+  padding: 12px 0; text-decoration: none;
 }
 .bin b { font-weight: 700; }
 .bin span { color: var(--muted); font-size: var(--t-small); }
 .bin em { font-style: normal; font-size: var(--t-tiny); font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; grid-column: 2; grid-row: 1; }
-@media (hover: hover) and (pointer: fine) { .bin a:hover { background: var(--shelf); } .bin a:hover b { text-decoration: underline; text-underline-offset: 0.2em; } }
-.bin-h { margin: 44px 0 0; font-family: var(--display); font-size: 1.5rem; font-weight: 600; }
+@media (hover: hover) and (pointer: fine) { .bin a:hover b { text-decoration: underline; text-underline-offset: 0.2em; } }
+.bin-h { margin: 52px 0 0; font-family: var(--display); font-size: 1.5rem; font-weight: 600; }
 
 /* ---------- writing ---------- */
-.notes { margin: 0; padding: 0; list-style: none; display: grid; gap: 12px; }
-.notes a { display: grid; grid-template-columns: 128px 1fr; gap: 6px 24px; padding: 18px; border: 1px solid var(--rule); background: var(--shelf); text-decoration: none;
-  transition: transform 160ms var(--ease-out), box-shadow 160ms var(--ease-out), border-color 160ms var(--ease-out); }
-@media (hover: hover) and (pointer: fine) { .notes a:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: var(--rule-strong); } .notes a:hover .go { transform: translate(2px, -2px); } }
+.notes { margin: 0; padding: 0; list-style: none; display: grid; gap: 44px; }
+.notes a { position: relative; isolation: isolate; display: grid; grid-template-columns: 128px 1fr; gap: 6px 24px; text-decoration: none; transition: transform 160ms var(--ease-out); }
+.notes a:active { transform: scale(0.995); }
+@media (hover: hover) and (pointer: fine) { .notes a:hover .go { transform: translate(2px, -2px); } }
 .notes h3 { margin: 0; font-size: 1.125rem; font-weight: 700; line-height: 1.35; }
 .notes p { margin: 6px 0 0; color: var(--muted); font-size: var(--t-small); }
 @media (max-width: 640px) { .notes a { grid-template-columns: 1fr; } }
@@ -315,7 +299,8 @@ a.product:active { transform: scale(0.995); }
 .article { max-width: 760px; margin: 0 auto; padding: 0 var(--gutter) 80px; }
 .article-top { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 22px 0; border-bottom: 1px solid var(--rule); }
 .article-top a { font-weight: 700; text-decoration: none; display: inline-flex; gap: 8px; align-items: center; }
-.article .sign { margin-top: 40px; }
+/* an article's sign names the aisle you're in, so it is always lit and never sticky */
+.article .sign { position: static; margin: 40px 0 32px; padding: 0 0 16px; background: none; }
 .article h1 { font-size: clamp(2rem, 1.4rem + 2.4vw, 3rem); line-height: 1.08; font-family: var(--display); font-weight: 600; letter-spacing: -0.01em; margin: 0 0 12px; text-wrap: balance; }
 .meta { color: var(--muted); font-size: var(--t-small); margin: 0 0 36px; }
 .article h2 { font-family: var(--display); font-size: 1.5rem; font-weight: 600; margin: 44px 0 12px; line-height: 1.25; }
@@ -324,52 +309,66 @@ a.product:active { transform: scale(0.995); }
 .article ul, .article ol { padding-left: 1.2em; margin: 0 0 18px; }
 .article li { margin-bottom: 8px; }
 .article code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 0.875em; background: var(--shelf); border: 1px solid var(--rule); padding: 1px 5px; }
-.article pre { margin: 0 0 22px; padding: 16px 18px; background: var(--sign); color: var(--sign-ink); overflow-x: auto; font: 400 0.875rem/1.6 ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+.article pre { margin: 0 0 22px; padding: 16px 18px; background: var(--shelf); color: var(--ink); overflow-x: auto; font: 400 0.875rem/1.6 ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
 .article pre code { background: none; border: 0; padding: 0; font-size: inherit; color: inherit; }
-.article blockquote { margin: 0 0 22px; padding: 14px 18px; background: var(--accent); color: var(--accent-ink); font-weight: 600; }
+.article blockquote { margin: 0 0 22px; padding: 2px 0 2px 18px; border-left: 1px solid var(--accent); color: var(--ink); font-weight: 600; }
 .article blockquote p { margin: 0; }
 .article .end { margin-top: 48px; padding-top: 18px; border-top: 1px dashed var(--rule-strong); color: var(--muted); font-size: var(--t-small); }
 .product h3 .at { font-weight: 500; color: var(--muted); }
 .article .table-wrap { overflow-x: auto; margin: 0 0 22px; }
-.article table { width: 100%; border-collapse: collapse; font-size: var(--t-small); background: var(--shelf); border-top: 3px solid var(--rule-strong); }
+.article table { width: 100%; border-collapse: collapse; font-size: var(--t-small); border-top: 1px solid var(--rule-strong); }
 .article caption { caption-side: bottom; text-align: left; padding-top: 8px; color: var(--muted); font-size: var(--t-tiny); }
 .article th, .article td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--rule); vertical-align: baseline; }
 .article thead th { font-size: var(--t-tiny); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
 .article tbody th { font-weight: 600; }
 .article td span { display: block; font-size: var(--t-tiny); color: var(--muted); }
-.article tr.sel th, .article tr.sel td { background: var(--accent); color: var(--accent-ink); }
-.article tr.sel td span { color: var(--accent-muted); }
+/* the selected row is highlighted the way a hovered item is: the panel under it, not a fill colour */
+.article tr.sel th, .article tr.sel td { background: var(--panel); color: var(--ink); font-weight: 600; }
+.article tr.sel td span { font-weight: 400; }
 .article .end a, .article p a { font-weight: 600; }
-.article .sign { position: static; margin-left: 0; margin-right: 0; padding-left: 14px; }
-
-.aisle.is-here .sign { border-color: var(--accent); }
 
 /* short laptop screens: keep the whole directory reachable while pinned */
 @media (min-width: 1024px) and (max-height: 820px) {
   .directory { overflow-y: auto; padding-top: 32px; padding-bottom: 24px; scrollbar-width: thin; }
   .name { font-size: clamp(2.5rem, 1.6rem + 2.6vw, 3.75rem); }
   .aisles { margin-top: 22px; }
-  .aisles a { padding: 6px 0; }
-  .aisle-no { height: 30px; }
+  .aisles a { padding: 5px 0; }
   .links { padding-top: 18px; }
 }
 
-/* phone and tablet: the directory becomes one row of aisle chips */
+/* phone and tablet: the directory becomes one wrapping row of aisles */
 @media (max-width: 1023px) {
   html { scroll-padding-top: 76px; }
-  .aisles { display: flex; flex-wrap: wrap; gap: 6px; margin: 22px 0 0; }
-  .aisles li a, .aisles li:last-child a { display: inline-flex; gap: 8px; padding: 0 10px 0 0; border: 1px solid var(--rule-strong); background: var(--shelf); min-height: 44px; }
-  .aisles .aisle-no { width: 34px; height: auto; align-self: stretch; border: 0; border-right: 1px solid var(--rule-strong); font-size: 1rem; }
+  .aisles { display: flex; flex-wrap: wrap; gap: 0 20px; margin: 18px 0 0; }
+  .aisles a { display: inline-flex; align-items: center; gap: 8px; padding: 0; min-height: 44px; }
+  .aisles .aisle-no { font-size: 1rem; }
   .aisles .aisle-label span { display: none; }
   .aisles .aisle-label b { font-size: 0.9375rem; }
 }
 
-/* keyboard gets the same lift as the pointer */
-a.tag:focus-visible, a.product:focus-visible, .notes a:focus-visible { transform: translateY(-3px); box-shadow: var(--shadow), 0 0 0 5px var(--accent); border-color: var(--rule-strong); }
-.aisles a[aria-current="true"] .aisle-no { border-color: var(--rule-strong); }
-
 /* phones: the date sits under the title, never above it as a kicker */
 @media (max-width: 640px) { .tag .when, .notes .when { order: 1; padding-top: 0; margin-top: 12px; } .tag, .notes a { display: flex; flex-direction: column; } }
+
+/* ---------- the highlight panel ----------
+   Shelf items sit on the page with no card around them. When you reach for one (a fine pointer over it,
+   or keyboard focus on its link), a soft panel comes up underneath and the rest of its shelf steps back
+   (shelf focus, below). The panel is the item's own pseudo-element, behind its content and a little
+   wider than it, and it only ever fades in and out. */
+.tag::before, .product::before, .notes a::before, .bin a::before, .bin .row::before {
+  content: ""; position: absolute; z-index: -1;
+  inset: -16px clamp(-24px, calc(var(--gutter) * -0.75), -12px);
+  border-radius: 6px;
+  background: var(--panel); box-shadow: var(--shadow);
+  opacity: 0; transition: opacity 200ms var(--ease-out);
+}
+.bin a::before, .bin .row::before { inset: 0 clamp(-16px, calc(var(--gutter) * -0.75), -12px); }
+@media (hover: hover) and (pointer: fine) {
+  .tag:hover::before, .product:hover::before, .notes a:hover::before, .bin a:hover::before, .bin .row:hover::before { opacity: 1; }
+}
+/* the keyboard gets the same panel, ringed so the focus is plain to see */
+a.tag:focus-visible, a.product:focus-visible, .notes a:focus-visible, .bin a:focus-visible { outline: none; }
+a.tag:focus-visible::before, a.product:focus-visible::before, .notes a:focus-visible::before, .bin a:focus-visible::before { opacity: 1; box-shadow: var(--shadow), 0 0 0 2px var(--ink); }
+a.tag:focus-visible .go, a.product:focus-visible .go, .notes a:focus-visible .go { transform: translate(2px, -2px); }
 
 /* ---------- the work light ----------
    A soft lamp that follows a mouse or trackpad along the aisle floor, under the shelves (site.js moves it
@@ -386,7 +385,7 @@ a.tag:focus-visible, a.product:focus-visible, .notes a:focus-visible { transform
 
 /* ---------- shelf focus ----------
    The item you're on comes forward and the rest of that shelf steps back, for the pointer and for the
-   keyboard. Linked items still lift (above); this only quiets their neighbours. */
+   keyboard. The panel above shows which one you're on; this quiets its neighbours. */
 .tags-list > li, .products > li, .notes > li, .bin > li, .inventory tbody > tr { transition: opacity 220ms var(--ease-out); }
 @media (hover: hover) and (pointer: fine) {
   .tags-list:has(> li:hover) > li:not(:hover),
@@ -406,12 +405,15 @@ a.tag:focus-visible, a.product:focus-visible, .notes a:focus-visible { transform
 /* ---------- the inventory (everything on one list) ---------- */
 .inventory-page { max-width: 1080px; }
 .inventory-page .lead { font-size: var(--t-lead); line-height: 1.5; max-width: 60ch; margin: 0 0 28px; }
-.inventory-wrap { overflow-x: auto; }
-.inventory { width: 100%; border-collapse: collapse; background: var(--shelf); border-top: 3px solid var(--rule-strong); font-size: var(--t-small); }
-.inventory caption { caption-side: bottom; text-align: left; padding-top: 10px; color: var(--muted); font-size: var(--t-tiny); }
-.inventory th, .inventory td { text-align: left; vertical-align: top; padding: 14px 14px 14px 0; border-bottom: 1px solid var(--rule); }
-.inventory th:first-child, .inventory td:first-child { padding-left: 14px; }
-.inventory thead th { padding-top: 10px; padding-bottom: 10px; font-size: var(--t-tiny); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+/* the table runs 12px wider than the column on each side, so its text lines up with the page and a
+   highlighted row has room to breathe */
+.inventory-wrap { overflow-x: auto; margin: 0 -12px; }
+.inventory { width: 100%; border-collapse: collapse; font-size: var(--t-small); }
+.inventory caption { caption-side: bottom; text-align: left; padding: 10px 12px 0; color: var(--muted); font-size: var(--t-tiny); }
+.inventory th, .inventory td { text-align: left; vertical-align: top; padding: 14px 14px 14px 0; border-bottom: 1px solid var(--rule); transition: background-color 200ms var(--ease-out); }
+.inventory th:first-child, .inventory td:first-child { padding-left: 12px; }
+.inventory th:last-child, .inventory td:last-child { padding-right: 12px; }
+.inventory thead th { padding-top: 0; padding-bottom: 10px; border-bottom-color: var(--rule-strong); font-size: var(--t-tiny); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
 .inventory tbody th { font-weight: 400; min-width: 16rem; }
 .inventory tbody th b { display: block; font-size: 1.0625rem; font-weight: 700; color: var(--ink); }
 .inventory tbody th span { display: block; margin-top: 2px; color: var(--muted); }
@@ -419,27 +421,28 @@ a.tag:focus-visible, a.product:focus-visible, .notes a:focus-visible { transform
 .inventory .sku { margin: 0; }
 .inventory .sku li { background: var(--ground); }
 .inventory td.link { white-space: nowrap; }
-.inventory td.link a { font-weight: 700; text-decoration: none; border-bottom: 2px solid var(--accent); padding-bottom: 1px; }
+.inventory td.link a { font-weight: 700; text-decoration: none; border-bottom: 2px solid var(--accent); padding-bottom: 1px; transition: border-color 160ms var(--ease-out); }
 .inventory td.link a .go { transition: transform 160ms var(--ease-out); }
 .inventory td.link em { font-style: normal; color: var(--muted); }
 @media (hover: hover) and (pointer: fine) {
-  .inventory td.link a:hover { background: var(--accent); color: var(--accent-ink); }
+  .inventory tbody tr:hover > * { background: var(--panel); }
+  .inventory td.link a:hover { border-bottom-color: var(--ink); }
   .inventory td.link a:hover .go { transform: translate(2px, -2px); }
 }
 @media (max-width: 860px) {
   /* phones: each row becomes a shelf tag */
   .inventory, .inventory tbody, .inventory tr, .inventory th, .inventory td { display: block; }
   .inventory thead { display: none; }
-  .inventory caption { display: block; padding: 12px 14px 0; }
-  .inventory tbody tr { padding: 14px; border-bottom: 1px solid var(--rule); }
-  .inventory th, .inventory td, .inventory th:first-child, .inventory td:first-child { padding: 0; border: 0; min-width: 0; }
+  .inventory caption { display: block; padding: 12px 12px 0; }
+  .inventory tbody tr { padding: 14px 12px; border-bottom: 1px solid var(--rule); }
+  .inventory th, .inventory td, .inventory th:first-child, .inventory td:first-child, .inventory th:last-child, .inventory td:last-child { padding: 0; border: 0; min-width: 0; }
   .inventory td { margin-top: 10px; }
   .inventory td.at::before, .inventory td.link::before { content: attr(data-label) ": "; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; font-size: var(--t-tiny); }
   .inventory td.at { white-space: normal; }
 }
 
 /* ---------- the shutter: the store opens, once a visit ----------
-   A plain screen in the sign blue. "Hello" holds a beat, then eleven more
+   A plain screen in Future Black. "Hello" holds a beat, then eleven more
    languages speed past until the shutter shows the store's own sign (Open, with Abierto after it). Once the
    page has loaded, the shutter fades away while the page drifts up into place underneath, and the first
    aisle's sign flickers on. The <head> script shows it only on the first visit of a session, never for a

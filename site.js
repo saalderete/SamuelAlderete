@@ -1,6 +1,6 @@
-// The directory follows you down the aisles: the sign of the aisle you're in
-// inverts to lime, its number lights in the directory, and each sign flickers
-// on once, the first time you reach it.
+// The directory follows you down the aisles: the aisle you're in lights up (its
+// sign's number and hairline, and its row in the directory), and each sign's
+// number flickers on once, the first time you reach it.
 (() => {
   const aisles = [...document.querySelectorAll(".aisle[id]")];
   const links = new Map(
