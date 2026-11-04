@@ -1,7 +1,7 @@
 # Samuel Alderete
 
 915-383-6722 | salderete29@gmail.com | El Paso, TX
-linkedin.com/in/samuel-alderete-005b40333 | github.com/saalderete | saalderete.github.io/SamuelAlderete
+linkedin.com/in/saalderete | github.com/saalderete | saalderete.github.io/SamuelAlderete
 
 ## Education
 
