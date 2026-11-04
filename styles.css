@@ -381,6 +381,21 @@ a.tag:focus-visible .go, a.product:focus-visible .go, .notes a:focus-visible .go
 .worklight.on { opacity: 1; }
 @media (prefers-reduced-motion: reduce) { .worklight { display: none; } }
 
+/* ---------- the progress line ----------
+   A 2px accent line along the top edge that fills as you go down the page, so you always know how far along
+   the aisle you are. The browser drives it from the scroll position where it can (a scroll-driven animation,
+   off the main thread); site.js does it otherwise, by transform only. It sits under the shutter, and stays
+   empty on a page that doesn't scroll. */
+.progress {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50; height: 2px;
+  background: var(--accent); transform-origin: 0 50%; transform: scaleX(0);
+  pointer-events: none;
+}
+@supports (animation-timeline: scroll()) {
+  .progress { animation: progress-fill linear both; animation-timeline: scroll(root block); }
+  @keyframes progress-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+}
+
 /* ---------- shelf focus ----------
    The item you're on comes forward and the rest of that shelf steps back, for the pointer and for the
    keyboard. The panel above shows which one you're on; this quiets its neighbours. */

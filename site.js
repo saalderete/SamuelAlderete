@@ -126,3 +126,28 @@
   };
   Promise.race([Promise.all([loaded, fonts, wait(2000 - performance.now())]), wait(3300 - performance.now()), skip]).then(lift);
 })();
+
+// The progress line along the top edge (styles.css). Where the browser can drive it from the scroll position
+// it does so on its own; otherwise this fills it, by transform only, once a frame at most.
+(() => {
+  const bar = document.createElement("div");
+  bar.className = "progress";
+  bar.setAttribute("aria-hidden", "true");
+  document.body.prepend(bar);
+  if (window.CSS && CSS.supports && CSS.supports("animation-timeline: scroll()")) return;
+  let queued = false;
+  const draw = () => {
+    queued = false;
+    const max = document.documentElement.scrollHeight - innerHeight;
+    bar.style.transform = `scaleX(${max > 0 ? Math.min(1, Math.max(0, scrollY / max)) : 0})`;
+  };
+  const queue = () => {
+    if (!queued) {
+      queued = true;
+      requestAnimationFrame(draw);
+    }
+  };
+  addEventListener("scroll", queue, { passive: true });
+  addEventListener("resize", queue);
+  draw();
+})();
