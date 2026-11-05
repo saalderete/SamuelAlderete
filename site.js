@@ -89,7 +89,7 @@
 
 // The shutter (index.html): the <head> decides whether it shows (html.opening), on the first visit of a session
 // and on every refresh. It fades once the page has loaded and the greetings have played to the store's sign
-// (2 s at least, 3.3 s at most); a key, a click, a scroll or a touch fades it straight away. Then the sign of
+// (2.7 s at least, so the store's sign holds about a second, and 3.8 s at most); a key, a click, a scroll or a touch fades it straight away. Then the sign of
 // the aisle you're in flickers on, as if the lights came on (after a refresh, that can be any aisle).
 (() => {
   const d = document.documentElement;
@@ -124,7 +124,7 @@
     shutter.addEventListener("transitionend", (e) => { if (e.target === shutter) finish(); });
     setTimeout(finish, 1100);
   };
-  Promise.race([Promise.all([loaded, fonts, wait(2000 - performance.now())]), wait(3300 - performance.now()), skip]).then(lift);
+  Promise.race([Promise.all([loaded, fonts, wait(2700 - performance.now())]), wait(3800 - performance.now()), skip]).then(lift);
 })();
 
 // The progress line along the top edge (styles.css). Where the browser can drive it from the scroll position
