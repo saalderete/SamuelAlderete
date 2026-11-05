@@ -29,57 +29,57 @@ colors:
   sign-muted-dark: "#a7b1be"
 typography:
   display:
-    fontFamily: "Bodoni Moda, Didot, Bodoni 72, Georgia, serif"
-    fontSize: "clamp(2.75rem, 2rem + 3.4vw, 4.75rem)"
-    fontWeight: 600
+    fontFamily: "Michroma, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(2.1rem, 1.5rem + 2.2vw, 3.3rem)"
+    fontWeight: 400
     lineHeight: 0.95
-    letterSpacing: "-0.015em"
+    letterSpacing: "0"
   display-compact:
-    fontFamily: "Bodoni Moda, Didot, Bodoni 72, Georgia, serif"
-    fontSize: "clamp(2.5rem, 1.6rem + 2.6vw, 3.75rem)"
-    fontWeight: 600
+    fontFamily: "Michroma, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(1.9rem, 1.3rem + 1.8vw, 2.8rem)"
+    fontWeight: 400
     lineHeight: 0.95
-    letterSpacing: "-0.015em"
+    letterSpacing: "0"
   headline:
-    fontFamily: "Bodoni Moda, Didot, Bodoni 72, Georgia, serif"
-    fontSize: "clamp(1.75rem, 1.2rem + 1.8vw, 2.75rem)"
-    fontWeight: 600
+    fontFamily: "Michroma, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(1.25rem, 0.95rem + 1.1vw, 1.9rem)"
+    fontWeight: 400
     lineHeight: 1
-    letterSpacing: "-0.01em"
+    letterSpacing: "0"
   price:
-    fontFamily: "Bodoni Moda, Didot, Bodoni 72, Georgia, serif"
-    fontSize: "clamp(1.75rem, 1.3rem + 1.4vw, 2.5rem)"
-    fontWeight: 600
+    fontFamily: "Michroma, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(1.1rem, 0.9rem + 0.7vw, 1.45rem)"
+    fontWeight: 400
     lineHeight: 1.05
   sign-number:
-    fontFamily: "Bodoni Moda, Didot, Bodoni 72, Georgia, serif"
-    fontSize: "clamp(1.75rem, 1.2rem + 1.8vw, 2.75rem)"
-    fontWeight: 600
+    fontFamily: "Michroma, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(1.25rem, 0.95rem + 1.1vw, 1.9rem)"
+    fontWeight: 400
     lineHeight: 1
   title-article:
-    fontFamily: "Bodoni Moda, Didot, Bodoni 72, Georgia, serif"
-    fontSize: "1.5rem"
-    fontWeight: 600
+    fontFamily: "Michroma, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "1.15rem"
+    fontWeight: 400
     lineHeight: 1.25
   label-aisle:
-    fontFamily: "Bodoni Moda, Didot, Bodoni 72, Georgia, serif"
-    fontSize: "1.1875rem"
-    fontWeight: 600
+    fontFamily: "Michroma, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "0.95rem"
+    fontWeight: 400
     lineHeight: 1.2
   label-aisle-compact:
-    fontFamily: "Bodoni Moda, Didot, Bodoni 72, Georgia, serif"
-    fontSize: "0.9375rem"
-    fontWeight: 600
+    fontFamily: "Michroma, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "0.8125rem"
+    fontWeight: 400
     lineHeight: 1.2
   aisle-number:
-    fontFamily: "Bodoni Moda, Didot, Bodoni 72, Georgia, serif"
+    fontFamily: "Michroma, ui-sans-serif, system-ui, sans-serif"
     fontSize: "1.125rem"
-    fontWeight: 600
+    fontWeight: 400
     lineHeight: 1
   aisle-number-compact:
-    fontFamily: "Bodoni Moda, Didot, Bodoni 72, Georgia, serif"
+    fontFamily: "Michroma, ui-sans-serif, system-ui, sans-serif"
     fontSize: "1rem"
-    fontWeight: 600
+    fontWeight: 400
     lineHeight: 1
   title:
     fontFamily: "Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif"
@@ -214,7 +214,7 @@ components:
     typography: "{typography.body-small}"
   was-price-now:
     textColor: "{colors.ink}"
-    typography: "{typography.aisle-number}"
+    typography: "{typography.label-aisle}"
   more-link:
     textColor: "{colors.ink}"
   progress-line:
@@ -230,16 +230,16 @@ components:
 
 **Creative North Star: "The Well-Run Aisle, in Chrome"**
 
-The site is a bilingual aisle held to signage discipline. A pinned directory on the left lists numbered aisles. Each section on the right opens under a full-width overhead sign: the aisle number, the English aisle name in a high-contrast Didone, and its Spanish pair after it on the same baseline in small tracked capitals, all standing over one hairline. Work is stocked as shelf tags, product cards with spec lists, a bin of smaller items, and price figures standing on one shelf edge. Nothing is boxed: items sit straight on the page, and type, rules, numbering and the bilingual pairs carry the metaphor. There are no props, no illustrations and no retailer colours or marks.
+The site is a bilingual aisle held to signage discipline. A pinned directory on the left lists numbered aisles. Each section on the right opens under a full-width overhead sign: the aisle number, the English aisle name in a wide extended face, and its Spanish pair after it on the same baseline in small tracked capitals, all standing over one hairline. Work is stocked as shelf tags, product cards with spec lists, a bin of smaller items, and price figures standing on one shelf edge. Nothing is boxed: items sit straight on the page, and type, rules, numbering and the bilingual pairs carry the metaphor. There are no props, no illustrations and no retailer colours or marks.
 
-The palette is Chrome, from the Nerrix design library (dopely-fashion-brand-08): Future Black, Graphite Gray, Chrome Silver and Frost White, and no hue at all. Dark is the palette as the library draws it: Frost White type on a Future Black ground, Chrome Silver for primary actions and the lit rule. Light is its matching day version: Future Black type on Frost White with a quarter of the silver in it (`ground`), so the white work light still shows, and white for the highlight panel. Every word pair passes WCAG AA, with body pairs at 6.7:1 or better. Density is moderate and legible: a 17px Inter reading face, generous aisle breaks, and 1px rules. Hierarchy comes from the pairing. Bodoni Moda at weight 600 names things, and Inter reads, labels and acts.
+The palette is Chrome, from the Nerrix design library (dopely-fashion-brand-08): Future Black, Graphite Gray, Chrome Silver and Frost White, and no hue at all. Dark is the palette as the library draws it: Frost White type on a Future Black ground, Chrome Silver for primary actions and the lit rule. Light is its matching day version: Future Black type on Frost White with a quarter of the silver in it (`ground`), so the white work light still shows, and white for the highlight panel. Every word pair passes WCAG AA, with body pairs at 6.7:1 or better. Density is moderate and legible: a 17px Inter reading face, generous aisle breaks, and 1px rules. Hierarchy comes from the pairing. Michroma, at its one weight of 400, names things, and Inter reads, labels and acts.
 
 The one motion idea is the aisle lighting up. Sign numbers rest unlit. As you scroll, the current aisle's sign number lights to ink, the hairline under its sign lights to the accent, its directory row lights, and the first time you reach it the number flickers once like a fluorescent tube. When you reach for a shelf item (a fine pointer over it, or keyboard focus on its link) a soft panel fades up under it, and the rest of its shelf steps back to half strength (shelf focus). With a mouse or trackpad, a soft work light follows the pointer along the aisle floor, under the shelves: a white light by day, a faint cold silver light at night. Touch screens and reduced motion get no light. On the first visit of a session, and on every refresh, the store opens: a plain Future Black screen with Frost White lettering, in both schemes. "Hello" lights like a sign and holds a beat, then eleven more languages speed past (Hola, Olá, Bonjour, Hallo, Xin chào, Korean, Japanese, Mandarin, Hindi, Arabic and Navajo) to the store's own sign, Open with Abierto after it in Chrome Silver. Once the page has loaded (2.7 s at least, so Open holds about a second, and 3.8 s at most; a key, click, scroll or touch opens it at once) the shutter fades away over 700 ms while the page drifts up 40px into place, and the sign of the aisle you're in flickers on. It never shows for a link straight to a section, on a return from the inventory, or under reduced motion, but a refresh always shows it, even when the address names a section. A 2px accent line along the top edge fills as you scroll, so you always know how far down the page you are. Nothing else moves.
 
 **Exception: the résumé page.** `resume.html` deliberately keeps the owner's own LaTeX résumé look: Computer Modern Serif (CMU Serif, self-hosted from `assets/fonts/cmu`), black on white, centered header, small-caps section rules, a Letter page with print margins. It sits outside the aisle system. Don't restyle it in aisle grammar, and don't borrow its serif, its small caps or its centered LaTeX header for aisle surfaces. Chrome's day scheme is black on a frosted white too, so the line between them is the type, not the colour.
 
 **Key Characteristics:**
-- Two self-hosted families: Bodoni Moda (variable, wght 400–900, used at 600) for naming, Inter (wght 400–800) for everything else. No width axes and no condensed type.
+- Two self-hosted families: Michroma (one weight, 400) for naming, Inter (wght 400–800) for everything else. No width axes and no condensed type.
 - Chrome: black, graphite, silver and white, with no hue. The accent always means "current", "primary" or "selected".
 - Nothing boxed: no cards, no number boxes, no filled labels. Items sit on the page and a panel comes up only when you reach for one.
 - Square everything except the highlight panel (6px): 0 radius, 1px rules, and a dashed 1px rule for receipts.
@@ -273,18 +273,18 @@ Chrome: four library values and a few mixes of them, so the page never introduce
 
 ## Typography
 
-**Display Font:** Bodoni Moda (variable, self-hosted at `assets/fonts/bodoni-moda-latin.woff2`, with Didot, Bodoni 72 and Georgia as fallbacks)
+**Display Font:** Michroma (one weight, 400, self-hosted at `assets/fonts/michroma-latin.woff2` and preloaded on the home page, the inventory and the 404, with ui-sans-serif and system-ui as fallbacks)
 **Body Font:** Inter (self-hosted at `assets/fonts/inter-latin.woff2`, with ui-sans-serif and system-ui as fallbacks)
 
-**Character:** A high-contrast Didone does the naming the way a painted shop sign would, and a plain neo-grotesque does the reading and the labelling. Bodoni Moda only ever appears at weight 600, in the case the words are written in (title case for aisle names, sentence case for the bin heading), and never transformed to capitals.
+**Character:** A wide extended sans does the naming the way an overhead shop sign would, and a plain neo-grotesque does the reading and the labelling. Michroma only ever appears at its one weight, 400, with no tracking and nothing synthesised bold, in the case the words are written in (title case for aisle names, sentence case for the bin heading), and never transformed to capitals.
 
 ### Hierarchy
 - **Display** (`display`): the owner's name at the top of the directory, on two lines. It appears once per site. On laptops 820px tall or less it steps down to `display-compact`.
 - **Headline** (`headline`): the English name on an overhead sign. The sign number (`sign-number`) is set at the same size.
 - **Price** (`price`): the four About figures, in ink.
 - **Title, article** (`title-article`): the "Also on the shelf" bin heading.
-- **Aisle label** (`label-aisle`): English aisle names in the directory. In the phone row they use `label-aisle-compact`, with numbers at `aisle-number-compact`.
-- **Aisle number** (`aisle-number`): directory numbers, and the "Built in-house" figure in the was/now line.
+- **Aisle label** (`label-aisle`): English aisle names in the directory, and the "Built in-house" figure in the was/now line. In the phone row they use `label-aisle-compact`, with numbers at `aisle-number-compact`.
+- **Aisle number** (`aisle-number`): directory numbers.
 - **Title** (`title`): shelf-tag and product names in Inter, sentence case. The employer or status after the title drops to weight 500 in Graphite.
 - **Lead** (`lead`): the first paragraph of an aisle, in ink. The directory's role line uses the same size at weight 600.
 - **Body** (`body`): reading text, capped at 64ch in aisles, 68ch on the inventory and the 404, and 52ch at checkout. Home prose paragraphs after the lead are muted. Numerals are tabular site-wide.
@@ -293,7 +293,7 @@ Chrome: four library values and a few mixes of them, so the page never introduce
 - **Label** (`label`; uppercase, weight 600–700): dates on tags, spec terms, bin categories and table column heads. SKU chips use the same size without the uppercase.
 
 ### Named Rules
-**The Two Voices Rule.** Bodoni Moda names things: the owner, aisles, sign numbers, prices, the bin heading and the "Built in-house" figure. Inter does everything else, including every button, chip, label, date and paragraph. Bodoni is never used for running text, never set in capitals, and never set below the 0.9375rem phone row label.
+**The Two Voices Rule.** Michroma names things: the owner, aisles, sign numbers, prices, the bin heading and the "Built in-house" figure. Inter does everything else, including every button, chip, label, date and paragraph. Michroma is never used for running text, never set in capitals, never set at any weight but its one weight of 400, and never set below the 0.8125rem phone row label.
 
 **The Bilingual Pair Rule.** Every aisle name comes as English and then Spanish. On signs, the Spanish runs after the English on the same baseline in Inter capitals (`label-sign`, tracked 0.14em) in Sign Subline, marked `lang="es"`. In the directory it sits underneath at 13px in Inter sentence case, and on phones it is dropped from the row. Spanish never sits above the English, and the sign never leaves it out.
 
@@ -338,18 +338,18 @@ Blunt, square and self-explanatory.
 - **Sizes:** checkout "till" buttons at 14px 18px, and directory link chips at 9px 12px in body-small.
 
 ### Navigation (the directory)
-- Numbered rows with no rules and no boxes: a 2.5rem column for the Bodoni number and a two-line label, the English aisle name in Bodoni and the Spanish underneath in 13px Inter, 8px apart top and bottom.
+- Numbered rows with no rules and no boxes: a 2.5rem column for the Michroma number and a two-line label, the English aisle name in Michroma and the Spanish underneath in 13px Inter, 8px apart top and bottom.
 - **Rest:** number and name in Muted (the number is part of the link's text, so it keeps full text contrast). **Hover** (fine pointer) and **Current** (`aria-current="true"`, set by the scroll-spy): the number and the English name light to ink over 200ms.
 - **Mobile:** a plain wrapping row of number and English name pairs, 44px tall, with no border or fill.
 
 ### Aisle Sign (signature)
-The overhead sign that opens every aisle and every secondary page. It is unboxed: the number at the headline size, the English name in Bodoni Moda 600 and the Spanish subline in Inter caps after it on the baseline, 18px apart, over one 1px Silver Rule hairline 16px below. **Current:** the number lights from unlit to ink and the hairline lights to the accent, over 240ms. The first arrival flickers the number only, a one-time 300ms stepped flicker (opacity 1, 0.55, 1, 0.8, 1), skipped under reduced motion. On phones the sign is sticky on a solid ground background. On the inventory and the 404 the sign is static, always lit, and names the aisle you're in (03 Inventory / Inventario; 404 Not on the shelf / No está aquí).
+The overhead sign that opens every aisle and every secondary page. It is unboxed: the number at the headline size, the English name in Michroma 400 and the Spanish subline in Inter caps after it on the baseline, 18px apart, over one 1px Silver Rule hairline 16px below. **Current:** the number lights from unlit to ink and the hairline lights to the accent, over 240ms. The first arrival flickers the number only, a one-time 300ms stepped flicker (opacity 1, 0.55, 1, 0.8, 1), skipped under reduced motion. On phones the sign is sticky on a solid ground background. On the inventory and the 404 the sign is static, always lit, and names the aisle you're in (03 Inventory / Inventario; 404 Not on the shelf / No está aquí).
 
 ### Price Channel (signature)
-Four plain Bodoni figures in ink, standing on one 1px Silver Rule with 20px above them, each with a short body-small description in Graphite underneath. There are no fills, no cell dividers and no rail.
+Four plain Michroma figures in ink, standing on one 1px Silver Rule with 20px above them, each with a short body-small description in Graphite underneath. There are no fills, no cell dividers and no rail.
 
 ### Was / Now Line
-A plain body-small line in Graphite at weight 600. The old item is struck through (1px, weight 500), followed by "Built in-house" in Bodoni ink at the aisle-number size and a short saving. It is used only where a real replacement happened.
+A plain body-small line in Graphite at weight 600. The old item is struck through (1px, weight 500), followed by "Built in-house" in Michroma ink at the aisle-label size and a short saving. It is used only where a real replacement happened.
 
 ### Shelf Tag, Product Card
 - **Shared:** no fill, border or padding. They sit on the page, spaced by `shelf-gap` (tags) or `product-gap` (products), and take the highlight panel on hover and, when linked, on keyboard focus. A linked item has a 14px arrow icon after its title.
@@ -360,7 +360,7 @@ A plain body-small line in Graphite at weight 600. The old item is struck throug
 Small tech and scope tags: label-size Inter at weight 600 (not uppercase), 3px 8px, with a 1px Silver Rule border, filled with the ground colour. They have no states.
 
 ### Bin
-A list of secondary stock with no rules, under a Bodoni `title-article` heading. Each row has `row` padding above and below, a bold Inter name, a right-aligned uppercase category label and a muted one-line description. Rows take the panel on hover, and linked rows underline the name.
+A list of secondary stock with no rules, under a Michroma `title-article` heading. Each row has `row` padding above and below, a bold Inter name, a right-aligned uppercase category label and a muted one-line description. Rows take the panel on hover, and linked rows underline the name.
 
 ### More-link
 A weight-700 inline link with a 2px accent underline and an arrow icon. On hover the underline turns ink and the arrow nudges 2px up and to the right. It never fills. Inventory links follow the same pattern.
@@ -378,11 +378,11 @@ Authored inline SVG symbols on a 16px viewBox. Drawn icons use a 1.5–1.6 strok
 ## Do's and Don'ts
 
 ### Do:
-- **Do** open every aisle and every secondary page with an unboxed aisle sign: the number at the headline size, the English name in Bodoni Moda 600 and the Spanish pair after it in tracked Inter capitals, over one 1px hairline.
+- **Do** open every aisle and every secondary page with an unboxed aisle sign: the number at the headline size, the English name in Michroma 400 and the Spanish pair after it in tracked Inter capitals, over one 1px hairline.
 - **Do** show "current" by light: the sign number from unlit to ink and the directory row from Muted to ink, the hairline from Silver Rule to the accent, driven by scroll position, with a one-time number flicker that respects reduced motion.
-- **Do** set figures as plain Bodoni in ink, and keep tabular numerals on.
+- **Do** set figures as plain Michroma in ink, and keep tabular numerals on.
 - **Do** use the `accent-ink` token for text on every accent fill, in both colour schemes.
-- **Do** keep Bodoni Moda at weight 600 for naming roles only, and set everything else in Inter.
+- **Do** keep Michroma at its one weight, 400, for naming roles only, and set everything else in Inter.
 - **Do** let shelf items sit on the page with no fill, border or padding, and bring the 6px highlight panel up under them on fine-pointer hover and on keyboard focus of a linked item, by opacity over 200ms, with a 2px ink ring for the keyboard.
 - **Do** quiet the rest of a shelf (experience tags, product cards, bin rows, inventory rows) to 0.5 opacity while one item has the pointer or keyboard focus, over 220ms.
 - **Do** keep the shutter to the first visit of a session and to refreshes, under 3.8 s, skippable by any key, click or scroll, and absent for links straight to a section and for reduced motion (`index.html` head script, `.shutter`, `site.js`).
@@ -395,7 +395,7 @@ Authored inline SVG symbols on a 16px viewBox. Drawn icons use a 1.5–1.6 strok
 - **Don't** add a hue, a tint, a gradient fill, or any real retailer's colours or marks. The work light is the one radial gradient, and it stays a light, not a surface.
 - **Don't** use cartoon props, illustrations or hardware clip-art. The aisle is carried by type, rules, numbering and bilingual pairs.
 - **Don't** set a kicker or eyebrow label above a heading. The Spanish pair runs after the English on the sign's baseline, and on phones dates move under the title.
-- **Don't** set Bodoni Moda in capitals, in running text, or at any weight other than 600.
+- **Don't** set Michroma in capitals, in running text, or at any weight other than 400, and never let it be synthesised bold.
 - **Don't** bring back condensed type or width-axis hierarchy.
 - **Don't** put boxes, fills or cards around numbers, headings, figures or shelf items, or bring back the 3px rail.
 - **Don't** lift items, move them up on hover, or give anything a shadow at rest. The panel's shadow is the only one.

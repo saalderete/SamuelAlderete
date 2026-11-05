@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-05T15:00:00Z",
+  "generatedAt": "2026-11-05T16:00:00Z",
   "title": "Design System: Samuel Alderete",
   "extensions": {
     "colorMeta": {
@@ -492,7 +492,7 @@
       },
       "price": {
         "displayName": "Price",
-        "purpose": "The four About figures, plain Bodoni in ink."
+        "purpose": "The four About figures, plain Michroma in ink."
       },
       "sign-number": {
         "displayName": "Sign number",
@@ -504,7 +504,7 @@
       },
       "label-aisle": {
         "displayName": "Aisle label",
-        "purpose": "English aisle names in the directory."
+        "purpose": "English aisle names in the directory; the Built in-house figure in the was/now line."
       },
       "label-aisle-compact": {
         "displayName": "Aisle label, compact",
@@ -516,7 +516,7 @@
       },
       "aisle-number": {
         "displayName": "Aisle number",
-        "purpose": "Directory numbers (unboxed); the Built in-house figure in the was/now line."
+        "purpose": "Directory numbers (unboxed)."
       },
       "title": {
         "displayName": "Title",
@@ -545,10 +545,10 @@
     },
     "fonts": [
       {
-        "family": "Bodoni Moda",
-        "src": "assets/fonts/bodoni-moda-latin.woff2",
-        "weight": "400 900",
-        "used": "600",
+        "family": "Michroma",
+        "src": "assets/fonts/michroma-latin.woff2",
+        "weight": "400",
+        "used": "400",
         "license": "SIL OFL 1.1",
         "role": "display"
       },
@@ -702,7 +702,7 @@
       "refersTo": "aisle-sign",
       "description": "Unboxed overhead sign opening every aisle: the number rests unlit and lights to ink when current, and the hairline under it lights to the accent.",
       "html": "<div class=\"ds-sign\"><span class=\"ds-sign-no\">02</span><h2 class=\"ds-sign-h\"><b>Experience</b><span lang=\"es\">Experiencia</span></h2></div><div class=\"ds-sign is-here\"><span class=\"ds-sign-no\">01</span><h2 class=\"ds-sign-h\"><b>About</b><span lang=\"es\">Sobre mí</span></h2></div>",
-      "css": ".ds-sign{display:flex;align-items:baseline;gap:18px;margin:0 0 32px;padding:0 0 16px;border-bottom:1px solid var(--rule,#cbd5e1);color:var(--sign-ink,#080808);transition:border-color 240ms cubic-bezier(0.23,1,0.32,1)}.ds-sign-no{flex:none;color:var(--unlit,#7e8895);font-family:var(--display,\"Bodoni Moda\",Didot,\"Bodoni 72\",Georgia,serif);font-weight:600;font-size:clamp(1.75rem,1.2rem + 1.8vw,2.75rem);line-height:1;transition:color 240ms cubic-bezier(0.23,1,0.32,1)}.ds-sign-h{margin:0;display:flex;flex-wrap:wrap;align-items:baseline;column-gap:14px;row-gap:4px;line-height:1;font-size:clamp(1.75rem,1.2rem + 1.8vw,2.75rem)}.ds-sign-h b{font-family:var(--display,\"Bodoni Moda\",Didot,\"Bodoni 72\",Georgia,serif);font-weight:600;letter-spacing:-0.01em}.ds-sign-h span{font-family:var(--sans,\"Inter\",ui-sans-serif,system-ui,sans-serif);font-size:0.875rem;font-weight:500;text-transform:uppercase;letter-spacing:0.14em;color:var(--sign-muted,#4b5563)}.ds-sign.is-here{border-bottom-color:var(--accent,#080808)}.ds-sign.is-here .ds-sign-no{color:var(--ink,#080808);animation:ds-flicker 300ms steps(1,end) 1}@keyframes ds-flicker{0%{opacity:1}18%{opacity:0.55}30%{opacity:1}52%{opacity:0.8}64%{opacity:1}}@media (prefers-reduced-motion:reduce){.ds-sign.is-here .ds-sign-no{animation:none}}"
+      "css": ".ds-sign{display:flex;align-items:baseline;gap:18px;margin:0 0 32px;padding:0 0 16px;border-bottom:1px solid var(--rule,#cbd5e1);color:var(--sign-ink,#080808);transition:border-color 240ms cubic-bezier(0.23,1,0.32,1)}.ds-sign-no{flex:none;color:var(--unlit,#7e8895);font-family:var(--display,\"Michroma\",ui-sans-serif,system-ui,sans-serif);font-weight:400;font-size:clamp(1.25rem,0.95rem + 1.1vw,1.9rem);line-height:1;transition:color 240ms cubic-bezier(0.23,1,0.32,1)}.ds-sign-h{margin:0;display:flex;flex-wrap:wrap;align-items:baseline;column-gap:14px;row-gap:4px;line-height:1;font-size:clamp(1.25rem,0.95rem + 1.1vw,1.9rem)}.ds-sign-h b{font-family:var(--display,\"Michroma\",ui-sans-serif,system-ui,sans-serif);font-weight:400;letter-spacing:0}.ds-sign-h span{font-family:var(--sans,\"Inter\",ui-sans-serif,system-ui,sans-serif);font-size:0.875rem;font-weight:500;text-transform:uppercase;letter-spacing:0.14em;color:var(--sign-muted,#4b5563)}.ds-sign.is-here{border-bottom-color:var(--accent,#080808)}.ds-sign.is-here .ds-sign-no{color:var(--ink,#080808);animation:ds-flicker 300ms steps(1,end) 1}@keyframes ds-flicker{0%{opacity:1}18%{opacity:0.55}30%{opacity:1}52%{opacity:0.8}64%{opacity:1}}@media (prefers-reduced-motion:reduce){.ds-sign.is-here .ds-sign-no{animation:none}}"
     },
     {
       "name": "Aisle Directory",
@@ -710,15 +710,15 @@
       "refersTo": "directory-number",
       "description": "Numbered pinned nav with no boxes or rules; number and name rest muted, and the current row lights to ink.",
       "html": "<ol class=\"ds-aisles\"><li><a href=\"#\" aria-current=\"true\"><span class=\"ds-no\">01</span><span class=\"ds-lb\"><b>About</b><span>Sobre mí</span></span></a></li><li><a href=\"#\"><span class=\"ds-no\">02</span><span class=\"ds-lb\"><b>Experience</b><span>Experiencia</span></span></a></li></ol>",
-      "css": ".ds-aisles{margin:0;padding:0;list-style:none;font-family:var(--sans,\"Inter\",ui-sans-serif,system-ui,sans-serif)}.ds-aisles a{display:grid;grid-template-columns:2.5rem 1fr;align-items:baseline;gap:10px;padding:8px 0;text-decoration:none;color:var(--muted,#4b5563)}.ds-no{color:var(--muted,#4b5563);font-family:var(--display,\"Bodoni Moda\",Didot,\"Bodoni 72\",Georgia,serif);font-weight:600;font-size:1.125rem;line-height:1;transition:color 200ms cubic-bezier(0.23,1,0.32,1)}.ds-lb{display:flex;flex-direction:column;line-height:1.2}.ds-lb b{font-family:var(--display,\"Bodoni Moda\",Didot,\"Bodoni 72\",Georgia,serif);font-weight:600;font-size:1.1875rem;color:var(--muted,#4b5563);transition:color 200ms cubic-bezier(0.23,1,0.32,1)}.ds-lb span{font-size:0.8125rem}.ds-aisles a:hover .ds-no,.ds-aisles a:hover .ds-lb b,.ds-aisles a[aria-current=\"true\"] .ds-no,.ds-aisles a[aria-current=\"true\"] .ds-lb b{color:var(--ink,#080808)}.ds-aisles a:focus-visible{outline:2px solid var(--ink,#080808);outline-offset:3px;border-radius:2px}"
+      "css": ".ds-aisles{margin:0;padding:0;list-style:none;font-family:var(--sans,\"Inter\",ui-sans-serif,system-ui,sans-serif)}.ds-aisles a{display:grid;grid-template-columns:2.5rem 1fr;align-items:baseline;gap:10px;padding:8px 0;text-decoration:none;color:var(--muted,#4b5563)}.ds-no{color:var(--muted,#4b5563);font-family:var(--display,\"Michroma\",ui-sans-serif,system-ui,sans-serif);font-weight:400;font-size:1.125rem;line-height:1;transition:color 200ms cubic-bezier(0.23,1,0.32,1)}.ds-lb{display:flex;flex-direction:column;line-height:1.2}.ds-lb b{font-family:var(--display,\"Michroma\",ui-sans-serif,system-ui,sans-serif);font-weight:400;font-size:0.95rem;color:var(--muted,#4b5563);transition:color 200ms cubic-bezier(0.23,1,0.32,1)}.ds-lb span{font-size:0.8125rem}.ds-aisles a:hover .ds-no,.ds-aisles a:hover .ds-lb b,.ds-aisles a[aria-current=\"true\"] .ds-no,.ds-aisles a[aria-current=\"true\"] .ds-lb b{color:var(--ink,#080808)}.ds-aisles a:focus-visible{outline:2px solid var(--ink,#080808);outline-offset:3px;border-radius:2px}"
     },
     {
       "name": "Price Channel",
       "kind": "custom",
       "refersTo": "price-label",
-      "description": "Plain Bodoni figures in ink under one 1px hairline; no fills, no cell dividers, no rail.",
+      "description": "Plain Michroma figures in ink under one 1px hairline; no fills, no cell dividers, no rail.",
       "html": "<ul class=\"ds-channel\"><li><span class=\"ds-price\">3</span><p>businesses running on KasaPro</p></li><li><span class=\"ds-price\">940</span><p>automated tests on KasaPro</p></li></ul>",
-      "css": ".ds-channel{margin:0;padding:20px 0 0;list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:22px 24px;border-top:1px solid var(--rule,#cbd5e1);font-family:var(--sans,\"Inter\",ui-sans-serif,system-ui,sans-serif);font-variant-numeric:tabular-nums}.ds-price{display:block;margin:0 0 8px;white-space:nowrap;color:var(--ink,#080808);font-family:var(--display,\"Bodoni Moda\",Didot,\"Bodoni 72\",Georgia,serif);font-weight:600;font-size:clamp(1.75rem,1.3rem + 1.4vw,2.5rem);line-height:1.05}.ds-channel p{margin:0;font-size:0.875rem;line-height:1.4;color:var(--muted,#4b5563)}"
+      "css": ".ds-channel{margin:0;padding:20px 0 0;list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:22px 24px;border-top:1px solid var(--rule,#cbd5e1);font-family:var(--sans,\"Inter\",ui-sans-serif,system-ui,sans-serif);font-variant-numeric:tabular-nums}.ds-price{display:block;margin:0 0 8px;white-space:nowrap;color:var(--ink,#080808);font-family:var(--display,\"Michroma\",ui-sans-serif,system-ui,sans-serif);font-weight:400;font-size:clamp(1.1rem,0.9rem + 0.7vw,1.45rem);line-height:1.05}.ds-channel p{margin:0;font-size:0.875rem;line-height:1.4;color:var(--muted,#4b5563)}"
     },
     {
       "name": "Shelf Tag",
@@ -740,9 +740,9 @@
       "name": "Was / Now Line",
       "kind": "custom",
       "refersTo": "was-price",
-      "description": "Plain muted line: the struck subscription, then Built in-house in Bodoni ink; only for real replacements.",
+      "description": "Plain muted line: the struck subscription, then Built in-house in Michroma ink; only for real replacements.",
       "html": "<p class=\"ds-was\"><s>Paid EndTest.io subscription</s> <b>Built in-house</b> saving thousands a year</p>",
-      "css": ".ds-was{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 10px;margin:0;color:var(--muted,#4b5563);font:600 0.875rem/1.6 var(--sans,\"Inter\",ui-sans-serif,system-ui,sans-serif)}.ds-was s{font-weight:500;text-decoration-thickness:1px}.ds-was b{font-family:var(--display,\"Bodoni Moda\",Didot,\"Bodoni 72\",Georgia,serif);font-weight:600;font-size:1.125rem;color:var(--ink,#080808)}"
+      "css": ".ds-was{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 10px;margin:0;color:var(--muted,#4b5563);font:600 0.875rem/1.6 var(--sans,\"Inter\",ui-sans-serif,system-ui,sans-serif)}.ds-was s{font-weight:500;text-decoration-thickness:1px}.ds-was b{font-family:var(--display,\"Michroma\",ui-sans-serif,system-ui,sans-serif);font-weight:400;font-size:0.95rem;color:var(--ink,#080808)}"
     },
     {
       "name": "Spec List",
@@ -763,9 +763,9 @@
   ],
   "narrative": {
     "northStar": "The Well-Run Aisle, in Chrome",
-    "overview": "**Creative North Star: \"The Well-Run Aisle, in Chrome\"**\n\nThe site is a bilingual aisle held to signage discipline. A pinned directory on the left lists numbered aisles. Each section on the right opens under a full-width overhead sign: the aisle number, the English aisle name in a high-contrast Didone, and its Spanish pair after it on the same baseline in small tracked capitals, all standing over one hairline. Work is stocked as shelf tags, product cards with spec lists, a bin of smaller items, and price figures standing on one shelf edge. Nothing is boxed: items sit straight on the page, and type, rules, numbering and the bilingual pairs carry the metaphor. There are no props, no illustrations and no retailer colours or marks.\n\nThe palette is Chrome, from the Nerrix design library (dopely-fashion-brand-08): Future Black, Graphite Gray, Chrome Silver and Frost White, and no hue at all. Dark is the palette as the library draws it: Frost White type on a Future Black ground, Chrome Silver for primary actions and the lit rule. Light is its matching day version: Future Black type on Frost White with a quarter of the silver in it (`ground`), so the white work light still shows, and white for the highlight panel. Every word pair passes WCAG AA, with body pairs at 6.7:1 or better. Density is moderate and legible: a 17px Inter reading face, generous aisle breaks, and 1px rules. Hierarchy comes from the pairing. Bodoni Moda at weight 600 names things, and Inter reads, labels and acts.\n\nThe one motion idea is the aisle lighting up. Sign numbers rest unlit. As you scroll, the current aisle's sign number lights to ink, the hairline under its sign lights to the accent, its directory row lights, and the first time you reach it the number flickers once like a fluorescent tube. When you reach for a shelf item (a fine pointer over it, or keyboard focus on its link) a soft panel fades up under it, and the rest of its shelf steps back to half strength (shelf focus). With a mouse or trackpad, a soft work light follows the pointer along the aisle floor, under the shelves: a white light by day, a faint cold silver light at night. Touch screens and reduced motion get no light. On the first visit of a session, and on every refresh, the store opens: a plain Future Black screen with Frost White lettering, in both schemes. \"Hello\" lights like a sign and holds a beat, then eleven more languages speed past (Hola, Olá, Bonjour, Hallo, Xin chào, Korean, Japanese, Mandarin, Hindi, Arabic and Navajo) to the store's own sign, Open with Abierto after it in Chrome Silver. Once the page has loaded (2.7 s at least, so Open holds about a second, and 3.8 s at most; a key, click, scroll or touch opens it at once) the shutter fades away over 700 ms while the page drifts up 40px into place, and the sign of the aisle you're in flickers on. It never shows for a link straight to a section, on a return from the inventory, or under reduced motion, but a refresh always shows it, even when the address names a section. A 2px accent line along the top edge fills as you scroll, so you always know how far down the page you are. Nothing else moves.\n\n**Exception: the résumé page.** `resume.html` deliberately keeps the owner's own LaTeX résumé look: Computer Modern Serif (CMU Serif, self-hosted from `assets/fonts/cmu`), black on white, centered header, small-caps section rules, a Letter page with print margins. It sits outside the aisle system. Don't restyle it in aisle grammar, and don't borrow its serif, its small caps or its centered LaTeX header for aisle surfaces. Chrome's day scheme is black on a frosted white too, so the line between them is the type, not the colour.",
+    "overview": "**Creative North Star: \"The Well-Run Aisle, in Chrome\"**\n\nThe site is a bilingual aisle held to signage discipline. A pinned directory on the left lists numbered aisles. Each section on the right opens under a full-width overhead sign: the aisle number, the English aisle name in a wide extended face, and its Spanish pair after it on the same baseline in small tracked capitals, all standing over one hairline. Work is stocked as shelf tags, product cards with spec lists, a bin of smaller items, and price figures standing on one shelf edge. Nothing is boxed: items sit straight on the page, and type, rules, numbering and the bilingual pairs carry the metaphor. There are no props, no illustrations and no retailer colours or marks.\n\nThe palette is Chrome, from the Nerrix design library (dopely-fashion-brand-08): Future Black, Graphite Gray, Chrome Silver and Frost White, and no hue at all. Dark is the palette as the library draws it: Frost White type on a Future Black ground, Chrome Silver for primary actions and the lit rule. Light is its matching day version: Future Black type on Frost White with a quarter of the silver in it (`ground`), so the white work light still shows, and white for the highlight panel. Every word pair passes WCAG AA, with body pairs at 6.7:1 or better. Density is moderate and legible: a 17px Inter reading face, generous aisle breaks, and 1px rules. Hierarchy comes from the pairing. Michroma, at its one weight of 400, names things, and Inter reads, labels and acts.\n\nThe one motion idea is the aisle lighting up. Sign numbers rest unlit. As you scroll, the current aisle's sign number lights to ink, the hairline under its sign lights to the accent, its directory row lights, and the first time you reach it the number flickers once like a fluorescent tube. When you reach for a shelf item (a fine pointer over it, or keyboard focus on its link) a soft panel fades up under it, and the rest of its shelf steps back to half strength (shelf focus). With a mouse or trackpad, a soft work light follows the pointer along the aisle floor, under the shelves: a white light by day, a faint cold silver light at night. Touch screens and reduced motion get no light. On the first visit of a session, and on every refresh, the store opens: a plain Future Black screen with Frost White lettering, in both schemes. \"Hello\" lights like a sign and holds a beat, then eleven more languages speed past (Hola, Olá, Bonjour, Hallo, Xin chào, Korean, Japanese, Mandarin, Hindi, Arabic and Navajo) to the store's own sign, Open with Abierto after it in Chrome Silver. Once the page has loaded (2.7 s at least, so Open holds about a second, and 3.8 s at most; a key, click, scroll or touch opens it at once) the shutter fades away over 700 ms while the page drifts up 40px into place, and the sign of the aisle you're in flickers on. It never shows for a link straight to a section, on a return from the inventory, or under reduced motion, but a refresh always shows it, even when the address names a section. A 2px accent line along the top edge fills as you scroll, so you always know how far down the page you are. Nothing else moves.\n\n**Exception: the résumé page.** `resume.html` deliberately keeps the owner's own LaTeX résumé look: Computer Modern Serif (CMU Serif, self-hosted from `assets/fonts/cmu`), black on white, centered header, small-caps section rules, a Letter page with print margins. It sits outside the aisle system. Don't restyle it in aisle grammar, and don't borrow its serif, its small caps or its centered LaTeX header for aisle surfaces. Chrome's day scheme is black on a frosted white too, so the line between them is the type, not the colour.",
     "keyCharacteristics": [
-      "Two self-hosted families: Bodoni Moda (variable, wght 400–900, used at 600) for naming, Inter (wght 400–800) for everything else. No width axes and no condensed type.",
+      "Two self-hosted families: Michroma (one weight, 400) for naming, Inter (wght 400–800) for everything else. No width axes and no condensed type.",
       "Chrome: black, graphite, silver and white, with no hue. The accent always means \"current\", \"primary\" or \"selected\".",
       "Nothing boxed: no cards, no number boxes, no filled labels. Items sit on the page and a panel comes up only when you reach for one.",
       "Square everything except the highlight panel (6px): 0 radius, 1px rules, and a dashed 1px rule for receipts.",
@@ -786,7 +786,7 @@
       },
       {
         "name": "The Two Voices Rule",
-        "body": "Bodoni Moda names things: the owner, aisles, sign numbers, prices, the bin heading and the \"Built in-house\" figure. Inter does everything else, including every button, chip, label, date and paragraph. Bodoni is never used for running text, never set in capitals, and never set below the 0.9375rem phone row label.",
+        "body": "Michroma names things: the owner, aisles, sign numbers, prices, the bin heading and the \"Built in-house\" figure. Inter does everything else, including every button, chip, label, date and paragraph. Michroma is never used for running text, never set in capitals, never set at any weight but its one weight of 400, and never set below the 0.8125rem phone row label.",
         "section": "typography"
       },
       {
@@ -806,11 +806,11 @@
       }
     ],
     "dos": [
-      "**Do** open every aisle and every secondary page with an unboxed aisle sign: the number at the headline size, the English name in Bodoni Moda 600 and the Spanish pair after it in tracked Inter capitals, over one 1px hairline.",
+      "**Do** open every aisle and every secondary page with an unboxed aisle sign: the number at the headline size, the English name in Michroma 400 and the Spanish pair after it in tracked Inter capitals, over one 1px hairline.",
       "**Do** show \"current\" by light: the sign number from unlit to ink and the directory row from Muted to ink, the hairline from Silver Rule to the accent, driven by scroll position, with a one-time number flicker that respects reduced motion.",
-      "**Do** set figures as plain Bodoni in ink, and keep tabular numerals on.",
+      "**Do** set figures as plain Michroma in ink, and keep tabular numerals on.",
       "**Do** use the `accent-ink` token for text on every accent fill, in both colour schemes.",
-      "**Do** keep Bodoni Moda at weight 600 for naming roles only, and set everything else in Inter.",
+      "**Do** keep Michroma at its one weight, 400, for naming roles only, and set everything else in Inter.",
       "**Do** let shelf items sit on the page with no fill, border or padding, and bring the 6px highlight panel up under them on fine-pointer hover and on keyboard focus of a linked item, by opacity over 200ms, with a 2px ink ring for the keyboard.",
       "**Do** quiet the rest of a shelf (experience tags, product cards, bin rows, inventory rows) to 0.5 opacity while one item has the pointer or keyboard focus, over 220ms.",
       "**Do** keep the shutter to the first visit of a session and to refreshes, under 3.8 s, skippable by any key, click or scroll, and absent for links straight to a section and for reduced motion (`index.html` head script, `.shutter`, `site.js`).",
@@ -823,7 +823,7 @@
       "**Don't** add a hue, a tint, a gradient fill, or any real retailer's colours or marks. The work light is the one radial gradient, and it stays a light, not a surface.",
       "**Don't** use cartoon props, illustrations or hardware clip-art. The aisle is carried by type, rules, numbering and bilingual pairs.",
       "**Don't** set a kicker or eyebrow label above a heading. The Spanish pair runs after the English on the sign's baseline, and on phones dates move under the title.",
-      "**Don't** set Bodoni Moda in capitals, in running text, or at any weight other than 600.",
+      "**Don't** set Michroma in capitals, in running text, or at any weight other than 400, and never let it be synthesised bold.",
       "**Don't** bring back condensed type or width-axis hierarchy.",
       "**Don't** put boxes, fills or cards around numbers, headings, figures or shelf items, or bring back the 3px rail.",
       "**Don't** lift items, move them up on hover, or give anything a shadow at rest. The panel's shadow is the only one.",
