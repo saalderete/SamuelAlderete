@@ -35,6 +35,8 @@
   --sign-muted: #4b5563;
   --shadow: 0 1px 2px rgba(8, 8, 8, 0.06), 0 12px 28px -14px rgba(8, 8, 8, 0.24);
   --lamp: rgba(255, 255, 255, 0.9);   /* the work light on the frost ground */
+  --ripple-lit: rgba(255, 255, 255, 0.9);  /* a floor ripple where it faces the work light */
+  --ripple-shade: rgba(8, 8, 8, 0.18);     /* and where it faces away */
 
   --sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --display: "Michroma", ui-sans-serif, system-ui, sans-serif;
@@ -73,6 +75,8 @@
     --sign-muted: #a7b1be;
     --shadow: inset 0 1px 0 rgba(203, 213, 225, 0.1), 0 12px 28px -14px rgba(0, 0, 0, 0.8);
     --lamp: rgba(203, 213, 225, 0.1);  /* a cold shop light at night */
+    --ripple-lit: rgba(203, 213, 225, 0.4);
+    --ripple-shade: rgba(8, 8, 8, 0.55);
     color-scheme: dark;
   }
 }
@@ -369,6 +373,17 @@ a.tag:focus-visible .go, a.product:focus-visible .go { transform: translate(2px,
 }
 .worklight.on { opacity: 1; }
 @media (prefers-reduced-motion: reduce) { .worklight { display: none; } }
+
+/* ---------- the floor ripples ----------
+   The aisle floor is a still sheet the work light rakes: a mouse or trackpad leaves a wake, and a click on the
+   floor drops a ring (site.js draws them on a WebGL canvas, just over the work light and under the shelves).
+   The canvas only shows while there are ripples, and never under reduced motion, forced colours or print. */
+.ripples {
+  position: fixed; left: 0; top: 0; z-index: 0;
+  width: 100%; height: 100%; pointer-events: none; visibility: hidden;
+}
+.ripples.on { visibility: visible; }
+@media (prefers-reduced-motion: reduce), (forced-colors: active), print { .ripples { display: none; } }
 
 /* ---------- the progress line ----------
    A 2px accent line along the top edge that fills as you go down the page, so you always know how far along
