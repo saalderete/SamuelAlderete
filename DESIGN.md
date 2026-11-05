@@ -199,6 +199,18 @@ components:
     textColor: "{colors.ink}"
     rounded: "{rounded.none}"
     padding: "0"
+  product-picture:
+    backgroundColor: "{colors.ground}"
+    rounded: "{rounded.none}"
+    width: "100%"
+  loop-control:
+    backgroundColor: "{colors.shutter}"
+    textColor: "{colors.shutter-ink}"
+    rounded: "{rounded.none}"
+    padding: "0"
+    size: "36px"
+  loop-control-coarse:
+    size: "44px"
   bin-row:
     backgroundColor: "transparent"
     textColor: "{colors.ink}"
@@ -230,11 +242,11 @@ components:
 
 **Creative North Star: "The Well-Run Aisle, in Chrome"**
 
-The site is a bilingual aisle held to signage discipline. A pinned directory on the left lists numbered aisles. Each section on the right opens under a full-width overhead sign: the aisle number, the English aisle name in a wide extended face, and its Spanish pair after it on the same baseline in small tracked capitals, all standing over one hairline. Work is stocked as shelf tags, product cards with spec lists, a bin of smaller items, and price figures standing on one shelf edge. Nothing is boxed: items sit straight on the page, and type, rules, numbering and the bilingual pairs carry the metaphor. There are no props, no illustrations and no retailer colours or marks.
+The site is a bilingual aisle held to signage discipline. A pinned directory on the left lists numbered aisles. Each section on the right opens under a full-width overhead sign: the aisle number, the English aisle name in a wide extended face, and its Spanish pair after it on the same baseline in small tracked capitals, all standing over one hairline. Work is stocked as shelf tags, product cards that open on a full-width picture over a spec list, a bin of smaller items, and price figures standing on one shelf edge. Nothing is boxed: items sit straight on the page, and type, rules, numbering and the bilingual pairs carry the metaphor. There are no props, no illustrations and no retailer colours or marks.
 
 The palette is Chrome, from the Nerrix design library (dopely-fashion-brand-08): Future Black, Graphite Gray, Chrome Silver and Frost White, and no hue at all. Dark is the palette as the library draws it: Frost White type on a Future Black ground, Chrome Silver for primary actions and the lit rule. Light is its matching day version: Future Black type on Frost White with a quarter of the silver in it (`ground`), so the white work light still shows, and white for the highlight panel. Every word pair passes WCAG AA, with body pairs at 6.7:1 or better. Density is moderate and legible: a 17px Inter reading face, generous aisle breaks, and 1px rules. Hierarchy comes from the pairing. Michroma, at its one weight of 400, names things, and Inter reads, labels and acts.
 
-The one motion idea is the aisle lighting up. Sign numbers rest unlit. As you scroll, the current aisle's sign number lights to ink, the hairline under its sign lights to the accent, its directory row lights, and the first time you reach it the number flickers once like a fluorescent tube. When you reach for a shelf item (a fine pointer over it, or keyboard focus on its link) a soft panel fades up under it, and the rest of its shelf steps back to half strength (shelf focus). With a mouse or trackpad, a soft work light follows the pointer along the aisle floor, under the shelves: a white light by day, a faint cold silver light at night. Touch screens and reduced motion get no light. On the first visit of a session, and on every refresh, the store opens: a plain Future Black screen with Frost White lettering, in both schemes. "Hello" lights like a sign and holds a beat, then eleven more languages speed past (Hola, Olá, Bonjour, Hallo, Xin chào, Korean, Japanese, Mandarin, Hindi, Arabic and Navajo) to the store's own sign, Open with Abierto after it in Chrome Silver. Once the page has loaded (2.7 s at least, so Open holds about a second, and 3.8 s at most; a key, click, scroll or touch opens it at once) the shutter fades away over 700 ms while the page drifts up 40px into place, and the sign of the aisle you're in flickers on. It never shows for a link straight to a section, on a return from the inventory, or under reduced motion, but a refresh always shows it, even when the address names a section. A 2px accent line along the top edge fills as you scroll, so you always know how far down the page you are. Nothing else moves.
+There are two kinds of motion. The first, and the main idea, is the aisle lighting up. Sign numbers rest unlit. As you scroll, the current aisle's sign number lights to ink, the hairline under its sign lights to the accent, its directory row lights, and the first time you reach it the number flickers once like a fluorescent tube. When you reach for a shelf item (a fine pointer over it, or keyboard focus on its link) a soft panel fades up under it, and the rest of its shelf steps back to half strength (shelf focus). With a mouse or trackpad, a soft work light follows the pointer along the aisle floor, under the shelves: a white light by day, a faint cold silver light at night. Touch screens and reduced motion get no light. On the first visit of a session, and on every refresh, the store opens: a plain Future Black screen with Frost White lettering, in both schemes. "Hello" lights like a sign and holds a beat, then eleven more languages speed past (Hola, Olá, Bonjour, Hallo, Xin chào, Korean, Japanese, Mandarin, Hindi, Arabic and Navajo) to the store's own sign, Open with Abierto after it in Chrome Silver. Once the page has loaded (2.7 s at least, so Open holds about a second, and 3.8 s at most; a key, click, scroll or touch opens it at once) the shutter fades away over 700 ms while the page drifts up 40px into place, and the sign of the aisle you're in flickers on. It never shows for a link straight to a section, on a return from the inventory, or under reduced motion, but a refresh always shows it, even when the address names a section. A 2px accent line along the top edge fills as you scroll, so you always know how far down the page you are. The second kind is the work itself: KasaPro, Gracias Por Invitar and KasaRentals each play a short muted screen-recording loop of the real product, and the visitor owns it, by scrolling and by a pause button. A loop plays only while at least 40% of it is on screen and pauses when it leaves, nothing loads until then, and reduced motion or Save-Data keeps its still. A pause the visitor chooses holds until they press play. Nothing else moves.
 
 **Exception: the résumé page.** `resume.html` deliberately keeps the owner's own LaTeX résumé look: Computer Modern Serif (CMU Serif, self-hosted from `assets/fonts/cmu`), black on white, centered header, small-caps section rules, a Letter page with print margins. It sits outside the aisle system. Don't restyle it in aisle grammar, and don't borrow its serif, its small caps or its centered LaTeX header for aisle surfaces. Chrome's day scheme is black on a frosted white too, so the line between them is the type, not the colour.
 
@@ -261,10 +273,10 @@ Chrome: four library values and a few mixes of them, so the page never introduce
 - **Future Black Ink** (`ink` / `ink-dark`): body text, headings, prices, lit numbers, the focus outline and the panel's focus ring. It is also the fill of outline buttons on hover. At night it is Frost White.
 - **Graphite Muted** (`muted` / `muted-dark`): home prose paragraphs, descriptions, dates, spec terms, captions, resting directory names and their Spanish halves, the was/now line and the scrollbar thumb. By day it is Graphite Gray (6.7:1 on the ground). At night it is Chrome Silver with 28% Graphite (9.2:1).
 - **Unlit Graphite** (`unlit` / `unlit-dark`): a sign's number before its aisle lights. By day it is Graphite with 40% Silver, at night Future Black with 38% Frost White (#636465). It sits at 3.2:1 by day and 3.4:1 at night, which clears the 3:1 floor for the large sign numerals, and those numbers are hidden from screen readers. It is never used on words, or on the directory's numbers, which are part of their link's text and rest in Muted.
-- **Silver Rule** (`rule` / `rule-dark`): the 1px hairline under a resting sign, the price channel's top rule, spec rows, table rows, image frames and SKU chip borders. By day it is Chrome Silver.
-- **Graphite Rule** (`rule-strong` / `rule-strong-dark`): button and link chip borders, the top rule of spec lists, the inventory table's top and header rules, dashed receipt rules and a hovered product image's frame.
+- **Silver Rule** (`rule` / `rule-dark`): the 1px hairline under a resting sign, the price channel's top rule, spec rows, table rows, product picture frames and SKU chip borders. By day it is Chrome Silver.
+- **Graphite Rule** (`rule-strong` / `rule-strong-dark`): button and link chip borders, the top rule of spec lists, the inventory table's top and header rules, dashed receipt rules and a hovered product picture's frame.
 - **Sign Lettering** (`sign-ink` / `sign-ink-dark`) and **Sign Subline** (`sign-muted` / `sign-muted-dark`): the English and Spanish text on a sign. They match ink and muted in both schemes.
-- **Shutter** (`shutter`, `shutter-ink`, `shutter-muted`): the loading screen is Future Black with Frost White lettering and a Chrome Silver Spanish subline, the same in both schemes.
+- **Shutter** (`shutter`, `shutter-ink`, `shutter-muted`): the loading screen is Future Black with Frost White lettering and a Chrome Silver Spanish subline, the same in both schemes. The loop control borrows them: a Future Black plate at 72% with a Frost White icon and a 1px Frost White frame at 35%.
 
 ### Named Rules
 **The No-Hue Rule.** Every value in the system is Future Black, Graphite Gray, Chrome Silver, Frost White or a mix of them. A hue, a tint, a gradient fill or a retailer's colour is never introduced.
@@ -301,7 +313,7 @@ Chrome: four library values and a few mixes of them, so the page never introduce
 
 At 1024px and up the store has two columns, with a max-width of 1320px, a gutter of `gutter`, and a column gap of `column-gap`. The left column (minmax(300px, 0.82fr)) is the directory. It is sticky at full viewport height (100svh) and holds the name, the role, a one-line description, the numbered aisle list and, pushed to the bottom, the link chips and a fine-print line. The right column (1.18fr) is the floor. Aisles stack with `aisle-end` after each one and `sign-gap` under each sign. On laptops 820px tall or less, the directory tightens its padding and rows and scrolls internally, so the whole thing stays reachable.
 
-Below 1024px the store collapses to one column. The directory becomes a header, and the aisle list becomes one plain wrapping row (a number and the English name, at least 44px tall, 20px apart) with no border or fill. Each overhead sign turns sticky at the top on a solid ground background and bleeds out to the viewport edges, and scroll padding is 76px. The price channel goes from four columns to two at 640px or less. Product cards stack the image over the text at 720px or less. Shelf tags stack at 640px or less, with the date moving *under* the title.
+Below 1024px the store collapses to one column. The directory becomes a header, and the aisle list becomes one plain wrapping row (a number and the English name, at least 44px tall, 20px apart) with no border or fill. Each overhead sign turns sticky at the top on a solid ground background and bleeds out to the viewport edges, and scroll padding is 76px. The price channel goes from four columns to two at 640px or less. Product cards stack at every width: the picture over the title, description and spec list, 18px apart, tightening to 14px at 720px or less. Shelf tags stack at 640px or less, with the date moving *under* the title.
 
 The inventory and the 404 use a single 760px column with the same gutter (the inventory widens to 1080px). The inventory gets a top bar with home and résumé links, then the aisle's sign (static, not sticky) and a lead paragraph. The 404 opens straight on its sign.
 
@@ -322,7 +334,7 @@ Flat at rest, with no cards. Depth comes from 1px rules and from the lit hairlin
 
 ## Shapes
 
-Square stock: every corner is 0, with one exception, the 6px highlight panel. The focus outline takes the `focus` rounding. One line weight governs the system: 1px rules for sign hairlines, the price channel's top edge, dividers, chip and button outlines, spec rows and table rows. The **receipt tear** (1px dashed Graphite Rule) opens the checkout footer and the end note on the inventory. Images sit inside a 1px Silver Rule frame at 16:10, cropped from the top left.
+Square stock: every corner is 0, with one exception, the 6px highlight panel. The focus outline takes the `focus` rounding. One line weight governs the system: 1px rules for sign hairlines, the price channel's top edge, dividers, chip and button outlines, spec rows and table rows. The **receipt tear** (1px dashed Graphite Rule) opens the checkout footer and the end note on the inventory. Product pictures, screenshots and loops alike, run full width inside a 1px Silver Rule frame at 16:9, cropped from the top left.
 
 **The One Line Rule.** Rules are 1px. The only heavier lines are 2px and in the accent: the underline on more-links and inventory links, and the progress line along the top edge. There are no double borders and no rails.
 
@@ -354,7 +366,10 @@ A plain body-small line in Graphite at weight 600. The old item is struck throug
 ### Shelf Tag, Product Card
 - **Shared:** no fill, border or padding. They sit on the page, spaced by `shelf-gap` (tags) or `product-gap` (products), and take the highlight panel on hover and, when linked, on keyboard focus. A linked item has a 14px arrow icon after its title.
 - **Shelf tag:** a 128px date column (label style) and a body column, 24px apart.
-- **Product card:** a 220px framed screenshot next to the body. A hovered product's frame turns Graphite Rule. Inside is a **spec list**: a two-column term/value grid with a Graphite Rule on top and Silver Rules between rows, with terms in label style.
+- **Product card:** one column that opens on its picture, full width at 16:9 in a Silver Rule frame, above the title, description and spec list, 18px apart (14px at 720px or less). The picture is a screenshot, or for KasaPro, Gracias Por Invitar and KasaRentals a short muted loop (9.4 s, 960x540 H.264, `preload="none"`, a still poster from its first frame). A hovered product's frame turns Graphite Rule. The panel, the arrow nudge and shelf focus follow the whole list item (`.products > li:hover`), so they hold while the pointer is on the loop control. Inside is a **spec list**: a two-column term/value grid with a Graphite Rule on top and Silver Rules between rows, with terms in label style.
+
+### Loop Control
+The pause/play button every loop carries, added by `site.js` (`.vid-toggle`). It sits 10px in from the picture's top right corner but outside the card's link, so pressing it never follows the link. It is a square plate in the shutter colours, 36px (44px on coarse pointers): Future Black at 72% with a 14px Frost White pause or play icon and a 1px Frost White frame at 35%, and no shadow. It rests at 0.8 opacity and comes up to full on hover of its card or on keyboard focus, over 160ms, presses to scale(0.94), and takes the standard focus outline. Its spoken label names the action and the product ("Pause the KasaPro preview", "Play the KasaPro preview"). A pause the visitor chooses holds through scrolling away and back until they press play.
 
 ### SKU Chips
 Small tech and scope tags: label-size Inter at weight 600 (not uppercase), 3px 8px, with a 1px Silver Rule border, filled with the ground colour. They have no states.
@@ -388,6 +403,7 @@ Authored inline SVG symbols on a 16px viewBox. Drawn icons use a 1.5–1.6 strok
 - **Do** keep the shutter to the first visit of a session and to refreshes, under 3.8 s, skippable by any key, click or scroll, and absent for links straight to a section and for reduced motion (`index.html` head script, `.shutter`, `site.js`).
 - **Do** open the links that leave the portfolio (live sites, GitHub, LinkedIn) and the PDF résumé in a new tab, with `rel="noopener"` and the page's hidden "Opens in a new tab" description, so the portfolio stays open behind them. In-page aisles, email and the portfolio's own pages (the inventory) open where you are.
 - **Do** keep the work light under the shelves, moved by transform only, for fine pointers only, and off under reduced motion (`site.js`, `.worklight`, token `--lamp`).
+- **Do** keep product loops muted, playing only while at least 40% of one is on screen, still under reduced motion and Save-Data, and always pausable with the loop control, where a chosen pause holds until play (`site.js`, `.vid-toggle`).
 - **Do** keep corners square and rules at 1px, with the 6px panel, the 2px accent underline and the dashed receipt rule as the only exceptions.
 - **Do** draw icons as inline SVG on the 16px grid with square caps.
 
@@ -400,5 +416,6 @@ Authored inline SVG symbols on a 16px viewBox. Drawn icons use a 1.5–1.6 strok
 - **Don't** put boxes, fills or cards around numbers, headings, figures or shelf items, or bring back the 3px rail.
 - **Don't** lift items, move them up on hover, or give anything a shadow at rest. The panel's shadow is the only one.
 - **Don't** round anything other than the highlight panel and the focus outline.
+- **Don't** put sound, customer data or a phone number in a product loop, or ship a loop without its pause button. KasaPro's loop shows no customer data, and the phone number in KasaRentals' header is blurred.
 - **Don't** use Unicode glyphs or emoji as icons.
 - **Don't** use Computer Modern, small caps or the centered LaTeX header outside the résumé page.

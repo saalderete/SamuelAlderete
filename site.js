@@ -161,7 +161,7 @@
   const still = matchMedia("(prefers-reduced-motion: reduce)");
   const saveData = !!(navigator.connection && navigator.connection.saveData);
   const ICON = {
-    pause: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.5v9M11 3.5v9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"/></svg>',
+    pause: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.5v9M11 3.5v9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/></svg>',
     play: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3l8 5-8 5z" fill="currentColor"/></svg>',
   };
   for (const v of vids) {
