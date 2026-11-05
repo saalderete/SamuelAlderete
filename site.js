@@ -151,3 +151,53 @@
   addEventListener("resize", queue);
   draw();
 })();
+
+// The project loops: each plays, muted, while its card is on screen and pauses when it leaves. Reduced motion
+// or Save-Data keeps the still. Every loop gets a pause/play button (they run longer than five seconds), and a
+// pause someone chooses sticks until they press play.
+(() => {
+  const vids = [...document.querySelectorAll(".product video")];
+  if (!vids.length) return;
+  const still = matchMedia("(prefers-reduced-motion: reduce)");
+  const saveData = !!(navigator.connection && navigator.connection.saveData);
+  const ICON = {
+    pause: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.5v9M11 3.5v9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"/></svg>',
+    play: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3l8 5-8 5z" fill="currentColor"/></svg>',
+  };
+  for (const v of vids) {
+    const li = v.closest("li");
+    const name = li.querySelector("h3").firstChild.textContent.trim();
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "vid-toggle";
+    const show = () => {
+      const on = !v.paused;
+      btn.innerHTML = on ? ICON.pause : ICON.play;
+      btn.setAttribute("aria-label", `${on ? "Pause" : "Play"} the ${name} preview`);
+    };
+    btn.addEventListener("click", () => {
+      if (v.paused) {
+        delete v.dataset.held;
+        v.play().catch(() => {});
+      } else {
+        v.dataset.held = "1";
+        v.pause();
+      }
+    });
+    v.addEventListener("play", show);
+    v.addEventListener("pause", show);
+    show();
+    li.appendChild(btn);
+  }
+  const io = new IntersectionObserver((entries) => {
+    for (const { target: v, isIntersecting, intersectionRatio } of entries) {
+      if (isIntersecting && intersectionRatio >= 0.4) {
+        if (!still.matches && !saveData && !v.dataset.held) v.play().catch(() => {});
+      } else if (!v.paused) {
+        v.pause();
+      }
+    }
+  }, { threshold: [0, 0.4] });
+  vids.forEach((v) => io.observe(v));
+  still.addEventListener("change", () => { if (still.matches) vids.forEach((v) => v.pause()); });
+})();

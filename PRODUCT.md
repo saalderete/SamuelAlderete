@@ -41,7 +41,8 @@ He runs software in production for real businesses, not class projects: KasaPro 
 - Show email and LinkedIn on the site; the phone number stays on the PDF résumé only.
 - No invented proof: no testimonials, logos of companies he hasn't worked with, or numbers he hasn't confirmed.
 - KasaPro, KasaRentals, the Nerrix Digital site and the internship code are private; say "code walkthrough on request" rather than linking.
-- Screenshots of KasaPro use demo data, never real customers.
+- Screenshots and loops of KasaPro show demo data or no customer data at all, never real customers.
+- The phone number never appears on the site, including inside screenshots and screen recordings: blur it (kasarentals.com shows it in its header).
 - Gracias Por Invitar's events are sample data with fictional organizers: never present them as real listings.
 - No writing section: the three write-ups came off the site in November 2026 at his request (they stay in the repository's history).
 
