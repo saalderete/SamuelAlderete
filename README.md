@@ -29,4 +29,4 @@ The phone number is only on the PDF. The page leaves it out, and shows the `phon
 
 ## Fonts
 
-Bodoni Moda for headings and Inter for text on the site, and Computer Modern Serif on the résumé. All three are under the SIL Open Font License 1.1 and self-hosted in `assets/fonts/`. The palette is Chrome (Future Black, Graphite, Chrome Silver and Frost White, with no hue) from the Nerrix design library, at night as the library draws it and by day on a frost ground.
+Michroma for headings and Inter for text on the site, and Computer Modern Serif on the résumé. All three are under the SIL Open Font License 1.1 and self-hosted in `assets/fonts/`. The palette is Chrome (Future Black, Graphite, Chrome Silver and Frost White, with no hue) from the Nerrix design library, at night as the library draws it and by day on a frost ground.
