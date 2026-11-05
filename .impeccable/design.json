@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-04T21:38:11Z",
+  "generatedAt": "2026-11-05T15:00:00Z",
   "title": "Design System: Samuel Alderete",
   "extensions": {
     "colorMeta": {
@@ -60,24 +60,6 @@
         ],
         "cssVar": "--ground",
         "mix": "Frost White #F8FAFC with 25% Chrome Silver #CBD5E1"
-      },
-      "shelf": {
-        "role": "neutral",
-        "displayName": "Code Shelf",
-        "scheme": "light",
-        "canonical": "#ffffff",
-        "oklch": "oklch(100.0% 0.000 0.0)",
-        "tonalRamp": [
-          "#0b0b0b",
-          "#242424",
-          "#404040",
-          "#5d5d5d",
-          "#808080",
-          "#a4a4a4",
-          "#cacaca",
-          "#eeeeee"
-        ],
-        "cssVar": "--shelf"
       },
       "panel": {
         "role": "neutral",
@@ -344,25 +326,6 @@
         "cssVar": "--ground",
         "library": "Future Black"
       },
-      "shelf-dark": {
-        "role": "neutral",
-        "displayName": "Night Code Shelf",
-        "scheme": "dark",
-        "canonical": "#1f2328",
-        "oklch": "oklch(25.4% 0.011 254.0)",
-        "tonalRamp": [
-          "#080b10",
-          "#202429",
-          "#3c4046",
-          "#595e64",
-          "#7c8187",
-          "#a0a5ac",
-          "#c6cbd2",
-          "#e9eff6"
-        ],
-        "cssVar": "--shelf",
-        "mix": "Future Black #080808 with 35% Graphite Gray #4B5563"
-      },
       "panel-dark": {
         "role": "neutral",
         "displayName": "Night Panel",
@@ -380,7 +343,7 @@
           "#e9eff6"
         ],
         "cssVar": "--panel",
-        "mix": "shelf-dark #1f2328 at 62% opacity"
+        "mix": "Future Black #080808 with 35% Graphite Gray #4B5563, at 62% opacity"
       },
       "ink-dark": {
         "role": "neutral",
@@ -527,10 +490,6 @@
         "displayName": "Sign headline",
         "purpose": "English aisle name on an overhead sign."
       },
-      "headline-article": {
-        "displayName": "Article headline",
-        "purpose": "Article title under the sign; balanced wrap."
-      },
       "price": {
         "displayName": "Price",
         "purpose": "The four About figures, plain Bodoni in ink."
@@ -540,8 +499,8 @@
         "purpose": "Sign number, unboxed, at the sign headline size (var(--t-sign))."
       },
       "title-article": {
-        "displayName": "Article section",
-        "purpose": "Article section heads and the bin heading."
+        "displayName": "Bin heading",
+        "purpose": "The \"Also on the shelf\" bin heading."
       },
       "label-aisle": {
         "displayName": "Aisle label",
@@ -573,7 +532,7 @@
       },
       "body-small": {
         "displayName": "Body small",
-        "purpose": "Descriptions, buttons, spec lists, tables, meta, the was/now line."
+        "purpose": "Descriptions, buttons, spec lists, tables, the was/now line."
       },
       "label-sign": {
         "displayName": "Sign subline",
@@ -582,10 +541,6 @@
       "label": {
         "displayName": "Label",
         "purpose": "Dates, spec terms, bin categories, table heads; uppercase."
-      },
-      "code": {
-        "displayName": "Code",
-        "purpose": "Article code blocks and inline code."
       }
     },
     "fonts": [
@@ -705,10 +660,6 @@
       {
         "name": "inventory-stack",
         "value": "max-width: 860px"
-      },
-      {
-        "name": "inventory-stack",
-        "value": "max-width: 860px"
       }
     ],
     "exceptions": [
@@ -812,7 +763,7 @@
   ],
   "narrative": {
     "northStar": "The Well-Run Aisle, in Chrome",
-    "overview": "**Creative North Star: \"The Well-Run Aisle, in Chrome\"**\n\nThe site is a bilingual aisle held to signage discipline. A pinned directory on the left lists numbered aisles. Each section on the right opens under a full-width overhead sign: the aisle number, the English aisle name in a high-contrast Didone, and its Spanish pair after it on the same baseline in small tracked capitals, all standing over one hairline. Work is stocked as shelf tags, product cards with spec lists, a bin of smaller items, and price figures standing on one shelf edge. Nothing is boxed: items sit straight on the page, and type, rules, numbering and the bilingual pairs carry the metaphor. There are no props, no illustrations and no retailer colours or marks.\n\nThe palette is Chrome, from the Nerrix design library (dopely-fashion-brand-08): Future Black, Graphite Gray, Chrome Silver and Frost White, and no hue at all. Dark is the palette as the library draws it: Frost White type on a Future Black ground, Chrome Silver for primary actions and the lit rule. Light is its matching day version: Future Black type on Frost White with a quarter of the silver in it (`ground`), so the white work light still shows, and white for the highlight panel and code. Every word pair passes WCAG AA, with body pairs at 6.7:1 or better. Density is moderate and legible: a 17px Inter reading face, generous aisle breaks, and 1px rules. Hierarchy comes from the pairing. Bodoni Moda at weight 600 names things, and Inter reads, labels and acts.\n\nThe one motion idea is the aisle lighting up. Sign numbers rest unlit. As you scroll, the current aisle's sign number lights to ink, the hairline under its sign lights to the accent, its directory row lights, and the first time you reach it the number flickers once like a fluorescent tube. When you reach for a shelf item (a fine pointer over it, or keyboard focus on its link) a soft panel fades up under it, and the rest of its shelf steps back to half strength (shelf focus). With a mouse or trackpad, a soft work light follows the pointer along the aisle floor, under the shelves: a white light by day, a faint cold silver light at night. Touch screens and reduced motion get no light. On the first visit of a session, and on every refresh, the store opens: a plain Future Black screen with Frost White lettering, in both schemes. \"Hello\" lights like a sign and holds a beat, then eleven more languages speed past (Hola, Olá, Bonjour, Hallo, Xin chào, Korean, Japanese, Mandarin, Hindi, Arabic and Navajo) to the store's own sign, Open with Abierto after it in Chrome Silver. Once the page has loaded (2.7 s at least, so Open holds about a second, and 3.8 s at most; a key, click, scroll or touch opens it at once) the shutter fades away over 700 ms while the page drifts up 40px into place, and the sign of the aisle you're in flickers on. It never shows for a link straight to a section, on a return from an article, or under reduced motion, but a refresh always shows it, even when the address names a section. A 2px accent line along the top edge fills as you scroll, so you always know how far down the page you are. Nothing else moves.\n\n**Exception: the résumé page.** `resume.html` deliberately keeps the owner's own LaTeX résumé look: Computer Modern Serif (CMU Serif, self-hosted from `assets/fonts/cmu`), black on white, centered header, small-caps section rules, a Letter page with print margins. It sits outside the aisle system. Don't restyle it in aisle grammar, and don't borrow its serif, its small caps or its centered LaTeX header for aisle surfaces. Chrome's day scheme is black on a frosted white too, so the line between them is the type, not the colour.",
+    "overview": "**Creative North Star: \"The Well-Run Aisle, in Chrome\"**\n\nThe site is a bilingual aisle held to signage discipline. A pinned directory on the left lists numbered aisles. Each section on the right opens under a full-width overhead sign: the aisle number, the English aisle name in a high-contrast Didone, and its Spanish pair after it on the same baseline in small tracked capitals, all standing over one hairline. Work is stocked as shelf tags, product cards with spec lists, a bin of smaller items, and price figures standing on one shelf edge. Nothing is boxed: items sit straight on the page, and type, rules, numbering and the bilingual pairs carry the metaphor. There are no props, no illustrations and no retailer colours or marks.\n\nThe palette is Chrome, from the Nerrix design library (dopely-fashion-brand-08): Future Black, Graphite Gray, Chrome Silver and Frost White, and no hue at all. Dark is the palette as the library draws it: Frost White type on a Future Black ground, Chrome Silver for primary actions and the lit rule. Light is its matching day version: Future Black type on Frost White with a quarter of the silver in it (`ground`), so the white work light still shows, and white for the highlight panel. Every word pair passes WCAG AA, with body pairs at 6.7:1 or better. Density is moderate and legible: a 17px Inter reading face, generous aisle breaks, and 1px rules. Hierarchy comes from the pairing. Bodoni Moda at weight 600 names things, and Inter reads, labels and acts.\n\nThe one motion idea is the aisle lighting up. Sign numbers rest unlit. As you scroll, the current aisle's sign number lights to ink, the hairline under its sign lights to the accent, its directory row lights, and the first time you reach it the number flickers once like a fluorescent tube. When you reach for a shelf item (a fine pointer over it, or keyboard focus on its link) a soft panel fades up under it, and the rest of its shelf steps back to half strength (shelf focus). With a mouse or trackpad, a soft work light follows the pointer along the aisle floor, under the shelves: a white light by day, a faint cold silver light at night. Touch screens and reduced motion get no light. On the first visit of a session, and on every refresh, the store opens: a plain Future Black screen with Frost White lettering, in both schemes. \"Hello\" lights like a sign and holds a beat, then eleven more languages speed past (Hola, Olá, Bonjour, Hallo, Xin chào, Korean, Japanese, Mandarin, Hindi, Arabic and Navajo) to the store's own sign, Open with Abierto after it in Chrome Silver. Once the page has loaded (2.7 s at least, so Open holds about a second, and 3.8 s at most; a key, click, scroll or touch opens it at once) the shutter fades away over 700 ms while the page drifts up 40px into place, and the sign of the aisle you're in flickers on. It never shows for a link straight to a section, on a return from the inventory, or under reduced motion, but a refresh always shows it, even when the address names a section. A 2px accent line along the top edge fills as you scroll, so you always know how far down the page you are. Nothing else moves.\n\n**Exception: the résumé page.** `resume.html` deliberately keeps the owner's own LaTeX résumé look: Computer Modern Serif (CMU Serif, self-hosted from `assets/fonts/cmu`), black on white, centered header, small-caps section rules, a Letter page with print margins. It sits outside the aisle system. Don't restyle it in aisle grammar, and don't borrow its serif, its small caps or its centered LaTeX header for aisle surfaces. Chrome's day scheme is black on a frosted white too, so the line between them is the type, not the colour.",
     "keyCharacteristics": [
       "Two self-hosted families: Bodoni Moda (variable, wght 400–900, used at 600) for naming, Inter (wght 400–800) for everything else. No width axes and no condensed type.",
       "Chrome: black, graphite, silver and white, with no hue. The accent always means \"current\", \"primary\" or \"selected\".",
@@ -830,12 +781,12 @@
       },
       {
         "name": "The Lit Rule",
-        "body": "\"Current\" is shown by light, not by inversion or a new colour. Sign numbers rest unlit and directory rows rest in Muted; the current aisle's sign number and its directory row light to ink, and the hairline under its sign lights to the accent. Article, inventory and 404 signs name the aisle you are in, so they are always lit.",
+        "body": "\"Current\" is shown by light, not by inversion or a new colour. Sign numbers rest unlit and directory rows rest in Muted; the current aisle's sign number and its directory row light to ink, and the hairline under its sign lights to the accent. Inventory and 404 signs name the aisle you are in, so they are always lit.",
         "section": "colors"
       },
       {
         "name": "The Two Voices Rule",
-        "body": "Bodoni Moda names things: the owner, aisles, sign numbers, prices, article titles and section heads, and the \"Built in-house\" figure. Inter does everything else, including every button, chip, label, date and paragraph. Bodoni is never used for running text, never set in capitals, and never set below the 0.9375rem phone row label.",
+        "body": "Bodoni Moda names things: the owner, aisles, sign numbers, prices, the bin heading and the \"Built in-house\" figure. Inter does everything else, including every button, chip, label, date and paragraph. Bodoni is never used for running text, never set in capitals, and never set below the 0.9375rem phone row label.",
         "section": "typography"
       },
       {
@@ -861,9 +812,9 @@
       "**Do** use the `accent-ink` token for text on every accent fill, in both colour schemes.",
       "**Do** keep Bodoni Moda at weight 600 for naming roles only, and set everything else in Inter.",
       "**Do** let shelf items sit on the page with no fill, border or padding, and bring the 6px highlight panel up under them on fine-pointer hover and on keyboard focus of a linked item, by opacity over 200ms, with a 2px ink ring for the keyboard.",
-      "**Do** quiet the rest of a shelf (experience tags, product cards, writing entries, bin rows, inventory rows) to 0.5 opacity while one item has the pointer or keyboard focus, over 220ms.",
+      "**Do** quiet the rest of a shelf (experience tags, product cards, bin rows, inventory rows) to 0.5 opacity while one item has the pointer or keyboard focus, over 220ms.",
       "**Do** keep the shutter to the first visit of a session and to refreshes, under 3.8 s, skippable by any key, click or scroll, and absent for links straight to a section and for reduced motion (`index.html` head script, `.shutter`, `site.js`).",
-      "**Do** open the links that leave the portfolio (live sites, GitHub, LinkedIn) and the PDF résumé in a new tab, with `rel=\"noopener\"` and the page's hidden \"Opens in a new tab\" description, so the portfolio stays open behind them. In-page aisles, email and the portfolio's own pages (articles, the inventory) open where you are.",
+      "**Do** open the links that leave the portfolio (live sites, GitHub, LinkedIn) and the PDF résumé in a new tab, with `rel=\"noopener\"` and the page's hidden \"Opens in a new tab\" description, so the portfolio stays open behind them. In-page aisles, email and the portfolio's own pages (the inventory) open where you are.",
       "**Do** keep the work light under the shelves, moved by transform only, for fine pointers only, and off under reduced motion (`site.js`, `.worklight`, token `--lamp`).",
       "**Do** keep corners square and rules at 1px, with the 6px panel, the 2px accent underline and the dashed receipt rule as the only exceptions.",
       "**Do** draw icons as inline SVG on the 16px grid with square caps."

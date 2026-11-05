@@ -5,7 +5,6 @@ colors:
   accent: "#080808"
   accent-ink: "#f8fafc"
   ground: "#edf1f5"
-  shelf: "#ffffff"
   panel: "#ffffff"
   ink: "#080808"
   muted: "#4b5563"
@@ -20,7 +19,6 @@ colors:
   accent-dark: "#cbd5e1"
   accent-ink-dark: "#080808"
   ground-dark: "#080808"
-  shelf-dark: "#1f2328"
   panel-dark: "rgba(31, 35, 40, 0.62)"
   ink-dark: "#f8fafc"
   muted-dark: "#a7b1be"
@@ -47,12 +45,6 @@ typography:
     fontSize: "clamp(1.75rem, 1.2rem + 1.8vw, 2.75rem)"
     fontWeight: 600
     lineHeight: 1
-    letterSpacing: "-0.01em"
-  headline-article:
-    fontFamily: "Bodoni Moda, Didot, Bodoni 72, Georgia, serif"
-    fontSize: "clamp(2rem, 1.4rem + 2.4vw, 3rem)"
-    fontWeight: 600
-    lineHeight: 1.08
     letterSpacing: "-0.01em"
   price:
     fontFamily: "Bodoni Moda, Didot, Bodoni 72, Georgia, serif"
@@ -121,11 +113,6 @@ typography:
     fontWeight: 600
     lineHeight: 1.5
     letterSpacing: "0.06em"
-  code:
-    fontFamily: "ui-monospace, SF Mono, Menlo, Consolas, monospace"
-    fontSize: "0.875rem"
-    fontWeight: 400
-    lineHeight: 1.6
 rounded:
   none: "0px"
   focus: "2px"
@@ -133,7 +120,6 @@ rounded:
 spacing:
   chip-gap: "6px"
   row: "12px"
-  inset: "18px"
   sign-rule: "16px"
   sign-gap: "32px"
   shelf-gap: "44px"
@@ -234,18 +220,6 @@ components:
   progress-line:
     backgroundColor: "{colors.accent}"
     height: "2px"
-  code-block:
-    backgroundColor: "{colors.shelf}"
-    textColor: "{colors.ink}"
-    typography: "{typography.code}"
-    padding: "16px 18px"
-  callout:
-    backgroundColor: "transparent"
-    textColor: "{colors.ink}"
-    padding: "2px 0 2px 18px"
-  table-row-selected:
-    backgroundColor: "{colors.panel}"
-    textColor: "{colors.ink}"
   inventory-row-hover:
     backgroundColor: "{colors.panel}"
 ---
@@ -258,9 +232,9 @@ components:
 
 The site is a bilingual aisle held to signage discipline. A pinned directory on the left lists numbered aisles. Each section on the right opens under a full-width overhead sign: the aisle number, the English aisle name in a high-contrast Didone, and its Spanish pair after it on the same baseline in small tracked capitals, all standing over one hairline. Work is stocked as shelf tags, product cards with spec lists, a bin of smaller items, and price figures standing on one shelf edge. Nothing is boxed: items sit straight on the page, and type, rules, numbering and the bilingual pairs carry the metaphor. There are no props, no illustrations and no retailer colours or marks.
 
-The palette is Chrome, from the Nerrix design library (dopely-fashion-brand-08): Future Black, Graphite Gray, Chrome Silver and Frost White, and no hue at all. Dark is the palette as the library draws it: Frost White type on a Future Black ground, Chrome Silver for primary actions and the lit rule. Light is its matching day version: Future Black type on Frost White with a quarter of the silver in it (`ground`), so the white work light still shows, and white for the highlight panel and code. Every word pair passes WCAG AA, with body pairs at 6.7:1 or better. Density is moderate and legible: a 17px Inter reading face, generous aisle breaks, and 1px rules. Hierarchy comes from the pairing. Bodoni Moda at weight 600 names things, and Inter reads, labels and acts.
+The palette is Chrome, from the Nerrix design library (dopely-fashion-brand-08): Future Black, Graphite Gray, Chrome Silver and Frost White, and no hue at all. Dark is the palette as the library draws it: Frost White type on a Future Black ground, Chrome Silver for primary actions and the lit rule. Light is its matching day version: Future Black type on Frost White with a quarter of the silver in it (`ground`), so the white work light still shows, and white for the highlight panel. Every word pair passes WCAG AA, with body pairs at 6.7:1 or better. Density is moderate and legible: a 17px Inter reading face, generous aisle breaks, and 1px rules. Hierarchy comes from the pairing. Bodoni Moda at weight 600 names things, and Inter reads, labels and acts.
 
-The one motion idea is the aisle lighting up. Sign numbers rest unlit. As you scroll, the current aisle's sign number lights to ink, the hairline under its sign lights to the accent, its directory row lights, and the first time you reach it the number flickers once like a fluorescent tube. When you reach for a shelf item (a fine pointer over it, or keyboard focus on its link) a soft panel fades up under it, and the rest of its shelf steps back to half strength (shelf focus). With a mouse or trackpad, a soft work light follows the pointer along the aisle floor, under the shelves: a white light by day, a faint cold silver light at night. Touch screens and reduced motion get no light. On the first visit of a session, and on every refresh, the store opens: a plain Future Black screen with Frost White lettering, in both schemes. "Hello" lights like a sign and holds a beat, then eleven more languages speed past (Hola, Olá, Bonjour, Hallo, Xin chào, Korean, Japanese, Mandarin, Hindi, Arabic and Navajo) to the store's own sign, Open with Abierto after it in Chrome Silver. Once the page has loaded (2.7 s at least, so Open holds about a second, and 3.8 s at most; a key, click, scroll or touch opens it at once) the shutter fades away over 700 ms while the page drifts up 40px into place, and the sign of the aisle you're in flickers on. It never shows for a link straight to a section, on a return from an article, or under reduced motion, but a refresh always shows it, even when the address names a section. A 2px accent line along the top edge fills as you scroll, so you always know how far down the page you are. Nothing else moves.
+The one motion idea is the aisle lighting up. Sign numbers rest unlit. As you scroll, the current aisle's sign number lights to ink, the hairline under its sign lights to the accent, its directory row lights, and the first time you reach it the number flickers once like a fluorescent tube. When you reach for a shelf item (a fine pointer over it, or keyboard focus on its link) a soft panel fades up under it, and the rest of its shelf steps back to half strength (shelf focus). With a mouse or trackpad, a soft work light follows the pointer along the aisle floor, under the shelves: a white light by day, a faint cold silver light at night. Touch screens and reduced motion get no light. On the first visit of a session, and on every refresh, the store opens: a plain Future Black screen with Frost White lettering, in both schemes. "Hello" lights like a sign and holds a beat, then eleven more languages speed past (Hola, Olá, Bonjour, Hallo, Xin chào, Korean, Japanese, Mandarin, Hindi, Arabic and Navajo) to the store's own sign, Open with Abierto after it in Chrome Silver. Once the page has loaded (2.7 s at least, so Open holds about a second, and 3.8 s at most; a key, click, scroll or touch opens it at once) the shutter fades away over 700 ms while the page drifts up 40px into place, and the sign of the aisle you're in flickers on. It never shows for a link straight to a section, on a return from the inventory, or under reduced motion, but a refresh always shows it, even when the address names a section. A 2px accent line along the top edge fills as you scroll, so you always know how far down the page you are. Nothing else moves.
 
 **Exception: the résumé page.** `resume.html` deliberately keeps the owner's own LaTeX résumé look: Computer Modern Serif (CMU Serif, self-hosted from `assets/fonts/cmu`), black on white, centered header, small-caps section rules, a Letter page with print margins. It sits outside the aisle system. Don't restyle it in aisle grammar, and don't borrow its serif, its small caps or its centered LaTeX header for aisle surfaces. Chrome's day scheme is black on a frosted white too, so the line between them is the type, not the colour.
 
@@ -278,51 +252,48 @@ The one motion idea is the aisle lighting up. Sign numbers rest unlit. As you sc
 Chrome: four library values and a few mixes of them, so the page never introduces a hue.
 
 ### Primary
-- **Chrome Accent** (`accent` / `accent-dark`): the lit hairline under the current sign and under every article, inventory and 404 sign, the primary button, the 2px underline on more-links and inventory links, the 1px callout rule, text selection and the skip link. By day it is Future Black, the same as the ink. At night it is Chrome Silver.
+- **Chrome Accent** (`accent` / `accent-dark`): the lit hairline under the current sign and under the inventory and 404 signs, the primary button, the 2px underline on more-links and inventory links, text selection and the skip link. By day it is Future Black, the same as the ink. At night it is Chrome Silver.
 - **Accent Lettering** (`accent-ink` / `accent-ink-dark`): text on an accent fill (the primary button, selection, the skip link). Frost White by day, Future Black at night.
 
 ### Neutral
 - **Frost Ground** (`ground` / `ground-dark`): the page background, the phone sticky sign and the fill of SKU chips. By day it is Frost White with 25% Chrome Silver mixed in, so the white work light shows. At night it is Future Black.
-- **White Panel** (`panel` / `panel-dark`): the highlight that comes up under a shelf item on hover or focus, the selected table row and hovered inventory rows. White by day. At night it is the night shelf at 62% opacity over the ground.
-- **Code Shelf** (`shelf` / `shelf-dark`): article code blocks and inline code, the only surfaces that keep a fill. White by day. At night it is Future Black with 35% Graphite.
+- **White Panel** (`panel` / `panel-dark`): the highlight that comes up under a shelf item on hover or focus, and hovered inventory rows. White by day. At night it is Future Black with 35% Graphite, at 62% opacity over the ground.
 - **Future Black Ink** (`ink` / `ink-dark`): body text, headings, prices, lit numbers, the focus outline and the panel's focus ring. It is also the fill of outline buttons on hover. At night it is Frost White.
-- **Graphite Muted** (`muted` / `muted-dark`): home prose paragraphs, descriptions, dates, spec terms, captions, meta lines, resting directory names and their Spanish halves, the was/now line and the scrollbar thumb. By day it is Graphite Gray (6.7:1 on the ground). At night it is Chrome Silver with 28% Graphite (9.2:1).
+- **Graphite Muted** (`muted` / `muted-dark`): home prose paragraphs, descriptions, dates, spec terms, captions, resting directory names and their Spanish halves, the was/now line and the scrollbar thumb. By day it is Graphite Gray (6.7:1 on the ground). At night it is Chrome Silver with 28% Graphite (9.2:1).
 - **Unlit Graphite** (`unlit` / `unlit-dark`): a sign's number before its aisle lights. By day it is Graphite with 40% Silver, at night Future Black with 38% Frost White (#636465). It sits at 3.2:1 by day and 3.4:1 at night, which clears the 3:1 floor for the large sign numerals, and those numbers are hidden from screen readers. It is never used on words, or on the directory's numbers, which are part of their link's text and rest in Muted.
 - **Silver Rule** (`rule` / `rule-dark`): the 1px hairline under a resting sign, the price channel's top rule, spec rows, table rows, image frames and SKU chip borders. By day it is Chrome Silver.
-- **Graphite Rule** (`rule-strong` / `rule-strong-dark`): button and link chip borders, the top rule of spec lists and article tables, the inventory header rule, dashed receipt rules and a hovered product image's frame.
+- **Graphite Rule** (`rule-strong` / `rule-strong-dark`): button and link chip borders, the top rule of spec lists, the inventory table's top and header rules, dashed receipt rules and a hovered product image's frame.
 - **Sign Lettering** (`sign-ink` / `sign-ink-dark`) and **Sign Subline** (`sign-muted` / `sign-muted-dark`): the English and Spanish text on a sign. They match ink and muted in both schemes.
 - **Shutter** (`shutter`, `shutter-ink`, `shutter-muted`): the loading screen is Future Black with Frost White lettering and a Chrome Silver Spanish subline, the same in both schemes.
 
 ### Named Rules
 **The No-Hue Rule.** Every value in the system is Future Black, Graphite Gray, Chrome Silver, Frost White or a mix of them. A hue, a tint, a gradient fill or a retailer's colour is never introduced.
 
-**The Lit Rule.** "Current" is shown by light, not by inversion or a new colour. Sign numbers rest unlit and directory rows rest in Muted; the current aisle's sign number and its directory row light to ink, and the hairline under its sign lights to the accent. Article, inventory and 404 signs name the aisle you are in, so they are always lit.
+**The Lit Rule.** "Current" is shown by light, not by inversion or a new colour. Sign numbers rest unlit and directory rows rest in Muted; the current aisle's sign number and its directory row light to ink, and the hairline under its sign lights to the accent. Inventory and 404 signs name the aisle you are in, so they are always lit.
 
 ## Typography
 
 **Display Font:** Bodoni Moda (variable, self-hosted at `assets/fonts/bodoni-moda-latin.woff2`, with Didot, Bodoni 72 and Georgia as fallbacks)
 **Body Font:** Inter (self-hosted at `assets/fonts/inter-latin.woff2`, with ui-sans-serif and system-ui as fallbacks)
-**Code Font:** ui-monospace, SF Mono, Menlo, Consolas (articles only)
 
-**Character:** A high-contrast Didone does the naming the way a painted shop sign would, and a plain neo-grotesque does the reading and the labelling. Bodoni Moda only ever appears at weight 600, in the case the words are written in (title case for aisle names, sentence case for article titles), and never transformed to capitals.
+**Character:** A high-contrast Didone does the naming the way a painted shop sign would, and a plain neo-grotesque does the reading and the labelling. Bodoni Moda only ever appears at weight 600, in the case the words are written in (title case for aisle names, sentence case for the bin heading), and never transformed to capitals.
 
 ### Hierarchy
 - **Display** (`display`): the owner's name at the top of the directory, on two lines. It appears once per site. On laptops 820px tall or less it steps down to `display-compact`.
 - **Headline** (`headline`): the English name on an overhead sign. The sign number (`sign-number`) is set at the same size.
-- **Headline, article** (`headline-article`; balanced wrap): the article title under the sign.
 - **Price** (`price`): the four About figures, in ink.
-- **Title, article** (`title-article`): article section heads, and the "Also on the shelf" bin heading.
+- **Title, article** (`title-article`): the "Also on the shelf" bin heading.
 - **Aisle label** (`label-aisle`): English aisle names in the directory. In the phone row they use `label-aisle-compact`, with numbers at `aisle-number-compact`.
 - **Aisle number** (`aisle-number`): directory numbers, and the "Built in-house" figure in the was/now line.
-- **Title** (`title`): shelf-tag and product names in Inter, sentence case. The employer or status after the title drops to weight 500 in Graphite. Writing entries use 1.125rem/1.35.
+- **Title** (`title`): shelf-tag and product names in Inter, sentence case. The employer or status after the title drops to weight 500 in Graphite.
 - **Lead** (`lead`): the first paragraph of an aisle, in ink. The directory's role line uses the same size at weight 600.
-- **Body** (`body`): reading text, capped at 64ch in aisles, 68ch in articles and 52ch at checkout. Home prose paragraphs after the lead are muted. Numerals are tabular site-wide.
-- **Body small** (`body-small`): descriptions, buttons, spec lists, table text, meta lines and the was/now line.
+- **Body** (`body`): reading text, capped at 64ch in aisles, 68ch on the inventory and the 404, and 52ch at checkout. Home prose paragraphs after the lead are muted. Numerals are tabular site-wide.
+- **Body small** (`body-small`): descriptions, buttons, spec lists, table text and the was/now line.
 - **Sign subline** (`label-sign`; uppercase): the Spanish half of a sign, in Sign Subline.
-- **Label** (`label`; uppercase, weight 600–700): dates on tags and notes, spec terms, bin categories and table column heads. SKU chips use the same size without the uppercase.
+- **Label** (`label`; uppercase, weight 600–700): dates on tags, spec terms, bin categories and table column heads. SKU chips use the same size without the uppercase.
 
 ### Named Rules
-**The Two Voices Rule.** Bodoni Moda names things: the owner, aisles, sign numbers, prices, article titles and section heads, and the "Built in-house" figure. Inter does everything else, including every button, chip, label, date and paragraph. Bodoni is never used for running text, never set in capitals, and never set below the 0.9375rem phone row label.
+**The Two Voices Rule.** Bodoni Moda names things: the owner, aisles, sign numbers, prices, the bin heading and the "Built in-house" figure. Inter does everything else, including every button, chip, label, date and paragraph. Bodoni is never used for running text, never set in capitals, and never set below the 0.9375rem phone row label.
 
 **The Bilingual Pair Rule.** Every aisle name comes as English and then Spanish. On signs, the Spanish runs after the English on the same baseline in Inter capitals (`label-sign`, tracked 0.14em) in Sign Subline, marked `lang="es"`. In the directory it sits underneath at 13px in Inter sentence case, and on phones it is dropped from the row. Spanish never sits above the English, and the sign never leaves it out.
 
@@ -330,15 +301,15 @@ Chrome: four library values and a few mixes of them, so the page never introduce
 
 At 1024px and up the store has two columns, with a max-width of 1320px, a gutter of `gutter`, and a column gap of `column-gap`. The left column (minmax(300px, 0.82fr)) is the directory. It is sticky at full viewport height (100svh) and holds the name, the role, a one-line description, the numbered aisle list and, pushed to the bottom, the link chips and a fine-print line. The right column (1.18fr) is the floor. Aisles stack with `aisle-end` after each one and `sign-gap` under each sign. On laptops 820px tall or less, the directory tightens its padding and rows and scrolls internally, so the whole thing stays reachable.
 
-Below 1024px the store collapses to one column. The directory becomes a header, and the aisle list becomes one plain wrapping row (a number and the English name, at least 44px tall, 20px apart) with no border or fill. Each overhead sign turns sticky at the top on a solid ground background and bleeds out to the viewport edges, and scroll padding is 76px. The price channel goes from four columns to two at 640px or less. Product cards stack the image over the text at 720px or less. Shelf tags and writing entries stack at 640px or less, with the date moving *under* the title.
+Below 1024px the store collapses to one column. The directory becomes a header, and the aisle list becomes one plain wrapping row (a number and the English name, at least 44px tall, 20px apart) with no border or fill. Each overhead sign turns sticky at the top on a solid ground background and bleeds out to the viewport edges, and scroll padding is 76px. The price channel goes from four columns to two at 640px or less. Product cards stack the image over the text at 720px or less. Shelf tags stack at 640px or less, with the date moving *under* the title.
 
-Article pages, the inventory and the 404 use a single 760px column with the same gutter (the inventory widens to 1080px). Articles get a top bar with home and résumé links, then the aisle's sign (static, not sticky), the title and a muted meta line.
+The inventory and the 404 use a single 760px column with the same gutter (the inventory widens to 1080px). The inventory gets a top bar with home and résumé links, then the aisle's sign (static, not sticky) and a lead paragraph. The 404 opens straight on its sign.
 
-Spacing comes from a handful of reused steps rather than a strict scale: `chip-gap` between chips, `shelf-gap` between shelf tags and between writing entries, `product-gap` between product cards, `row` above and below each bin row, `inset` beside code and callouts, and `sign-rule` between a sign's lettering and its hairline. Because items have no padding of their own, their highlight panel bleeds out past them: 16px above and below, and clamp(-24px, gutter × -0.75, -12px) to each side.
+Spacing comes from a handful of reused steps rather than a strict scale: `chip-gap` between chips, `shelf-gap` between shelf tags, `product-gap` between product cards, `row` above and below each bin row, and `sign-rule` between a sign's lettering and its hairline. Because items have no padding of their own, their highlight panel bleeds out past them: 16px above and below, and clamp(-24px, gutter × -0.75, -12px) to each side.
 
 ## Elevation & Depth
 
-Flat at rest, with no cards. Depth comes from 1px rules and from the lit hairline. A surface appears only as a response: when a shelf tag, product card, writing entry or bin row is hovered with a fine pointer, or a linked one gets keyboard focus, a highlight panel fades up underneath it over 200ms. The panel is the item's own `::before`, behind its content (z-index -1), with a 6px radius, the `panel` colour and the Panel shadow. Bin rows get the panel with no vertical bleed and at most 16px to each side. Keyboard focus adds a 2px ink ring to the panel in place of the outline. Linked items also nudge their arrow 2px up and to the right and press to scale(0.995).
+Flat at rest, with no cards. Depth comes from 1px rules and from the lit hairline. A surface appears only as a response: when a shelf tag, product card or bin row is hovered with a fine pointer, or a linked one gets keyboard focus, a highlight panel fades up underneath it over 200ms. The panel is the item's own `::before`, behind its content (z-index -1), with a 6px radius, the `panel` colour and the Panel shadow. Bin rows get the panel with no vertical bleed and at most 16px to each side. Keyboard focus adds a 2px ink ring to the panel in place of the outline. Linked items also nudge their arrow 2px up and to the right and press to scale(0.995).
 
 ### Shadow Vocabulary
 - **Panel, day** (`box-shadow: 0 1px 2px rgba(8, 8, 8, 0.06), 0 12px 28px -14px rgba(8, 8, 8, 0.24)`): a soft two-layer drop under the white panel.
@@ -351,7 +322,7 @@ Flat at rest, with no cards. Depth comes from 1px rules and from the lit hairlin
 
 ## Shapes
 
-Square stock: every corner is 0, with one exception, the 6px highlight panel. The focus outline takes the `focus` rounding. One line weight governs the system: 1px rules for sign hairlines, the price channel's top edge, dividers, chip and button outlines, spec rows, table rows and the callout's left rule. The **receipt tear** (1px dashed Graphite Rule) opens the checkout footer and the end note of an article. Images sit inside a 1px Silver Rule frame at 16:10, cropped from the top left.
+Square stock: every corner is 0, with one exception, the 6px highlight panel. The focus outline takes the `focus` rounding. One line weight governs the system: 1px rules for sign hairlines, the price channel's top edge, dividers, chip and button outlines, spec rows and table rows. The **receipt tear** (1px dashed Graphite Rule) opens the checkout footer and the end note on the inventory. Images sit inside a 1px Silver Rule frame at 16:10, cropped from the top left.
 
 **The One Line Rule.** Rules are 1px. The only heavier lines are 2px and in the accent: the underline on more-links and inventory links, and the progress line along the top edge. There are no double borders and no rails.
 
@@ -372,7 +343,7 @@ Blunt, square and self-explanatory.
 - **Mobile:** a plain wrapping row of number and English name pairs, 44px tall, with no border or fill.
 
 ### Aisle Sign (signature)
-The overhead sign that opens every aisle and every secondary page. It is unboxed: the number at the headline size, the English name in Bodoni Moda 600 and the Spanish subline in Inter caps after it on the baseline, 18px apart, over one 1px Silver Rule hairline 16px below. **Current:** the number lights from unlit to ink and the hairline lights to the accent, over 240ms. The first arrival flickers the number only, a one-time 300ms stepped flicker (opacity 1, 0.55, 1, 0.8, 1), skipped under reduced motion. On phones the sign is sticky on a solid ground background. On articles, the inventory and the 404 the sign is static, always lit, and names the aisle you're in (04 Writing / Notas; 03 Inventory / Inventario; 404 Not on the shelf / No está aquí).
+The overhead sign that opens every aisle and every secondary page. It is unboxed: the number at the headline size, the English name in Bodoni Moda 600 and the Spanish subline in Inter caps after it on the baseline, 18px apart, over one 1px Silver Rule hairline 16px below. **Current:** the number lights from unlit to ink and the hairline lights to the accent, over 240ms. The first arrival flickers the number only, a one-time 300ms stepped flicker (opacity 1, 0.55, 1, 0.8, 1), skipped under reduced motion. On phones the sign is sticky on a solid ground background. On the inventory and the 404 the sign is static, always lit, and names the aisle you're in (03 Inventory / Inventario; 404 Not on the shelf / No está aquí).
 
 ### Price Channel (signature)
 Four plain Bodoni figures in ink, standing on one 1px Silver Rule with 20px above them, each with a short body-small description in Graphite underneath. There are no fills, no cell dividers and no rail.
@@ -380,11 +351,10 @@ Four plain Bodoni figures in ink, standing on one 1px Silver Rule with 20px abov
 ### Was / Now Line
 A plain body-small line in Graphite at weight 600. The old item is struck through (1px, weight 500), followed by "Built in-house" in Bodoni ink at the aisle-number size and a short saving. It is used only where a real replacement happened.
 
-### Shelf Tag, Product Card, Writing Entry
-- **Shared:** no fill, border or padding. They sit on the page, spaced by `shelf-gap` (tags, notes) or `product-gap` (products), and take the highlight panel on hover and, when linked, on keyboard focus. A linked item has a 14px arrow icon after its title.
+### Shelf Tag, Product Card
+- **Shared:** no fill, border or padding. They sit on the page, spaced by `shelf-gap` (tags) or `product-gap` (products), and take the highlight panel on hover and, when linked, on keyboard focus. A linked item has a 14px arrow icon after its title.
 - **Shelf tag:** a 128px date column (label style) and a body column, 24px apart.
 - **Product card:** a 220px framed screenshot next to the body. A hovered product's frame turns Graphite Rule. Inside is a **spec list**: a two-column term/value grid with a Graphite Rule on top and Silver Rules between rows, with terms in label style.
-- **Writing entry:** the shelf-tag grid, with the title at 1.125rem and the description in body-small.
 
 ### SKU Chips
 Small tech and scope tags: label-size Inter at weight 600 (not uppercase), 3px 8px, with a 1px Silver Rule border, filled with the ground colour. They have no states.
@@ -395,11 +365,9 @@ A list of secondary stock with no rules, under a Bodoni `title-article` heading.
 ### More-link
 A weight-700 inline link with a 2px accent underline and an arrow icon. On hover the underline turns ink and the arrow nudges 2px up and to the right. It never fills. Inventory links follow the same pattern.
 
-### Article Furniture
-- **Code block:** a Code Shelf slab in ink, 16px 18px, monospace 0.875rem/1.6. **Inline code:** a Code Shelf fill with a 1px Silver Rule.
-- **Callout (blockquote):** a 1px accent left rule, 18px in, with ink text at weight 600.
-- **Data table:** no fill, a 1px Graphite Rule on top and Silver Rule rows. Column heads use label style. The selected row takes the panel, in ink at weight 600. The caption sits underneath in Graphite.
-- **End note:** a dashed receipt rule over muted body-small.
+### Page Furniture (inventory and 404)
+- **Table base:** the single-column pages give any table a 1px Graphite Rule along its top, body-small text and Silver Rule rows. The inventory's table is the one that uses it, and the Inventory Table section below covers the rest.
+- **End note:** a dashed receipt rule 48px below the content, over muted body-small, with its links at weight 600. The inventory ends on one.
 
 ### Inventory Table
 No fill, 1px Silver Rule rows under a Graphite header rule, set 12px wider than the column on each side so its text lines up with the page. A hovered row takes the panel colour over 200ms while the rest of the table steps back to half strength. At 860px or less each row becomes a stacked entry with labelled fields.
@@ -416,9 +384,9 @@ Authored inline SVG symbols on a 16px viewBox. Drawn icons use a 1.5–1.6 strok
 - **Do** use the `accent-ink` token for text on every accent fill, in both colour schemes.
 - **Do** keep Bodoni Moda at weight 600 for naming roles only, and set everything else in Inter.
 - **Do** let shelf items sit on the page with no fill, border or padding, and bring the 6px highlight panel up under them on fine-pointer hover and on keyboard focus of a linked item, by opacity over 200ms, with a 2px ink ring for the keyboard.
-- **Do** quiet the rest of a shelf (experience tags, product cards, writing entries, bin rows, inventory rows) to 0.5 opacity while one item has the pointer or keyboard focus, over 220ms.
+- **Do** quiet the rest of a shelf (experience tags, product cards, bin rows, inventory rows) to 0.5 opacity while one item has the pointer or keyboard focus, over 220ms.
 - **Do** keep the shutter to the first visit of a session and to refreshes, under 3.8 s, skippable by any key, click or scroll, and absent for links straight to a section and for reduced motion (`index.html` head script, `.shutter`, `site.js`).
-- **Do** open the links that leave the portfolio (live sites, GitHub, LinkedIn) and the PDF résumé in a new tab, with `rel="noopener"` and the page's hidden "Opens in a new tab" description, so the portfolio stays open behind them. In-page aisles, email and the portfolio's own pages (articles, the inventory) open where you are.
+- **Do** open the links that leave the portfolio (live sites, GitHub, LinkedIn) and the PDF résumé in a new tab, with `rel="noopener"` and the page's hidden "Opens in a new tab" description, so the portfolio stays open behind them. In-page aisles, email and the portfolio's own pages (the inventory) open where you are.
 - **Do** keep the work light under the shelves, moved by transform only, for fine pointers only, and off under reduced motion (`site.js`, `.worklight`, token `--lamp`).
 - **Do** keep corners square and rules at 1px, with the 6px panel, the 2px accent underline and the dashed receipt rule as the only exceptions.
 - **Do** draw icons as inline SVG on the 16px grid with square caps.
