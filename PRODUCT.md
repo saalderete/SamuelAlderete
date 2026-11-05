@@ -43,7 +43,7 @@ He runs software in production for real businesses, not class projects: KasaPro 
 - KasaPro, KasaRentals, the Nerrix Digital site and the internship code are private; say "code walkthrough on request" rather than linking.
 - Screenshots of KasaPro use demo data, never real customers.
 - Gracias Por Invitar's events are sample data with fictional organizers: never present them as real listings.
-- Writing section: short technical write-ups drafted from his real code, reviewed by him before publishing.
+- No writing section: the three write-ups came off the site in November 2026 at his request (they stay in the repository's history).
 
 ## Accessibility
 

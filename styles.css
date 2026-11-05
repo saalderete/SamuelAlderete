@@ -22,7 +22,6 @@
      Chrome Silver and Frost White, and no hue at all. By day the type is Future Black on Frost White
      with a quarter of the silver in it, so the white work light still shows. */
   --ground: #edf1f5;
-  --shelf: #ffffff;
   --panel: #ffffff;                   /* the highlight under the item you reach for */
   --ink: #080808;
   --muted: #4b5563;
@@ -61,8 +60,7 @@
     /* Chrome at night, as the library draws it: Frost White on Future Black, with Chrome Silver for
        primary and selected */
     --ground: #080808;
-    --shelf: #1f2328;                 /* Future Black with 35% Graphite */
-    --panel: rgba(31, 35, 40, 0.62);
+    --panel: rgba(31, 35, 40, 0.62); /* Future Black with 35% Graphite, at 62% */
     --ink: #f8fafc;
     --muted: #a7b1be;                 /* Chrome Silver with 28% Graphite */
     --unlit: #636465;                 /* Future Black with 38% Frost White */
@@ -186,8 +184,6 @@ html { scrollbar-color: var(--muted) var(--ground); }
 .sign h2, .sign-h { margin: 0; font-size: var(--t-sign); line-height: 1; display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 14px; row-gap: 4px; }
 .sign h2 b, .sign-h b { font-family: var(--display); font-size: var(--t-sign); font-weight: 600; letter-spacing: -0.01em; }
 .sign h2 span, .sign-h span { font-family: var(--sans); font-size: 0.875rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.14em; color: var(--sign-muted); }
-/* on the inventory and the 404 the sign's heading is the page's h1: it keeps the sign's sizes, not the article title's */
-.article h1.sign-h { margin: 0; font-family: var(--sans); font-size: var(--t-sign); line-height: 1; letter-spacing: 0; }
 .aisle.is-here .sign, .article .sign { border-bottom-color: var(--accent); }
 .aisle.is-here .sign-no, .article .sign-no { color: var(--ink); }
 .aisle.lit .sign-no { animation: flicker 300ms steps(1, end) 1; }
@@ -275,15 +271,6 @@ a.product:active { transform: scale(0.995); }
 @media (hover: hover) and (pointer: fine) { .bin a:hover b { text-decoration: underline; text-underline-offset: 0.2em; } }
 .bin-h { margin: 52px 0 0; font-family: var(--display); font-size: 1.5rem; font-weight: 600; }
 
-/* ---------- writing ---------- */
-.notes { margin: 0; padding: 0; list-style: none; display: grid; gap: 44px; }
-.notes a { position: relative; isolation: isolate; display: grid; grid-template-columns: 128px 1fr; gap: 6px 24px; text-decoration: none; transition: transform 160ms var(--ease-out); }
-.notes a:active { transform: scale(0.995); }
-@media (hover: hover) and (pointer: fine) { .notes a:hover .go { transform: translate(2px, -2px); } }
-.notes h3 { margin: 0; font-size: 1.125rem; font-weight: 700; line-height: 1.35; }
-.notes p { margin: 6px 0 0; color: var(--muted); font-size: var(--t-small); }
-@media (max-width: 640px) { .notes a { grid-template-columns: 1fr; } }
-
 /* ---------- checkout ---------- */
 .checkout p { max-width: 52ch; }
 .till { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
@@ -299,30 +286,18 @@ a.product:active { transform: scale(0.995); }
 .article-top a { font-weight: 700; text-decoration: none; display: inline-flex; gap: 8px; align-items: center; }
 /* an article's sign names the aisle you're in, so it is always lit and never sticky */
 .article .sign { position: static; margin: 40px 0 32px; padding: 0 0 16px; background: none; }
-.article h1 { font-size: clamp(2rem, 1.4rem + 2.4vw, 3rem); line-height: 1.08; font-family: var(--display); font-weight: 600; letter-spacing: -0.01em; margin: 0 0 12px; text-wrap: balance; }
-.meta { color: var(--muted); font-size: var(--t-small); margin: 0 0 36px; }
-.article h2 { font-family: var(--display); font-size: 1.5rem; font-weight: 600; margin: 44px 0 12px; line-height: 1.25; }
 .article p, .article li { max-width: 68ch; }
 .article p { margin: 0 0 18px; }
 .article ul, .article ol { padding-left: 1.2em; margin: 0 0 18px; }
 .article li { margin-bottom: 8px; }
-.article code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 0.875em; background: var(--shelf); border: 1px solid var(--rule); padding: 1px 5px; }
-.article pre { margin: 0 0 22px; padding: 16px 18px; background: var(--shelf); color: var(--ink); overflow-x: auto; font: 400 0.875rem/1.6 ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
-.article pre code { background: none; border: 0; padding: 0; font-size: inherit; color: inherit; }
-.article blockquote { margin: 0 0 22px; padding: 2px 0 2px 18px; border-left: 1px solid var(--accent); color: var(--ink); font-weight: 600; }
-.article blockquote p { margin: 0; }
 .article .end { margin-top: 48px; padding-top: 18px; border-top: 1px dashed var(--rule-strong); color: var(--muted); font-size: var(--t-small); }
 .product h3 .at { font-weight: 500; color: var(--muted); }
-.article .table-wrap { overflow-x: auto; margin: 0 0 22px; }
 .article table { width: 100%; border-collapse: collapse; font-size: var(--t-small); border-top: 1px solid var(--rule-strong); }
 .article caption { caption-side: bottom; text-align: left; padding-top: 8px; color: var(--muted); font-size: var(--t-tiny); }
 .article th, .article td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--rule); vertical-align: baseline; }
 .article thead th { font-size: var(--t-tiny); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
 .article tbody th { font-weight: 600; }
 .article td span { display: block; font-size: var(--t-tiny); color: var(--muted); }
-/* the selected row is highlighted the way a hovered item is: the panel under it, not a fill colour */
-.article tr.sel th, .article tr.sel td { background: var(--panel); color: var(--ink); font-weight: 600; }
-.article tr.sel td span { font-weight: 400; }
 .article .end a, .article p a { font-weight: 600; }
 
 /* short laptop screens: keep the whole directory reachable while pinned */
@@ -345,14 +320,14 @@ a.product:active { transform: scale(0.995); }
 }
 
 /* phones: the date sits under the title, never above it as a kicker */
-@media (max-width: 640px) { .tag .when, .notes .when { order: 1; padding-top: 0; margin-top: 12px; } .tag, .notes a { display: flex; flex-direction: column; } }
+@media (max-width: 640px) { .tag .when { order: 1; padding-top: 0; margin-top: 12px; } .tag { display: flex; flex-direction: column; } }
 
 /* ---------- the highlight panel ----------
    Shelf items sit on the page with no card around them. When you reach for one (a fine pointer over it,
    or keyboard focus on its link), a soft panel comes up underneath and the rest of its shelf steps back
    (shelf focus, below). The panel is the item's own pseudo-element, behind its content and a little
    wider than it, and it only ever fades in and out. */
-.tag::before, .product::before, .notes a::before, .bin a::before, .bin .row::before {
+.tag::before, .product::before, .bin a::before, .bin .row::before {
   content: ""; position: absolute; z-index: -1;
   inset: -16px clamp(-24px, calc(var(--gutter) * -0.75), -12px);
   border-radius: 6px;
@@ -361,12 +336,12 @@ a.product:active { transform: scale(0.995); }
 }
 .bin a::before, .bin .row::before { inset: 0 clamp(-16px, calc(var(--gutter) * -0.75), -12px); }
 @media (hover: hover) and (pointer: fine) {
-  .tag:hover::before, .product:hover::before, .notes a:hover::before, .bin a:hover::before, .bin .row:hover::before { opacity: 1; }
+  .tag:hover::before, .product:hover::before, .bin a:hover::before, .bin .row:hover::before { opacity: 1; }
 }
 /* the keyboard gets the same panel, ringed so the focus is plain to see */
-a.tag:focus-visible, a.product:focus-visible, .notes a:focus-visible, .bin a:focus-visible { outline: none; }
-a.tag:focus-visible::before, a.product:focus-visible::before, .notes a:focus-visible::before, .bin a:focus-visible::before { opacity: 1; box-shadow: var(--shadow), 0 0 0 2px var(--ink); }
-a.tag:focus-visible .go, a.product:focus-visible .go, .notes a:focus-visible .go { transform: translate(2px, -2px); }
+a.tag:focus-visible, a.product:focus-visible, .bin a:focus-visible { outline: none; }
+a.tag:focus-visible::before, a.product:focus-visible::before, .bin a:focus-visible::before { opacity: 1; box-shadow: var(--shadow), 0 0 0 2px var(--ink); }
+a.tag:focus-visible .go, a.product:focus-visible .go { transform: translate(2px, -2px); }
 
 /* ---------- the work light ----------
    A soft lamp that follows a mouse or trackpad along the aisle floor, under the shelves (site.js moves it
@@ -399,18 +374,16 @@ a.tag:focus-visible .go, a.product:focus-visible .go, .notes a:focus-visible .go
 /* ---------- shelf focus ----------
    The item you're on comes forward and the rest of that shelf steps back, for the pointer and for the
    keyboard. The panel above shows which one you're on; this quiets its neighbours. */
-.tags-list > li, .products > li, .notes > li, .bin > li, .inventory tbody > tr { transition: opacity 220ms var(--ease-out); }
+.tags-list > li, .products > li, .bin > li, .inventory tbody > tr { transition: opacity 220ms var(--ease-out); }
 @media (hover: hover) and (pointer: fine) {
   .tags-list:has(> li:hover) > li:not(:hover),
   .products:has(> li:hover) > li:not(:hover),
-  .notes:has(> li:hover) > li:not(:hover),
   .bin:has(> li:hover) > li:not(:hover),
   .inventory tbody:has(> tr:hover) > tr:not(:hover) { opacity: 0.5; }
   a.product:hover img { border-color: var(--rule-strong); }
 }
 .tags-list:has(:focus-visible) > li:not(:focus-within),
 .products:has(:focus-visible) > li:not(:focus-within),
-.notes:has(:focus-visible) > li:not(:focus-within),
 .bin:has(:focus-visible) > li:not(:focus-within),
 .inventory tbody:has(:focus-visible) > tr:not(:focus-within) { opacity: 0.5; }
 .product img { transition: border-color 160ms var(--ease-out); }
