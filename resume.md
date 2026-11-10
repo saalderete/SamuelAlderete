@@ -1,7 +1,7 @@
 # Samuel Alderete
 
 salderete29@gmail.com | El Paso, TX
-linkedin.com/in/saalderete | github.com/saalderete | saalderete.github.io/SamuelAlderete
+linkedin.com/in/saalderete | github.com/saalderete | saalderete.github.io/SamuelAlderete | nerrixdigital.com
 
 ## Education
 
@@ -13,9 +13,9 @@ Bachelor of Science in Computer ScienceJan. 2024 – Dec. 2026 (Expected)
 
 Founder & DeveloperJan. 2026 – Present
 
-Nerrix Digital (nerrixdigital.com)El Paso, TX
+Nerrix DigitalEl Paso, TX
 
-- Founded a web development studio serving local businesses and delivered 4 client sites across contracting, rental and service industries, running hosting, domains and maintenance for every client
+- Founded a web studio for local businesses; delivered 4 client sites and run their hosting and domains
 - Built the studio’s site in React, Vite and Express, with an OpenAI assistant that quotes every price and term and a booking calendar with invites and no double booking
 - Built KasaRentals’ online equipment booking on KasaPro’s API, with live availability and idempotent bookings
 
@@ -32,7 +32,7 @@ ForemanJan. 2023 – Present
 
 Kasa Roofing & ConstructionEl Paso, TX
 
-- Manage daily operations for a crew of 5 across roughly 100 projects per year, covering scheduling, material coordination and subcontractors
+- Run daily operations for a crew of 5 across about 100 projects a year: scheduling, materials and subcontractors
 - Own customer communication and execution from first estimate to final walkthrough on $5K–$20K jobs
 
 ## Projects
@@ -44,6 +44,12 @@ KasaPro – Contractor Management Platform | Node.js, Express.js, MySQL, Stripe 
 - Implemented PDF generation, remote e-signatures and multi-business account architecture, with a test that fails the build if any SQL query on a tenant table skips the business filter
 - Wrote 940 automated tests covering payments, webhooks, signing links and tenant isolation
 
+Luv – Voice Assistant for macOS | Swift, SwiftUI, Speech, EventKit, OpenAI Realtime API, SQLite  ·  Nov. 2026
+
+- Building a menu-bar voice assistant with an on-device “Hey Luv” wake word, live transcription and spoken replies
+- Gave it tools for web search, calendar, reminders, files, Mail, the screen and KasaPro, in English and Spanish
+- Routed every text and email it sends through one module that runs only after the user approves it
+
 TestHarvest | TypeScript, React, Express.js, PostgreSQL, Playwright, Docker  ·  Oct. 2026
 
 - Built a self-hosted EndTest.io alternative with no-code browser tests, scheduled runs and failure alerts
@@ -54,14 +60,12 @@ Loan Approval ML | Python, scikit-learn, FastAPI, Streamlit, Docker, GitHub Acti
 
 - Built an explainable mortgage-decision model on 483,685 Texas HMDA applications, reaching 0.857 ROC-AUC
 - Designed a leakage-safe pipeline with checksum-verified data, fixed data splits and isotonic calibration
-- Audited denial rates by race, sex and age, keeping protected attributes out of training
-- Shipped a FastAPI service and 10-page Streamlit dashboard with a versioned model registry and 95 tests
+- Audited denial rates by race, sex and age, and shipped a FastAPI service, Streamlit dashboard and 95 tests
 
 ## Technical Skills
 
 **Languages**: Python, Java, C/C++, TypeScript, JavaScript, Kotlin, Swift, PHP, SQL, HTML/CSS
-**Frameworks**: React, Node.js, Express.js, FastAPI, Streamlit, Tailwind CSS, Vite, EJS, Jetpack Compose
+**Frameworks**: React, Node.js, Express, FastAPI, Streamlit, Tailwind, SwiftUI, Jetpack Compose, scikit-learn, pandas
 **Developer Tools**: Git, GitHub, GitHub Actions, Docker, Playwright, Render, Aiven, Turso, VS Code
 **APIs**: Stripe Connect, Square, OpenAI API
-**Libraries**: scikit-learn, pandas, NumPy, Pydantic
 **Spoken Languages**: English, Spanish (fully bilingual)
