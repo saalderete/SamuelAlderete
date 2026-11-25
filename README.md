@@ -13,6 +13,7 @@ Plain HTML, CSS and a little JavaScript, with no build step. GitHub Pages serves
 | `site.js` | Scroll-spy for the directory, the one-time sign flicker, the work light that follows the pointer, the floor ripples (a wake behind the pointer and a ring where you click the floor, drawn with WebGL only while they last), the shutter of greetings that fades away on a first visit and on every refresh, and the progress line along the top (the browser fills it from the scroll; site.js only where it can't) |
 | `assets/` | Project screenshots and short muted screen-recording loops (no customer data, the phone number blurred), the favicon and self-hosted fonts |
 | `PRODUCT.md`, `DESIGN.md` | Who the site is for, and the design system it follows |
+| `studio/` | A second way in, beside the site and not linked from it yet: the studio at dusk as a 3D room, with the work on its shelves and a computer you can sit at. Its own notes are in [`studio/README.md`](studio/README.md) |
 
 ## Run it locally
 

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Samuel Alderete · the studio</title>
+<meta name="description" content="Samuel Alderete, software engineer in El Paso. His studio at dusk: the shelves hold the work, and the computer turns on.">
+<meta name="theme-color" content="#080808">
+<meta name="robots" content="noindex">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="app/fonts/michroma-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="app/tokens.css">
+<link rel="stylesheet" href="app/studio.css">
+<script type="importmap">
+{ "imports": { "three": "./app/vendor/three/three.module.js", "three/addons/": "./app/vendor/three/addons/" } }
+</script>
+</head>
+<body>
+<!-- The monitor's picture: a real page, placed in the room behind a hole in the drawing. -->
+<div id="screen" aria-hidden="true"><div id="os"></div><div id="tube"></div><div id="strike"></div></div>
+<canvas id="gl" aria-label="Samuel Alderete's studio at dusk: a desk with a computer, shelves of things he has built, a window over the city."></canvas>
+
+<div id="veil" role="status">
+  <p class="veil-name">Samuel Alderete</p>
+  <p class="veil-line"><span id="veil-bar"></span></p>
+  <p class="veil-note" id="veil-note">Opening the studio</p>
+</div>
+
+<aside id="card" hidden></aside>
+
+<button id="sound" type="button" aria-pressed="false">Enable sound</button>
+
+<!-- Everything in the room, reachable without a pointer. -->
+<nav id="reach" aria-label="In the room"></nav>
+
+<noscript>
+  <div class="plain">
+    <p>This page is a 3D room and needs JavaScript. Everything in it is also on the <a href="../">plain site</a>.</p>
+  </div>
+</noscript>
+<script type="module" src="app/main.js"></script>
+</body>
+</html>

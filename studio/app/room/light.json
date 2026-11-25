@@ -1,0 +1,90 @@
+{
+ "gamma": 3.0,
+ "maps": {
+  "S_sky": {
+   "file": "S_sky.webp",
+   "scale": [
+    6.0,
+    6.0,
+    6.0
+   ],
+   "size": 2048
+  },
+  "S_lmb": {
+   "file": "S_lmb.webp",
+   "scale": [
+    0.2844,
+    0.19027,
+    1.75527
+   ],
+   "size": 2048
+  },
+  "S_sgn": {
+   "file": "S_sgn.webp",
+   "scale": [
+    0.6644,
+    7.17148,
+    0.0001
+   ],
+   "size": 1024
+  },
+  "F_sky": {
+   "file": "F_sky.webp",
+   "scale": [
+    6.0,
+    6.0,
+    6.0
+   ],
+   "size": 2048
+  },
+  "F_lmb": {
+   "file": "F_lmb.webp",
+   "scale": [
+    3.83926,
+    2.07324,
+    2.47715
+   ],
+   "size": 2048
+  },
+  "F_sgn": {
+   "file": "F_sgn.webp",
+   "scale": [
+    0.55806,
+    5.38398,
+    0.0001
+   ],
+   "size": 1024
+  },
+  "P_sky": {
+   "file": "P_sky.webp",
+   "scale": [
+    6.0,
+    6.0,
+    6.0
+   ],
+   "size": 1024
+  },
+  "P_lmb": {
+   "file": "P_lmb.webp",
+   "scale": [
+    4.30117,
+    2.50508,
+    5.48587
+   ],
+   "size": 1024
+  },
+  "P_sgn": {
+   "file": "P_sgn.webp",
+   "scale": [
+    1.28477,
+    0.44791,
+    0.0001
+   ],
+   "size": 512
+  }
+ },
+ "pano": {
+  "file": "pano.webp",
+  "scale": 8.0
+ }
+}

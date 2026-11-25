@@ -1,0 +1,46 @@
+/* The studio's shared tokens: the site's Chrome palette at night (../styles.css), its two typefaces,
+   its two curves. The room's cards and the screen's programs both draw from these. No hue: the colour
+   in the room comes from its light, not from the interface. */
+
+@font-face {
+  font-family: "Michroma";
+  src: url("fonts/michroma-latin.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("fonts/inter-latin.woff2") format("woff2");
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --black: #080808;        /* Future Black */
+  --frost: #f8fafc;        /* Frost White */
+  --silver: #cbd5e1;       /* Chrome Silver */
+  --graphite-1: #1f2328;
+  --graphite-2: #393d41;
+  --graphite-3: #4b5563;
+  --dim: #a7b1be;          /* Chrome Silver with 28% Graphite: secondary text on black */
+  --unlit: #636465;
+
+  --ground: var(--black);
+  --panel: #14171a;        /* a window's body: Future Black with a little Graphite */
+  --panel-2: #1f2328;
+  --ink: var(--frost);
+  --muted: var(--dim);
+  --rule: var(--graphite-2);
+  --rule-strong: var(--unlit);
+  --accent: var(--silver);
+  --accent-ink: var(--black);
+
+  --sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --display: "Michroma", ui-sans-serif, system-ui, sans-serif;
+  --mono: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+}

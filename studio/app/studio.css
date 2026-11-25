@@ -1,0 +1,78 @@
+/* The page around the room: the canvas, the screen's place behind it, the card a thing opens,
+   and the one control that is always there (sound). The mini-OS has its own sheet in os/. */
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; background: #000; overflow: hidden; overscroll-behavior: none; }
+body { color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+
+#gl { position: fixed; inset: 0; width: 100%; height: 100%; display: block; z-index: 2; touch-action: none; outline: none; }
+#gl.hot { cursor: pointer; }
+#gl.drag { cursor: grabbing; }
+
+/* The screen is one window-sized page. In the room it is squeezed onto the monitor by a transform;
+   when you sit down the transform comes off and it is simply the page. */
+#screen { position: fixed; left: 0; top: 0; width: 100vw; height: 100vh; height: 100dvh; z-index: 1; transform-origin: 0 0; background: #000; overflow: hidden; contain: layout paint; }
+/* the OS keeps its own stacking order to itself, so the tube's dimming and flash always lie over the whole picture */
+#os { position: absolute; inset: 0; isolation: isolate; }
+#tube { position: absolute; inset: 0; z-index: 2; background: #000; pointer-events: none; }
+/* the tube striking: light on the glass before there is a picture */
+#strike { position: absolute; inset: 0; z-index: 3; background: radial-gradient(120% 120% at 50% 50%, #dfe7f2, #9fb0c8); opacity: 0; pointer-events: none; }
+body.inside #gl { visibility: hidden; pointer-events: none; }
+body.inside #tube, body.inside #strike { display: none; }
+body.inside #sound, body.inside #reach { display: none; }
+
+#veil { position: fixed; inset: 0; z-index: 9; background: var(--black); display: grid; place-content: center; justify-items: center; gap: 14px; transition: opacity 0.9s var(--ease-out); }
+#veil.gone { opacity: 0; pointer-events: none; }
+.veil-name { margin: 0; font-family: var(--display); font-size: clamp(1rem, 0.8rem + 0.9vw, 1.5rem); letter-spacing: 0.04em; }
+.veil-line { margin: 0; width: min(280px, 60vw); height: 1px; background: var(--graphite-2); }
+#veil-bar { display: block; height: 1px; width: 100%; background: var(--frost); transform-origin: 0 50%; transform: scaleX(0); transition: transform 0.25s linear; }
+.veil-note { margin: 0; font-size: 0.8125rem; color: var(--muted); }
+
+#sound { position: fixed; left: max(16px, env(safe-area-inset-left)); bottom: max(16px, env(safe-area-inset-bottom)); z-index: 6; appearance: none; border: 1px solid var(--rule-strong); background: rgba(8, 8, 8, 0.62); color: var(--frost); font: 500 0.8125rem/1 var(--sans); padding: 10px 14px 10px 34px; cursor: pointer; letter-spacing: 0.01em; transition: background-color 0.18s ease, border-color 0.18s ease; }
+#sound::before { content: ""; position: absolute; left: 13px; top: 50%; width: 9px; height: 9px; margin-top: -4.5px; border: 1px solid var(--silver); }
+#sound[aria-pressed="true"]::before { background: var(--silver); }
+#sound:focus-visible, #card :focus-visible, #reach :focus-visible { outline: 2px solid var(--frost); outline-offset: 2px; }
+@media (hover: hover) and (pointer: fine) { #sound:hover { background: rgba(31, 35, 40, 0.9); border-color: var(--silver); } }
+
+/* Keyboard reach: off screen until one of its buttons has focus. */
+#reach { position: fixed; left: 16px; top: 16px; z-index: 7; display: flex; flex-wrap: wrap; gap: 6px; max-width: min(720px, 90vw); }
+#reach > * { position: absolute; left: -200vw; appearance: none; border: 1px solid var(--rule-strong); background: var(--black); color: var(--frost); font: 500 0.8125rem/1.2 var(--sans); padding: 9px 12px; text-decoration: none; cursor: pointer; }
+#reach > *:focus-visible { position: static; }
+
+/* The card a thing on the shelf opens: the site's shelf tag, grown up. */
+#card { position: fixed; z-index: 5; left: 0; top: 0; width: min(380px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); overflow: auto; background: rgba(12, 13, 15, 0.9); border: 1px solid var(--rule-strong); box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.9); padding: 18px 20px 20px; opacity: 0; transform: translate3d(var(--x, 0px), calc(var(--y, 0px) + 10px), 0); transition: opacity 0.22s var(--ease-out), transform 0.3s var(--ease-out); scrollbar-width: thin; scrollbar-color: var(--graphite-3) transparent; }
+#card.open { opacity: 1; transform: translate3d(var(--x, 0px), var(--y, 0px), 0); }
+#card .top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+#card .chip { font: 600 0.6875rem/1 var(--sans); letter-spacing: 0.09em; text-transform: uppercase; color: var(--accent-ink); background: var(--accent); padding: 5px 7px; }
+#card .x { appearance: none; width: 32px; height: 32px; margin: -6px -8px -6px 0; border: 0; background: none; color: var(--muted); cursor: pointer; display: grid; place-items: center; }
+#card .x svg { width: 14px; height: 14px; }
+#card h2 { margin: 0; font: 400 1.0625rem/1.3 var(--display); letter-spacing: 0.01em; text-wrap: balance; }
+#card .sub { margin: 6px 0 0; font-size: 0.8125rem; color: var(--muted); }
+#card .text { margin: 14px 0 0; font-size: 0.9375rem; line-height: 1.55; color: #e3e8ee; text-wrap: pretty; }
+#card dl { margin: 14px 0 0; display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; font-size: 0.8125rem; line-height: 1.45; border-top: 1px solid var(--rule); padding-top: 12px; }
+#card dt { color: var(--muted); }
+#card dd { margin: 0; }
+#card .stack { list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+#card .stack li { font-size: 0.75rem; line-height: 1; padding: 5px 7px; border: 1px solid var(--rule); color: var(--silver); }
+#card .note { margin: 12px 0 0; font-size: 0.75rem; color: var(--muted); }
+#card .links { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 8px; }
+#card .links a, #card .links button { appearance: none; font: 600 0.8125rem/1 var(--sans); padding: 10px 12px; border: 1px solid var(--silver); background: var(--silver); color: var(--black); text-decoration: none; cursor: pointer; transition: background-color 0.16s ease, color 0.16s ease; }
+#card .links button { background: none; color: var(--frost); border-color: var(--rule-strong); }
+@media (hover: hover) and (pointer: fine) {
+  #card .links a:hover { background: var(--frost); border-color: var(--frost); }
+  #card .links button:hover { border-color: var(--silver); }
+  #card .x:hover { color: var(--frost); }
+}
+#card .links a:active, #card .links button:active, #sound:active { transform: translateY(1px); }
+
+@media (max-width: 700px) {
+  #card { left: 16px !important; right: 16px; top: auto !important; bottom: 16px; width: auto; max-height: 62dvh; --x: 0px !important; --y: 0px !important; }
+  #sound { bottom: auto; top: max(14px, env(safe-area-inset-top)); }
+}
+
+.plain { position: fixed; inset: 0; z-index: 20; display: grid; place-content: center; padding: 24px; text-align: center; background: var(--black); }
+.plain a { color: var(--frost); }
+
+@media (prefers-reduced-motion: reduce) {
+  #card, #veil, #veil-bar { transition-duration: 0.01s; }
+}
