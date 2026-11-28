@@ -1,0 +1,2 @@
+# Python writes these when the room is built; they are made again on the next run.
+__pycache__/
