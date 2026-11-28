@@ -1,8 +1,14 @@
 // The live parts drawn over the baked room: the dusk outside the window, dust in the light, the glow
 // around the lamp, and the finishing pass (bloom, tone, vignette, grain) that keeps the monitor's
 // "hole" transparent so the real page behind the canvas shows through as the screen.
+//
+// Read the note above ENV_GLSL in room.js before changing a shader here: one "not a number" pixel in
+// this picture becomes a black block once the glow pass has spread it. FALL is smoothstep() for the
+// case where the value should fall from 1 to 0, which smoothstep() itself leaves undefined.
 
 import * as THREE from "three";
+
+const FALL = /* glsl */ `float fall(float hi, float lo, float x) { return 1.0 - smoothstep(lo, hi, x); }`;
 
 // ------------------------------------------------------------------ the view from the window
 // Drawn by view direction, not position, so it sits at infinity: when the camera moves, the window
@@ -11,6 +17,7 @@ const SKY_FRAG = /* glsl */ `
   precision highp float;
   varying vec3 vWorld;
   uniform float uTime; uniform float uDusk;
+  ${FALL}
   float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
   float hash1(float p) { return fract(sin(p * 91.345) * 47453.5453); }
   float noise(float x) { float i = floor(x), f = fract(x); f = f * f * (3.0 - 2.0 * f); return mix(hash1(i), hash1(i + 1.0), f); }
@@ -28,9 +35,10 @@ const SKY_FRAG = /* glsl */ `
   }
   void main() {
     vec3 d = normalize(vWorld - cameraPosition);
-    float az = atan(d.x, -d.z), el = asin(d.y);
+    float az = atan(d.x, -d.z), el = asin(clamp(d.y, -1.0, 1.0));
     // sky: the last warm light low in the west, cooling to deep blue overhead
-    float west = exp(-pow((az + 0.37) * 2.2, 2.0));
+    float wz = (az + 0.37) * 2.2;
+    float west = exp(-wz * wz);
     vec3 low = mix(vec3(1.05, 0.40, 0.15), vec3(2.2, 0.92, 0.30), west);
     vec3 mid = mix(vec3(0.20, 0.13, 0.24), vec3(0.42, 0.19, 0.22), west);
     vec3 high = vec3(0.045, 0.085, 0.22);
@@ -46,33 +54,33 @@ const SKY_FRAG = /* glsl */ `
     // stars, coming out
     vec2 sg = vec2(az, el) * 210.0; vec2 si = floor(sg);
     float sr = hash(si);
-    float st = smoothstep(0.985, 1.0, sr) * smoothstep(0.5, 0.0, length(fract(sg) - 0.5 - (vec2(hash(si + 3.0), hash(si + 7.0)) - 0.5) * 0.6));
+    float st = smoothstep(0.985, 1.0, sr) * fall(0.5, 0.0, length(fract(sg) - 0.5 - (vec2(hash(si + 3.0), hash(si + 7.0)) - 0.5) * 0.6));
     sky += vec3(0.8, 0.86, 1.0) * st * smoothstep(0.12, 0.35, el) * (0.55 + 0.45 * sin(uTime * (1.5 + sr * 3.0) + sr * 40.0));
 
     vec3 col = sky;
     // the far range across the valley, soft with haze
     float far = 0.022 + 0.026 * fbm(az * 4.6 + 11.0) + 0.012 * noise(az * 23.0);
-    col = mix(col, vec3(0.085, 0.045, 0.085) * uDusk, smoothstep(far + 0.0025, far - 0.0025, el));
+    col = mix(col, vec3(0.085, 0.045, 0.085) * uDusk, fall(far + 0.0025, far - 0.0025, el));
     // the near range, rising to the left, almost a silhouette
-    float rise = smoothstep(-0.335, -0.64, az);
+    float rise = fall(-0.335, -0.64, az);
     float near = -0.01 + rise * 0.185 + 0.03 * fbm(az * 7.3 + 2.0) * (0.35 + rise) + 0.006 * noise(az * 61.0);
-    float nearMask = smoothstep(near + 0.002, near - 0.002, el);
+    float nearMask = fall(near + 0.002, near - 0.002, el);
     vec3 rock = mix(vec3(0.004, 0.004, 0.009), vec3(0.03, 0.017, 0.028), smoothstep(near - 0.045, near, el)) * (0.8 + 0.4 * fbm(az * 43.0 + el * 120.0));
     col = mix(col, rock, nearMask);
     // red lights on the towers along its ridge
     for (int i = 0; i < 3; i++) {
       float ta = -0.452 - float(i) * 0.034;
-      float rs = smoothstep(-0.335, -0.64, ta);
+      float rs = fall(-0.335, -0.64, ta);
       float tn = -0.01 + rs * 0.185 + 0.03 * fbm(ta * 7.3 + 2.0) * (0.35 + rs) + 0.006 * noise(ta * 61.0);
       float dd = length(vec2(az - ta, el - tn - 0.007 - float(i) * 0.002));
       float blink = 0.25 + 0.75 * smoothstep(0.6, 1.0, sin(uTime * 1.9 + float(i) * 2.1));
-      col += vec3(1.0, 0.08, 0.04) * smoothstep(0.0034, 0.0, dd) * 3.2 * blink;
+      col += vec3(1.0, 0.08, 0.04) * fall(0.0034, 0.0, dd) * 3.2 * blink;
     }
     // the star on the mountain, lit every night: a ring of bulbs in the shape of a star
     vec2 sp = (vec2(az, el) - vec2(-0.432, 0.019)) / 0.0044;
     float sd = star(sp);
-    float bulbs = smoothstep(0.25, 0.75, abs(fract(atan(sp.y, sp.x) / 6.2831853 * 30.0) - 0.5) * 2.0);
-    col += vec3(1.0, 0.84, 0.58) * smoothstep(0.2, 0.03, sd) * (0.12 + 0.88 * bulbs) * 1.05 * step(el, near + 0.01);
+    float bulbs = smoothstep(0.25, 0.75, abs(fract(atan(sp.y, sp.x + 1e-7) / 6.2831853 * 30.0) - 0.5) * 2.0);
+    col += vec3(1.0, 0.84, 0.58) * fall(0.2, 0.03, sd) * (0.12 + 0.88 * bulbs) * 1.05 * step(el, near + 0.01);
 
     // the city on the plain: rows of lights that crowd together toward the foot of the far range.
     // Rows are evenly spaced in log(angle below the horizon), which is evenly spaced on the ground,
@@ -90,8 +98,8 @@ const SKY_FRAG = /* glsl */ `
       float avenue = step(0.78, hash1(row * 1.73 + 2.0));
       float present = step(0.5 - avenue * 0.42, r);
       vec2 jit = (vec2(hash(id + 5.0), hash(id + 9.0)) - 0.5) * (0.55 - avenue * 0.4);
-      float px = max(fwidth(ld) / RH, fwidth(az) / cw);
-      float lamp = smoothstep(0.15 + px * 0.7, 0.15 - px * 0.7, length(f - jit));
+      float px = max(max(fwidth(ld) / RH, fwidth(az) / cw), 1e-4);
+      float lamp = fall(0.15 + px * 0.7, 0.15 - px * 0.7, length(f - jit));
       float tw = 0.72 + 0.28 * sin(uTime * (0.8 + r * 2.6) + r * 50.0);
       vec3 lc = mix(vec3(1.0, 0.6, 0.27), vec3(0.86, 0.9, 1.0), step(0.8, hash(id + 2.0)));
       lc = mix(lc, vec3(1.0, 0.2, 0.1), step(0.972, hash(id + 4.0)));
@@ -103,7 +111,7 @@ const SKY_FRAG = /* glsl */ `
     }
     // the glow a city puts into the air above it
     col += vec3(0.9, 0.42, 0.17) * exp(-abs(el - far) * 70.0) * 0.1 * (1.0 - nearMask);
-    gl_FragColor = vec4(col, 1.0);
+    gl_FragColor = vec4(clamp(col, 0.0, 64.0), 1.0);
   }`;
 
 export function makeSky(meta, VERT, U) {
@@ -144,6 +152,7 @@ export function makeDust(meta, U, count = 420) {
     vertexShader: /* glsl */ `
       attribute vec4 aSeed; uniform float uTime, uGust, uPx, uLampOn; uniform vec3 uLampAt, uLampAim; uniform vec4 uWin;
       varying vec3 vCol;
+      ${FALL}
       void main() {
         vec3 p = position;
         float t = uTime * (0.05 + aSeed.x * 0.06);
@@ -153,18 +162,19 @@ export function makeDust(meta, U, count = 420) {
         // how much light reaches this mote: inside the lamp's cone, or near the window
         vec3 ax = normalize(uLampAim - uLampAt); vec3 lp = p - uLampAt;
         float along = dot(lp, ax); float off = length(lp - ax * along);
-        float cone = smoothstep(0.55, 0.15, off / max(along, 0.02)) * smoothstep(0.0, 0.08, along) * smoothstep(0.75, 0.2, along) * uLampOn;
+        float cone = fall(0.55, 0.15, off / max(along, 0.02)) * smoothstep(0.0, 0.08, along) * fall(0.75, 0.2, along) * uLampOn;
         float wd = uWin.z - p.z;   // negative: inside the room
-        float win = smoothstep(2.8, 0.2, -wd) * smoothstep(uWin.w + 0.9, uWin.w * 0.3, abs(p.x - uWin.x)) * smoothstep(0.4, 1.0, p.y) ;
+        float win = fall(2.8, 0.2, -wd) * fall(uWin.w + 0.9, uWin.w * 0.3, abs(p.x - uWin.x)) * smoothstep(0.4, 1.0, p.y);
         vCol = vec3(1.0, 0.72, 0.42) * cone * 1.25 + vec3(0.42, 0.56, 1.0) * win * 0.34;
         vCol *= 0.55 + 0.45 * sin(uTime * (0.6 + aSeed.y) + aSeed.z * 20.0);
         vec4 mv = viewMatrix * vec4(p, 1.0);
         gl_Position = projectionMatrix * mv;
-        gl_PointSize = uPx * (1.4 + aSeed.x * 2.4) * (2.2 / -mv.z);
+        gl_PointSize = min(uPx * (1.4 + aSeed.x * 2.4) * (2.2 / max(-mv.z, 0.25)), 40.0);   // a mote at the lens is a speck, not a disc
       }`,
     fragmentShader: /* glsl */ `
       precision highp float; varying vec3 vCol;
-      void main() { float d = length(gl_PointCoord - 0.5); float a = smoothstep(0.5, 0.05, d); gl_FragColor = vec4(vCol * a * 0.5, 0.0); }`,
+      ${FALL}
+      void main() { float d = length(gl_PointCoord - 0.5); float a = fall(0.5, 0.05, d); gl_FragColor = vec4(clamp(vCol * a * 0.5, 0.0, 8.0), 0.0); }`,
   });
   const pts = new THREE.Points(geo, mat);
   pts.frustumCulled = false;
@@ -186,9 +196,12 @@ export function makeCone(meta, U) {
       void main() { vUv = uv; vec4 w = modelMatrix * vec4(position, 1.0); vW = w.xyz; vN = normalize(mat3(modelMatrix) * normal); gl_Position = projectionMatrix * viewMatrix * w; }`,
     fragmentShader: /* glsl */ `precision highp float; varying vec2 vUv; varying vec3 vN; varying vec3 vW; uniform float uOn, uTime;
       void main() {
-        float facing = abs(dot(normalize(vN), normalize(cameraPosition - vW)));
-        float a = pow(facing, 2.2) * pow(vUv.y, 1.6) * smoothstep(0.0, 0.12, vUv.y) * (0.92 + 0.08 * sin(uTime * 0.7 + vUv.x * 20.0));
-        gl_FragColor = vec4(vec3(1.0, 0.66, 0.36) * a * 0.075 * uOn, 0.0);
+        // At the cone's rim the card works vUv.y out a little beyond the edge, under zero, and pow() of
+        // that is not a number. Added to the picture it blacked out a block of the room on a phone.
+        float y = clamp(vUv.y, 0.0, 1.0);
+        float facing = clamp(abs(dot(normalize(vN), normalize(cameraPosition - vW))), 0.0, 1.0);
+        float a = pow(facing, 2.2) * pow(y, 1.6) * smoothstep(0.0, 0.12, y) * (0.92 + 0.08 * sin(uTime * 0.7 + vUv.x * 20.0));
+        gl_FragColor = vec4(clamp(vec3(1.0, 0.66, 0.36) * a * 0.075 * uOn, 0.0, 8.0), 0.0);
       }`,
   });
   const mesh = new THREE.Mesh(geo, mat);
@@ -202,6 +215,16 @@ export function makeCone(meta, U) {
 const TRI = new THREE.BufferGeometry();
 TRI.setAttribute("position", new THREE.BufferAttribute(new Float32Array([-1, -1, 0, 3, -1, 0, -1, 3, 0]), 3));
 const PASS_VERT = /* glsl */ `varying vec2 vUv; void main() { vUv = position.xy * 0.5 + 0.5; gl_Position = vec4(position.xy, 0.0, 1.0); }`;
+
+// A spoiled pixel holds "not a number", infinity, or the largest value the picture can store (which is
+// what some cards turn the first two into). Nothing in the room is brighter than about 5, so anything
+// over 48 is spoiled. Tested on the number's bits, where all three cases are simply "larger than the
+// bits of 48.0", because some shader compilers assume such values never happen and delete an ordinary
+// test for them.
+const WRONG = /* glsl */ `
+  precision highp int;
+  bool wrong(vec3 v) { highp uvec3 b = floatBitsToUint(v) & uvec3(0x7fffffffu); return any(greaterThan(b, uvec3(0x42400000u))); }
+  bool wrong(vec4 v) { return wrong(v.rgb) || wrong(vec3(v.a)); }`;
 
 function pass(frag, uniforms) {
   const m = new THREE.ShaderMaterial({ vertexShader: PASS_VERT, fragmentShader: frag, uniforms, depthTest: false, depthWrite: false, blending: THREE.NoBlending });
@@ -219,7 +242,9 @@ export class Post {
     this.uni = { uExposure: { value: 1 }, uTime: { value: 0 }, uFade: { value: 1 }, uBloom: { value: 0.36 }, uScreenGlow: { value: new THREE.Vector3() }, uGrain: { value: 1 } };
     this.pre = pass(/* glsl */ `
       precision highp float; varying vec2 vUv; uniform sampler2D tSrc; uniform vec2 uTexel; uniform vec3 uScreenGlow;
-      vec3 tap(vec2 o) { vec4 c = texture2D(tSrc, vUv + o * uTexel); vec3 v = c.rgb + (1.0 - c.a) * uScreenGlow; float l = max(v.r, max(v.g, v.b)); return v * smoothstep(0.95, 2.8, l); }
+      ${WRONG}
+      // the glow is made from the picture here, so this is where a spoiled pixel has to stop
+      vec3 tap(vec2 o) { vec4 c = texture2D(tSrc, vUv + o * uTexel); if (wrong(c)) return vec3(0.0); vec3 v = clamp(c.rgb, 0.0, 32.0) + (1.0 - clamp(c.a, 0.0, 1.0)) * uScreenGlow; float l = max(v.r, max(v.g, v.b)); return v * smoothstep(0.95, 2.8, l); }
       void main() { gl_FragColor = vec4((tap(vec2(-1, -1)) + tap(vec2(1, -1)) + tap(vec2(-1, 1)) + tap(vec2(1, 1))) * 0.25, 1.0); }`,
       { tSrc: { value: null }, uTexel: { value: new THREE.Vector2() }, uScreenGlow: this.uni.uScreenGlow });
     this.down = pass(/* glsl */ `
@@ -235,6 +260,8 @@ export class Post {
       { tSrc: { value: null }, tAdd: { value: null }, uTexel: { value: new THREE.Vector2() } });
     this.final = pass(/* glsl */ `
       precision highp float; varying vec2 vUv; uniform sampler2D tScene, tBloom; uniform float uExposure, uTime, uFade, uBloom, uGrain; uniform vec2 uRes;
+      ${WRONG}
+      ${FALL}
       float hash(vec2 p) { vec3 q = fract(vec3(p.xyx) * 0.1031); q += dot(q, q.yzx + 33.33); return fract((q.x + q.y) * q.z); }
       vec3 film(vec3 x) {                      // a filmic curve with a soft shoulder; keeps the lamps from clipping hard
         x = max(x, 0.0);
@@ -243,10 +270,22 @@ export class Post {
       }
       void main() {
         vec4 s = texture2D(tScene, vUv);
-        vec3 c = s.rgb + texture2D(tBloom, vUv).rgb * uBloom * mix(0.22, 1.0, s.a);
+        if (wrong(s)) {                       // a pixel some shader spoiled: borrow its neighbours rather than leave a hole
+          vec4 sum = vec4(0.0);
+          for (int i = 0; i < 4; i++) {
+            vec2 o = i == 0 ? vec2(1.0, 0.0) : i == 1 ? vec2(-1.0, 0.0) : i == 2 ? vec2(0.0, 1.0) : vec2(0.0, -1.0);
+            vec4 n = texture2D(tScene, vUv + o * 1.5 / uRes);
+            if (!wrong(n)) sum += vec4(n.rgb, 1.0);
+          }
+          s = sum.a > 0.0 ? vec4(sum.rgb / sum.a, 1.0) : vec4(0.0, 0.0, 0.0, 1.0);
+        }
+        s = clamp(s, vec4(0.0), vec4(32.0, 32.0, 32.0, 1.0));
+        vec3 glow = texture2D(tBloom, vUv).rgb;
+        if (wrong(glow)) glow = vec3(0.0);
+        vec3 c = s.rgb + glow * uBloom * mix(0.22, 1.0, s.a);
         c *= uExposure;
         vec2 q = vUv - 0.5; q.x *= uRes.x / uRes.y * 0.72;
-        float vig = smoothstep(1.02, 0.25, length(q));
+        float vig = fall(1.02, 0.25, length(q));
         c *= mix(0.42, 1.0, vig);
         c = film(c);
         float l = dot(c, vec3(0.2126, 0.7152, 0.0722));

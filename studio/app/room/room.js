@@ -70,14 +70,22 @@ const LIGHT_GLSL = /* glsl */ `
     return a * uSky + uLamp * b.r + uMon * b.g + uStrip * b.b + uSign * c.r + uName * c.g;
   }`;
 
+// A note on every shader here and in fx.js: a graphics card gives "not a number" for pow() of a
+// negative value, for 0/0 and for a few other things, and one such pixel written into this room's
+// picture is spread by the glow pass into a black block (a phone showed exactly that, from the lamp's
+// cone). So nothing below takes pow() of a value that can dip under zero, divides by a value that can
+// be zero, or leans on smoothstep() with its edges the wrong way round, which the language leaves
+// undefined. fx.js also checks the finished picture for such pixels before the glow is made from it.
 const ENV_GLSL = /* glsl */ `
   uniform sampler2D tPano; uniform float kPano; uniform vec3 uPanoAt, uBoxMin, uBoxMax; uniform float uEnv;
   vec3 pano(vec3 d, float lod) {
-    vec2 uv = vec2(0.5 + atan(d.x, -d.z) / 6.2831853, 0.5 - asin(clamp(d.y, -1.0, 1.0)) / 3.14159265);
-    return pow(textureLod(tPano, uv, lod).rgb, vec3(2.2)) * kPano * uEnv;
+    vec2 uv = vec2(0.5 + atan(d.x, -d.z + 1e-7) / 6.2831853, 0.5 - asin(clamp(d.y, -1.0, 1.0)) / 3.14159265);
+    return pow(max(textureLod(tPano, uv, lod).rgb, 0.0), vec3(2.2)) * kPano * uEnv;
   }
   vec3 boxed(vec3 p, vec3 r) {
-    vec3 m = max((uBoxMax - p) / r, (uBoxMin - p) / r);
+    // a ray that runs exactly along a wall would divide by zero
+    vec3 rs = vec3(abs(r.x) < 1e-5 ? 1e-5 : r.x, abs(r.y) < 1e-5 ? 1e-5 : r.y, abs(r.z) < 1e-5 ? 1e-5 : r.z);
+    vec3 m = max((uBoxMax - p) / rs, (uBoxMin - p) / rs);
     return p + r * min(min(m.x, m.y), m.z) - uPanoAt;
   }`;
 
@@ -162,7 +170,7 @@ const FRAG = /* glsl */ `
       vec3 spec = env * fres * uGloss * mix(vec3(1.0), albedo * 1.6, uMetal);
       col = col * (1.0 - uMetal * 0.75) + spec;
     #endif
-    gl_FragColor = vec4(col, 1.0);
+    gl_FragColor = vec4(clamp(col, 0.0, 64.0), 1.0);
   }`;
 
 // Things that give off their own light: bulb, strips, the sign, the little shop windows, the signal lenses.
@@ -180,10 +188,10 @@ const GLOW_FRAG = /* glsl */ `
     #endif
     #ifdef LENS
       vec3 v = normalize(cameraPosition - vWorld);
-      float rim = pow(1.0 - abs(dot(normalize(vNormal), v)), 1.5);
+      float rim = pow(clamp(1.0 - abs(dot(normalize(vNormal), v)), 0.0, 1.0), 1.5);   // facing you exactly, rounding can take this a hair under zero
       c = uGlow * (0.05 + uOn * (0.9 + rim * 0.8));
     #endif
-    gl_FragColor = vec4(c, 1.0);
+    gl_FragColor = vec4(clamp(c, 0.0, 64.0), 1.0);
   }`;
 
 const GLASS_FRAG = /* glsl */ `
@@ -195,7 +203,7 @@ const GLASS_FRAG = /* glsl */ `
     vec3 n = normalize(vNormal); vec3 v = normalize(cameraPosition - vWorld);
     if (dot(n, v) < 0.0) n = -n;
     float f = 0.05 + 0.95 * pow(1.0 - clamp(dot(n, v), 0.0, 1.0), 5.0);
-    vec3 r = pano(normalize(boxed(vWorld, reflect(-v, n))), 0.6);
+    vec3 r = clamp(pano(normalize(boxed(vWorld, reflect(-v, n))), 0.6), 0.0, 64.0);
     gl_FragColor = vec4(r * f, uAlpha);
   }`;
 

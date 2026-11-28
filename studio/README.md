@@ -47,6 +47,13 @@ Nothing is fetched from another site: three.js (r186), the two fonts and every t
 - **The screen** is a real page. In the room it is squeezed onto the monitor by a CSS transform
   and seen through a transparent hole in the drawing, so its text is as sharp as the browser can
   make it; when you sit down the transform comes off.
+- **One rule for the shaders.** A real graphics card answers "not a number" to things like `pow()`
+  of a negative value, and one such pixel is spread by the glow pass into a black block: a phone
+  showed exactly that, from the lamp's cone. The software renderer used for checks here does not,
+  so it cannot be seen from a test run. Every shader therefore clamps what it feeds to `pow()` and
+  never divides by a value that can be zero, and the finishing pass (`fx.js`) looks for spoiled
+  pixels before the glow is made and fills any it finds from their neighbours. The note above
+  `ENV_GLSL` in `room.js` says the same next to the code.
 
 ## Files
 
