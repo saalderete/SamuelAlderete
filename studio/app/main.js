@@ -110,8 +110,43 @@ async function start() {
   const sN = sRight.clone().cross(sUp).normalize();
   const sQuat = new THREE.Quaternion().setFromRotationMatrix(new THREE.Matrix4().makeBasis(sRight, sUp, sN));
   const glassFrag = room.glass[0].material.fragmentShader;
-  const backMat = new THREE.ShaderMaterial({ vertexShader: room.VERT, fragmentShader: glassFrag, uniforms: { ...U, uAlpha: { value: 1 } } });
+  // Where the page does not reach (a phone's page is tall, the glass is wide) the glass shows the
+  // desktop's wallpaper, so the monitor is lit from edge to edge and the page reads as a window on it.
+  // The wallpaper is drawn by the OS's own code onto a canvas here, then stored as the light that,
+  // after the room's exposure and film curve, comes out the colour the page itself would show.
+  const glassCv = document.createElement("canvas"); glassCv.width = 512; glassCv.height = 288;
+  const glassTex = new THREE.CanvasTexture(glassCv);
+  glassTex.colorSpace = THREE.NoColorSpace; glassTex.generateMipmaps = true; glassTex.minFilter = THREE.LinearMipmapLinearFilter;
+  const UNTONE = new Uint8ClampedArray(256);
+  for (let i = 0; i < 256; i++) {
+    const y = Math.min(0.93, Math.pow(i / 255, 2.2));                  // what the film curve has to give back (whites held under the glow)
+    const a = 2.51 - 2.43 * y, b = 0.03 - 0.59 * y, c = -0.14 * y;
+    const x = (-b + Math.sqrt(b * b - 4 * a * c)) / (2 * a) / TONE.exposure;   // the light that does it
+    UNTONE[i] = Math.round(Math.sqrt(Math.min(1, x / 2)) * 255);       // kept as a square root: fine steps in the dark
+  }
+  function paintGlass() {
+    const wp = (os.wallpapers || []).find((w) => w.id === os.wallpaper);
+    if (!wp) return;
+    const g = glassCv.getContext("2d", { willReadFrequently: true });
+    wp.draw(g, glassCv.width, glassCv.height);
+    const im = g.getImageData(0, 0, glassCv.width, glassCv.height), d = im.data;
+    for (let i = 0; i < d.length; i += 4) { d[i] = UNTONE[d[i]]; d[i + 1] = UNTONE[d[i + 1]]; d[i + 2] = UNTONE[d[i + 2]]; }
+    g.putImageData(im, 0, 0);
+    glassTex.needsUpdate = true;
+  }
+  paintGlass(); os.on("tint", paintGlass); os.on("ready", paintGlass);
+  const backMat = new THREE.ShaderMaterial({
+    vertexShader: room.VERT,
+    uniforms: { ...U, uAlpha: { value: 1 }, tWall: { value: glassTex }, uWall: { value: 0 }, uGlassAt: { value: sC },
+      uGlassX: { value: sRight.clone().divideScalar(sW) }, uGlassY: { value: sUp.clone().divideScalar(sH) } },
+    fragmentShader: glassFrag
+      .replace("uniform float uAlpha;", "uniform float uAlpha; uniform sampler2D tWall; uniform float uWall; uniform vec3 uGlassAt, uGlassX, uGlassY;")
+      .replace("gl_FragColor = vec4(r * f, uAlpha);", `vec2 suv = vec2(dot(vWorld - uGlassAt, uGlassX), dot(vWorld - uGlassAt, uGlassY)) + 0.5;
+        vec3 wall = texture2D(tWall, suv).rgb; wall = wall * wall * 2.0;
+        gl_FragColor = vec4(r * f + wall * uWall, uAlpha);`),
+  });
   room.screenMesh.material = backMat;
+  let glassShows = 0;                                                  // 1 when a good part of the glass is not covered by the page
   const holeMat = new THREE.ShaderMaterial({
     vertexShader: room.VERT, blending: THREE.NoBlending, uniforms: { ...U, uAlpha: { value: 0 } },
     fragmentShader: glassFrag.replace("gl_FragColor = vec4(r * f, uAlpha);", "gl_FragColor = vec4(r * f * 0.55, 0.0);"),
@@ -218,6 +253,7 @@ async function start() {
     const a = w / h;
     if (a >= sW / sH) { virt.w = sW; virt.h = sW / a; } else { virt.h = sH; virt.w = sH * a; }
     hole.scale.set(virt.w, virt.h, 1);
+    glassShows = (virt.w * virt.h) / (sW * sH) < 0.75 ? 1 : 0;
   }
   addEventListener("resize", () => resize());
   resize(true);
@@ -478,6 +514,7 @@ async function start() {
     set3(U.uLamp, TONE.lamp, G.lamp * state.lampLevel);
     const mt = [0.35 * TONE.mon[0] + 0.65 * Math.min(1.6, monTint.x * 5 + 0.25), 0.35 * TONE.mon[1] + 0.65 * Math.min(1.6, monTint.y * 5 + 0.25), 0.35 * TONE.mon[2] + 0.65 * Math.min(1.6, monTint.z * 5 + 0.25)];
     const monGlow = mon * Math.max(state.pic, flash * 0.9);
+    backMat.uniforms.uWall.value = glassShows * mon * clamp((state.pic - 0.32) / 0.68, 0, 1);   // the wallpaper comes up with the desktop
     set3(U.uMon, mt, G.mon * monGlow);
     set3(U.uStrip, TONE.strip, G.strip);
     set3(U.uSign, TONE.sign, G.sign * sign);

@@ -73,14 +73,50 @@ def _place(bm, loc, rot):
     return bm
 
 
-def box(size, loc, rot=(0, 0, 0), bevel=0.0):
+EDGE = 0.003       # nothing real has a razor edge: a box that is not a sheet gets at least this much chamfer
+
+
+def _flat_faces(bm):
+    """Mark a chamfered part so Obj.done() gives it area-weighted normals (see weighted_normals)."""
+    lay = bm.faces.layers.int.get("wn") or bm.faces.layers.int.new("wn")
+    for f in bm.faces:
+        f.smooth = True
+        f[lay] = 1
+
+
+def box(size, loc, rot=(0, 0, 0), bevel=None):
+    """A box. bevel=None chamfers its edges a little (sheets and slivers are left alone); a number
+    rounds them by that much; 0 keeps them razor sharp."""
     bm = bmesh.new()
     bmesh.ops.create_cube(bm, size=1.0)
     bmesh.ops.scale(bm, vec=size, verts=bm.verts)
+    seg = 2
+    if bevel is None:
+        m = min(size)
+        bevel, seg = (0.0 if m < 0.012 else min(EDGE, m * 0.2)), 1
     if bevel:
-        bmesh.ops.bevel(bm, geom=bm.edges[:], offset=bevel, segments=2, affect="EDGES", profile=0.5)
-        for f in bm.faces:
-            f.smooth = True
+        bmesh.ops.bevel(bm, geom=bm.edges[:], offset=bevel, segments=seg, affect="EDGES", profile=0.5)
+        _flat_faces(bm)
+    return _place(bm, loc, rot)
+
+
+def soft_box(size, loc, rot=(0, 0, 0), r=0.03, seg=4, cuts=0, shape=None):
+    """A cushion or a moulded part: a box with generously rounded edges. With `cuts` it is divided
+    first, so that `shape` (a function of each point, before the part is placed) can swell or bend it."""
+    bm = bmesh.new()
+    bmesh.ops.create_cube(bm, size=1.0)
+    bmesh.ops.scale(bm, vec=size, verts=bm.verts)
+    if cuts:
+        bmesh.ops.subdivide_edges(bm, edges=bm.edges[:], cuts=cuts, use_grid_fill=True)
+        bm.normal_update()
+    hard = [e for e in bm.edges if len(e.link_faces) == 2 and e.link_faces[0].normal.dot(e.link_faces[1].normal) < 0.5]
+    bmesh.ops.bevel(bm, geom=hard, offset=r, segments=seg, affect="EDGES", profile=0.5)
+    if shape:
+        for v in bm.verts:
+            v.co = shape(v.co.copy())
+    for f in bm.faces:
+        f.smooth = True
+    bm.normal_update()
     return _place(bm, loc, rot)
 
 
@@ -216,11 +252,36 @@ class Obj:
             ob.location = o
         box_uv(ob)
         me.uv_layers.new(name="lm")
+        weighted_normals(me)
         for k, v in self.props.items():
             ob[k] = v
         ob["oname"] = self.name
         OBJECTS.append(ob)
         return ob
+
+
+def weighted_normals(me):
+    """Rounded edges without puffy faces. Smooth shading shares one normal between the faces that meet
+    at a point, and on a chamfered box that leans every flat face's corners outward by some 30 degrees,
+    so a desk top reflects the room as if it were a pillow. Here each face pulls the shared normal by
+    its area: the large faces stay flat and only the chamfer turns. Only parts box() chamfered are
+    touched; lathes, balls and cushions keep ordinary smooth shading."""
+    lay = me.attributes.get("wn")
+    if lay is None:
+        return
+    flag = [d.value for d in lay.data]
+    acc = [Vector() for _ in me.vertices]
+    for p in me.polygons:
+        if flag[p.index]:
+            for vi in p.vertices:
+                acc[vi] += p.normal * p.area
+    out = []
+    for p in me.polygons:
+        for li in p.loop_indices:
+            a = acc[me.loops[li].vertex_index]
+            out.append(tuple(a.normalized()) if flag[p.index] and a.length > 1e-12 else (0.0, 0.0, 0.0))
+    me.normals_split_custom_set(out)
+    me.attributes.remove(me.attributes["wn"])
 
 
 def box_uv(ob, unit=None):
@@ -495,28 +556,68 @@ def build_desk():
 
 
 def build_chair():
-    o = Obj("F.chair", lm_scale=0.9)
+    """An upholstered task chair: a cushion with a rolled front edge, a back that wraps a little, a
+    gas lift in its sleeve and a five-star base of brushed aluminium on twin casters. Built facing -Y,
+    its back at +Y. The shells behind the cushions are matte: mirror-bright plastic or chrome on
+    edges this thin shows as a row of sparks, not as a highlight."""
+    o = Obj("F.chair", lm_scale=1.0)
     c = Vector((0.66, 0.9, 0))
-    rz = math.radians(-76)                      # swivelled aside, the way you leave it when you get up
+    rz = math.radians(104)                      # swivelled aside, the way you leave it when you get up
     R = Matrix.Translation(c) @ Matrix.Rotation(rz, 4, "Z")
     def put(part):
         bmesh.ops.transform(part, matrix=R, verts=part.verts)
         return part
+    # base: five arms that taper and slope down to the casters
     for i in range(5):
         a = 2 * math.pi * i / 5 + 0.3
-        o.add(put(box((0.3, 0.04, 0.028), (math.cos(a) * 0.16, math.sin(a) * 0.16, 0.075), (0, math.radians(-6), a))), "chrome")
-        o.add(put(cyl(0.028, 0.03, (math.cos(a) * 0.3, math.sin(a) * 0.3, 0.028), D(90, 0, math.degrees(a)), seg=12)), "rubber")
-    o.add(put(cyl(0.026, 0.3, (0, 0, 0.24), seg=14)), "chrome")
-    o.add(put(box((0.2, 0.2, 0.03), (0, 0, 0.405))), "steel")
-    o.add(put(box((0.48, 0.46, 0.07), (0, 0.01, 0.455), bevel=0.028)), "fabric")
-    o.add(put(box((0.05, 0.03, 0.26), (0, -0.23, 0.52), D(-8, 0, 0))), "steel")
-    o.add(put(box((0.44, 0.05, 0.3), (0, -0.25, 0.7), D(-8, 0, 0), bevel=0.024)), "fabric")
+        L = 0.27
+        def arm(p, L=L):
+            t = p.x / L + 0.5                                   # 0 at the hub, 1 at the tip
+            return Vector((p.x, p.y * (1 - 0.42 * t), p.z * (1 - 0.3 * t) - 0.03 * t))
+        o.add(put(soft_box((L, 0.05, 0.034), (math.cos(a) * 0.165, math.sin(a) * 0.165, 0.098), (0, 0, a), r=0.009, seg=2, cuts=2, shape=arm)), "aluminium")
+        tip = Vector((math.cos(a) * 0.3, math.sin(a) * 0.3, 0))
+        side = Vector((-math.sin(a), math.cos(a), 0))
+        o.add(put(cyl(0.008, 0.03, tip + Vector((0, 0, 0.058)), seg=10)), "aluminium")
+        o.add(put(soft_box((0.05, 0.034, 0.026), tip + Vector((0, 0, 0.042)), (0, 0, a), r=0.009, seg=2)), "plastic")
+        for sgn in (-1, 1):
+            o.add(put(cyl(0.027, 0.014, tip + side * (0.013 * sgn) + Vector((0, 0, 0.027)), D(90, 0, math.degrees(a)), seg=18)), "rubber")
+    o.add(put(cyl(0.05, 0.05, (0, 0, 0.1), r2=0.038, seg=20)), "aluminium")
+    # gas lift: the chrome piston in its black sleeve
+    o.add(put(cyl(0.031, 0.15, (0, 0, 0.195), seg=18)), "plastic")
+    o.add(put(cyl(0.021, 0.14, (0, 0, 0.29), seg=16)), "chrome")
+    # the mechanism under the seat, its lever, and the bracket that carries the back
+    o.add(put(box((0.19, 0.24, 0.04), (0, 0, 0.372), bevel=0.008)), "graphite")
+    o.add(put(rod((0.09, -0.03, 0.365), (0.235, -0.05, 0.358), 0.006, seg=8)), "steel")
+    o.add(put(soft_box((0.05, 0.022, 0.014), (0.25, -0.052, 0.357), r=0.005, seg=2)), "plastic")
+    o.add(put(box((0.06, 0.18, 0.016), (0, 0.165, 0.36), bevel=0.004)), "steel")
+    # seat: a moulded pan and the cushion on it
+    o.add(put(soft_box((0.47, 0.45, 0.028), (0, -0.01, 0.402), r=0.012, seg=3)), "graphite")
+    def seat(p):
+        u, v = p.x / 0.245, p.y / 0.235
+        dome = max(0.0, 1 - u * u) * max(0.0, 1 - v * v)
+        z = p.z + (0.013 * dome if p.z > 0 else 0.0)
+        front = max(0.0, (-p.y - 0.11) / 0.125)                  # the front edge rolls over, easy on the legs
+        return Vector((p.x, p.y, z - 0.022 * front * front))
+    o.add(put(soft_box((0.49, 0.47, 0.075), (0, -0.01, 0.453), r=0.03, seg=4, cuts=5, shape=seat)), "fabric")
+    # back: a bar up from the bracket, a shell, and the cushion that wraps a little round you
+    tilt = D(-9, 0, 0)                                           # it reclines: the top sits further back
+    o.add(put(box((0.06, 0.016, 0.3), (0, 0.262, 0.49), tilt, bevel=0.004)), "steel")
+    def wrap(p, k=0.5):
+        return Vector((p.x, p.y - k * p.x * p.x, p.z))
+    def back(p):
+        q = wrap(p)
+        u, w = p.x / 0.23, p.z / 0.18
+        if p.y < 0:                                              # the face you lean on swells at the small of the back
+            q.y -= 0.014 * max(0.0, 1 - u * u) * max(0.0, 1 - (w + 0.25) ** 2)
+        return q
+    o.add(put(soft_box((0.44, 0.018, 0.33), (0, 0.268, 0.705), tilt, r=0.008, seg=2, cuts=5, shape=wrap)), "graphite")
+    o.add(put(soft_box((0.46, 0.065, 0.36), (0, 0.232, 0.71), tilt, r=0.03, seg=4, cuts=6, shape=back)), "fabric")
     o.done()
 
 
 def build_rug():
     o = Obj("F.rug", lm_scale=0.8)
-    o.add(box((2.9, 1.9, 0.012), (0.2, 0.42, 0.006)), "rug")
+    o.add(box((2.9, 1.9, 0.012), (0.2, 0.42, 0.006), bevel=0.005), "rug")
     o.done()
     META["anchors"]["rug"] = {"cx": 0.2, "cy": 0.42, "w": 2.9, "d": 1.9}
 

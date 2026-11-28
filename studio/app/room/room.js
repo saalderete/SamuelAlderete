@@ -10,13 +10,15 @@ const here = (p) => new URL(p, import.meta.url).href;
 
 // What each material is in the browser. Colours come from the model; these add texture and shine.
 //   map: wood texture, tile: metres per repeat, swap: grain runs along X
+//   detail: the map is a grey grain (tools/make_textures.py) multiplied into the model's own colour
 //   f0: reflectance facing you, rough: blur of the reflection, metal: reflection takes the colour
+//   Cloth has a low f0 and a high rough: nothing facing you, a soft sheen where it turns away.
 const LOOK = {
   floor: { map: "floor", rmap: "floor-rough", tile: 2.1, f0: 0.045, rough: 0.34, gloss: 1.0, box: true, tint: [1.0, 0.96, 0.92], sat: 0.85 },
   walnut: { map: "walnut", tile: 1.2, swap: true, f0: 0.04, rough: 0.32, gloss: 0.5, tint: [1.2, 1.12, 1.03], sat: 0.42 },
   oak: { map: "oak", tile: 0.8, swap: true, f0: 0.04, rough: 0.38, gloss: 0.4, tint: [0.92, 0.9, 0.86] },
-  wall: { grain: 0.05 },
-  ceiling: {},
+  wall: { map: "paint", tile: 1.2, detail: true },
+  ceiling: { map: "paint", tile: 1.5, detail: true },
   chrome: { metal: 1, f0: 0.9, rough: 0.06, gloss: 1 },
   letters: { metal: 0.5, f0: 0.8, rough: 0.2, gloss: 0.9, boost: 1.7 },      // the name on the wall: satin metal that takes the picture light
   aluminium: { metal: 1, f0: 0.75, rough: 0.34, gloss: 0.9 },
@@ -33,7 +35,9 @@ const LOOK = {
   navy: { f0: 0.04, rough: 0.5, gloss: 0.2 },
   graphite: { f0: 0.04, rough: 0.4, gloss: 0.35 },
   coffee: { f0: 0.05, rough: 0.05, gloss: 1 },
-  rug: { rug: true },
+  rug: { rug: true, map: "rug", tile: 0.6, detail: true, f0: 0.02, rough: 0.9, gloss: 0.16 },
+  fabric: { f0: 0.022, rough: 0.85, gloss: 0.2 },
+  felt: { f0: 0.02, rough: 0.9, gloss: 0.1 },
   red: { lens: 0 }, amber: { lens: 1 }, green: { lens: 2 },
 };
 
@@ -124,8 +128,14 @@ const FRAG = /* glsl */ `
       #ifdef SWAP
         tuv = tuv.yx;
       #endif
-      albedo = texture2D(tMap, tuv).rgb * uTint;
-      albedo = mix(vec3(dot(albedo, vec3(0.2126, 0.7152, 0.0722))), albedo, uSat);
+      #ifdef DETAIL
+        // one small grey picture laid twice: at its own size for the grain, and much larger and
+        // blurred for the slow unevenness, so the eye finds no repeat
+        albedo = uColor * (texture2D(tMap, tuv).r * texture2D(tMap, tuv * 0.29 + vec2(0.37, 0.61), 2.5).r * 4.0);
+      #else
+        albedo = texture2D(tMap, tuv).rgb * uTint;
+        albedo = mix(vec3(dot(albedo, vec3(0.2126, 0.7152, 0.0722))), albedo, uSat);
+      #endif
       #ifdef RMAP
         rgh = texture2D(tRough, tuv).r;
       #endif
@@ -145,8 +155,13 @@ const FRAG = /* glsl */ `
       vec3 c = mix(wool, sand, bands);
       float edge = step(r.y, 0.02) + step(0.98, r.y) + step(e, 0.008);
       c = mix(c, ink, clamp(edge, 0.0, 1.0));
-      float weave = 0.82 + 0.36 * vnoise(vWorld.xz * vec2(480.0, 150.0)) * vnoise(vWorld.xz * 57.0 + 4.0) + 0.1 * (vnoise(vWorld.xz * 6.0) - 0.5);
-      albedo = c * weave;
+      #ifdef MAP
+        vec2 ruv = vWorld.xz / uTile;        // the pile: its tufts, and the broad shading where it lies one way or the other
+        albedo = c * (texture2D(tMap, ruv).r * texture2D(tMap, ruv * 0.23 + vec2(0.41, 0.17), 2.5).r * 4.0);
+      #else
+        float weave = 0.82 + 0.36 * vnoise(vWorld.xz * vec2(480.0, 150.0)) * vnoise(vWorld.xz * 57.0 + 4.0) + 0.1 * (vnoise(vWorld.xz * 6.0) - 0.5);
+        albedo = c * weave;
+      #endif
     #endif
     vec3 light = bakedLight(vUv1);
     #ifdef LABEL
@@ -164,8 +179,12 @@ const FRAG = /* glsl */ `
       #ifdef BOX
         rdir = normalize(boxed(vWorld, rdir));
       #endif
-      float rr = clamp(uRough * (0.55 + 0.9 * rgh), 0.0, 1.0);
-      vec3 env = pano(rdir, rr * 7.0);
+      // A chamfer or a rounded edge a pixel wide turns through a right angle inside that pixel.
+      // Mirrored sharply it shows as a row of sparks; a camera would see one soft line. So the faster
+      // the surface turns under a pixel, the blurrier its reflection.
+      float turn = clamp(length(fwidth(n)) * 1.6, 0.0, 1.0);
+      float rr = clamp(uRough * (0.55 + 0.9 * rgh) + turn, 0.0, 1.0);
+      vec3 env = pano(rdir, rr * 7.0 + smoothstep(0.1, 0.3, rr));      // polished things mirror the room sharply; the rest keep their blur
       float fres = uF0 + (1.0 - uF0) * pow(1.0 - nv, 5.0) * (1.0 - rr * 0.6);
       vec3 spec = env * fres * uGloss * mix(vec3(1.0), albedo * 1.6, uMetal);
       col = col * (1.0 - uMetal * 0.75) + spec;
@@ -235,6 +254,8 @@ export async function loadRoom(onProgress = () => {}) {
     "floor-rough": texture(tl, here("tex/floor-rough.webp"), { repeat: true, mips: true }),
     walnut: texture(tl, here("tex/walnut.webp"), { srgb: true, repeat: true, mips: true }),
     oak: texture(tl, here("tex/oak.webp"), { srgb: true, repeat: true, mips: true }),
+    paint: texture(tl, here("tex/paint.webp"), { repeat: true, mips: true }),
+    rug: texture(tl, here("tex/rug.webp"), { repeat: true, mips: true }),
   };
   const gltf = await new GLTFLoader(manager).loadAsync(here("room.glb"));
   await ready;
@@ -271,7 +292,7 @@ export async function loadRoom(onProgress = () => {}) {
     if (look.mul) color = color.clone().multiply(new THREE.Color(...look.mul));
     const defines = {};
     const uniforms = { ...U, ...atlasU(atlas), uColor: { value: color.clone() }, uTint: { value: new THREE.Vector3(...(look.tint || [1, 1, 1])) }, uHot: { value: 0 } };
-    if (look.map) { defines.MAP = 1; uniforms.tMap = { value: wood[look.map] }; uniforms.uTile = { value: look.tile }; uniforms.uSat = { value: look.sat ?? 1 }; if (look.swap) defines.SWAP = 1; }
+    if (look.map) { defines.MAP = 1; uniforms.tMap = { value: wood[look.map] }; uniforms.uTile = { value: look.tile }; uniforms.uSat = { value: look.sat ?? 1 }; if (look.swap) defines.SWAP = 1; if (look.detail) defines.DETAIL = 1; }
     if (look.rmap) { defines.RMAP = 1; uniforms.tRough = { value: wood[look.rmap] }; }
     if (look.f0) { defines.GLOSS = 1; uniforms.uF0 = { value: look.f0 }; uniforms.uRough = { value: look.rough }; uniforms.uGloss = { value: look.gloss }; uniforms.uMetal = { value: look.metal || 0 }; if (look.box) defines.BOX = 1; }
     if (look.grain) defines.GRAIN = look.grain.toFixed(3);

@@ -35,6 +35,10 @@ Nothing is fetched from another site: three.js (r186), the two fonts and every t
   the programs on the screen both read from it. Nothing is said here that the site does not say.
 - **The room** is built in code with Blender's Python module: `tools/build_room.py` makes every
   wall, shelf and object from boxes, lathes and a few hand-made meshes. No person is modelled.
+  Nothing real has a razor edge, so every box that is not a sheet gets a small chamfer, shaded so
+  that its flat faces stay flat and only the chamfer turns (`weighted_normals`); cushions and
+  moulded parts are boxes with generously rounded edges, swelled or bent by a small function
+  (`soft_box`). Nobody opens Blender for any of this: it runs as a library, from the command line.
 - **The light** is baked, not computed in the browser. `tools/bake.py` bakes it with Cycles into
   three atlases (shell, furniture, props), in separate layers: the window at dusk in colour, and
   the desk lamp, monitor glow, shelf strips, lit sign and name light each in their own channel.
@@ -44,9 +48,17 @@ Nothing is fetched from another site: three.js (r186), the two fonts and every t
 - **Live on top:** the view from the window (a shader, drawn at infinity so the frame slides over
   it), dust in the lamp's cone and by the window, leaves that sway, reflections on the floor, the
   glass and the metal letters (from one Cycles panorama of the room), the sign and the signal light.
+- **Surfaces.** The wood is three photographs from Poly Haven. The paint on the walls and the pile
+  of the rug are two small grey pictures made in code (`tools/make_textures.py`), each laid over its
+  surface twice, fine and coarse, so no repeat shows. Cloth has no shine facing you and a soft
+  sheen where it turns away; what each material does is one line in `LOOK`, at the top of
+  `app/room/room.js`. A reflection blurs where the surface turns quickly under a pixel, so a
+  chamfer a pixel wide shows as one soft line and not as a row of sparks.
 - **The screen** is a real page. In the room it is squeezed onto the monitor by a CSS transform
   and seen through a transparent hole in the drawing, so its text is as sharp as the browser can
-  make it; when you sit down the transform comes off.
+  make it; when you sit down the transform comes off. The page keeps the window's shape, so on a
+  phone it is a tall strip on a wide monitor: there the rest of the glass shows the desktop's
+  wallpaper, drawn by the same code as the real one, and the page reads as a window on it.
 - **One rule for the shaders.** A real graphics card answers "not a number" to things like `pow()`
   of a negative value, and one such pixel is spread by the glow pass into a black block: a phone
   showed exactly that, from the lamp's cone. The software renderer used for checks here does not,
@@ -66,12 +78,14 @@ Nothing is fetched from another site: three.js (r186), the two fonts and every t
 | `app/os/` | The mini-OS on the monitor. `os/dev.html` runs it alone, without the room |
 | `app/audio.js` | The one sound engine both share |
 | `app/vendor/three/` | three.js r186 and its glTF loader |
-| `tools/` | `build_room.py` and `bake.py`: the room and its light, in code |
+| `app/room/tex/` | Wood (photographs) and the paint and rug grain (made by `tools/make_textures.py`) |
+| `tools/` | `build_room.py` and `bake.py`: the room and its light, in code; `make_textures.py`: the paint and the rug |
 
 ## Baking again
 
 The room needs `bpy` 5.3 (Blender as a Python module, Python 3.13), `numpy`, `pillow` and
-`fonttools`. Every job runs on the CPU in well under ten minutes.
+`fonttools`. Every job runs on the CPU in well under ten minutes; all of them together take about
+half an hour on four cores.
 
 ```bash
 pip install bpy==5.3.0 numpy pillow fonttools brotli
@@ -79,9 +93,10 @@ python -c "from fontTools.ttLib import TTFont; f=TTFont('app/fonts/michroma-lati
 export STUDIO_FONT=/tmp/michroma.ttf
 cd tools
 python bake.py build /tmp/room                 # model, light-map layout, app/room/room.glb + room.json
-python bake.py pano  /tmp/room 2048 64         # the reflection panorama
-python bake.py bake  /tmp/room S sky 2048 48   # one job per atlas (S, F, P) and layer (sky, lmb, sgn)
+python bake.py pano  /tmp/room 4096 48         # the reflection panorama (kept at half this size)
+python bake.py bake  /tmp/room S sky 2048 64   # one job per atlas (S, F, P) and layer (sky, lmb, sgn)
 python bake.py pack  /tmp/room                 # writes app/room/*.webp and light.json
+python make_textures.py                        # the paint and the rug grain; only if you change them
 python bake.py view  /tmp/room out.png 960 48  0.1 -2.3 1.3  0.15 2.2 1.18  35   # a plain Cycles picture, to check the model
 ```
 
